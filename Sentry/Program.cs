@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Open.Sentry.Data;
+using Open.Infra;
 
 namespace Open.Sentry {
     public class Program {
@@ -13,8 +13,8 @@ namespace Open.Sentry {
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var context = services.GetRequiredService<CountryContext>();
-                    CountriesInitializer.Initialize(context);
+                    var context = services.GetRequiredService<CountryDbContext>();
+                    CountriesDbTableInitializer.Initialize(context);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occured while seeding the database.");

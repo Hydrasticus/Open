@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Open.Sentry.Data;
+using Open.Infra;
 using System;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(CountryContext))]
+    [DbContext(typeof(CountryDbContext))]
     [Migration("20180131121110_Countries")]
     partial class Countries
     {

@@ -2,14 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Open.Sentry.Data;
 using System;
+using Open.Infra;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(CountryContext))]
+    [DbContext(typeof(CountryDbContext))]
     partial class CountryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

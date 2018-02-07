@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Open.Aids</AssemblyName>
+    <RootNamespace>Open.Aids</RootNamespace>
+  </PropertyGroup>
+
+</Project>

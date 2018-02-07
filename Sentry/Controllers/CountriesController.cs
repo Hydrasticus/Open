@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Open.Sentry.Data;
 using System.Threading.Tasks;
+using Open.Infra;
 
 namespace Open.Sentry.Controllers {
     public class CountriesController : Controller {
-        private readonly CountryContext db;
-        public CountriesController(CountryContext c) {
+        private readonly CountryDbContext db;
+        public CountriesController(CountryDbContext c) {
             db = c;
         }
 

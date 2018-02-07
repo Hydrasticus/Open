@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Open.Sentry.Models {
+namespace Open.Data {
     public class IsoCountry {
         public IsoCountry() { }
         public IsoCountry(string id, string name, string code, DateTime? validFrom = null, DateTime? validTo = null) {
