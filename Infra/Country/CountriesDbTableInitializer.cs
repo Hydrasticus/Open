@@ -2,6 +2,7 @@
 using System.Linq;
 using Open.Data;
 using Open.Data.Country;
+using Open.Infra.Country;
 
 namespace Open.Infra {
     public class CountriesDbTableInitializer {

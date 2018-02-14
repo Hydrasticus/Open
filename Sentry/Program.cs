@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Open.Infra;
+using Open.Infra.Country;
 
 namespace Open.Sentry {
     public class Program {

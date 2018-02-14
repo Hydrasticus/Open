@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Open.Facade.Country.CountryViewModel>
-
 @{
     ViewData["Title"] = "Countries";
 }
@@ -8,16 +7,16 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Alpha3Code)</th>
-            <th>@Html.DisplayNameFor(model => model.Alpha2Code)</th>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.ValidFrom)</th>
-            <th>@Html.DisplayNameFor(model => model.ValidTo)</th>
-        </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Alpha3Code)</th>
+        <th>@Html.DisplayNameFor(model => model.Alpha2Code)</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.ValidFrom)</th>
+        <th>@Html.DisplayNameFor(model => model.ValidTo)</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Alpha3Code)</td>
             <td>@Html.DisplayFor(modelItem => item.Alpha2Code)</td>
@@ -25,6 +24,6 @@
             <td>@Html.DisplayFor(modelItem => item.ValidFrom)</td>
             <td>@Html.DisplayFor(modelItem => item.ValidTo)</td>
         </tr>
-        }
+    }
     </tbody>
 </table>

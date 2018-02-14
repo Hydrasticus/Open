@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Domain.Country;
 
-namespace Open.Infra {
+namespace Open.Infra.Country {
     public class CountryObjectsRepository : ICountryObjectsRepository {
         private readonly CountryDbContext db;
 
