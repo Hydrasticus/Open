@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Domain.Country;
@@ -33,6 +34,11 @@ namespace Open.Infra.Country {
         public async void DeleteObject(CountryObject o) {
             db.Countries.Remove(o.DbRecord);
             await db.SaveChangesAsync();
+        }
+
+        public bool IsInitialized() {
+            db.Database.EnsureCreated();
+            return db.Countries.Any();
         }
     }
 }
