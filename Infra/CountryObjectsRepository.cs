@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Domain.Country;
 
-namespace Open.Infra.Country {
+namespace Open.Infra {
     public class CountryObjectsRepository : ICountryObjectsRepository {
         private readonly CountryDbContext db;
 

@@ -5,19 +5,19 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sentry", "Sentry\Sentry.csproj", "{D2AE38FB-15B9-4211-A281-CCADE3C344D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aids", "Aids\Aids.csproj", "{93490416-17B8-434E-93EB-D085796E43FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aids", "Aids\Aids.csproj", "{93490416-17B8-434E-93EB-D085796E43FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{DC2F7177-A275-4839-984F-348296FEB5CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{DC2F7177-A275-4839-984F-348296FEB5CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{E8C4C2C8-22AC-466E-8EA8-F5BA0E68C83E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{E8C4C2C8-22AC-466E-8EA8-F5BA0E68C83E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BA44B8B7-6AB4-48FC-BC38-B54F92D84DEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{BA44B8B7-6AB4-48FC-BC38-B54F92D84DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade", "Facade\Facade.csproj", "{354AEBE5-69B8-46E3-B7C9-89308A774365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facade", "Facade\Facade.csproj", "{354AEBE5-69B8-46E3-B7C9-89308A774365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{A093F3A0-983D-4491-89AE-23756A52D55F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{A093F3A0-983D-4491-89AE-23756A52D55F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{868DDAA7-D393-424D-A6B8-BAA7A826D426}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{ACC62215-9CED-4FE6-A0BE-56DC37E81889}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{A093F3A0-983D-4491-89AE-23756A52D55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A093F3A0-983D-4491-89AE-23756A52D55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A093F3A0-983D-4491-89AE-23756A52D55F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{868DDAA7-D393-424D-A6B8-BAA7A826D426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{868DDAA7-D393-424D-A6B8-BAA7A826D426}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{868DDAA7-D393-424D-A6B8-BAA7A826D426}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{868DDAA7-D393-424D-A6B8-BAA7A826D426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC62215-9CED-4FE6-A0BE-56DC37E81889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC62215-9CED-4FE6-A0BE-56DC37E81889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC62215-9CED-4FE6-A0BE-56DC37E81889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC62215-9CED-4FE6-A0BE-56DC37E81889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

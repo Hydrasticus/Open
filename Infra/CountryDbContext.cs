@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Open.Data.Country;
 
-namespace Open.Infra.Country {
+namespace Open.Infra {
     public class CountryDbContext : DbContext {
         public CountryDbContext(DbContextOptions<CountryDbContext> o) : base(o) { }
 

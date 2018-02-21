@@ -3,8 +3,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Open.Domain.Country;
 using Open.Infra;
-using Open.Infra.Country;
 
 namespace Open.Sentry {
     public class Program {
@@ -14,7 +14,7 @@ namespace Open.Sentry {
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var context = services.GetRequiredService<CountryDbContext>();
+                    var context = services.GetRequiredService<ICountryObjectsRepository>();
                     CountriesDbTableInitializer.Initialize(context);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();

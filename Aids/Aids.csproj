@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Open.Aids</AssemblyName>
     <RootNamespace>Open.Aids</RootNamespace>
+    <DebugType>Full</DebugType>
   </PropertyGroup>
 
 </Project>

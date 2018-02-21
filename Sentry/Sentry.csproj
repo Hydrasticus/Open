@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-Sentry-45F30164-976D-4147-BC1F-D17E0009BC98</UserSecretsId>
     <AssemblyName>Open.Sentry</AssemblyName>
     <RootNamespace>Open.Sentry</RootNamespace>
+    <DebugType>Full</DebugType>
   </PropertyGroup>
 
 

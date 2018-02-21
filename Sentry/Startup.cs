@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Open.Domain.Country;
 using Open.Infra;
-using Open.Infra.Country;
 using Sentry.Data;
 using Sentry.Models;
 using Sentry.Services;
