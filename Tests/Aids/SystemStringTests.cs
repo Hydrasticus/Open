@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 
-namespace Tests.Aids {
+namespace Open.Tests.Aids {
     [TestClass]
-    public class SystemStringTests {
+    public class SystemStringTests : BaseTests {
 
         [TestMethod]
         public void StartsWithLetterTest() {

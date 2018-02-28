@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>Open.Tests</AssemblyName>
+
+    <RootNamespace>Open.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
