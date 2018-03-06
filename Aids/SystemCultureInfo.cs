@@ -9,20 +9,11 @@ namespace Open.Aids {
         }
 
         public static CultureInfo[] GetCultures(CultureTypes types) {
-            try {
-                return CultureInfo.GetCultures(types);
-            } catch {
-                return new CultureInfo[0];
-            }
+            return Safe.Run(() => CultureInfo.GetCultures(types), new CultureInfo[0]);
         }
 
         public static RegionInfo ToRegionInfo(CultureInfo info) {
-            if (info is null) return null;
-            try {
-                return new RegionInfo(info.LCID);
-            } catch {
-                return null;
-            }
+            return info is null ? null : Safe.Run(() => new RegionInfo(info.LCID), null);
         }
     }
 }

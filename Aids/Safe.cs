@@ -4,7 +4,7 @@ namespace Open.Aids {
     public static class Safe {
         private static readonly object key = new object();
 
-        private static T Run<T>(Func<T> function, T valueOnException, bool useLock = false) {
+        public static T Run<T>(Func<T> function, T valueOnException, bool useLock = false) {
             return useLock ? lockedRun(function, valueOnException) : run(function, valueOnException);
         }
 

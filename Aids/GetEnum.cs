@@ -5,7 +5,7 @@ namespace Open.Aids {
     public static class GetEnum {
 
         public static int Count<T>() {
-            return Enum.GetValues(typeof(T)).Length;
+            return Safe.Run(() => Enum.GetValues(typeof(T)).Length, -1);
         }
     }
 }
