@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Open.Infra.Country;
 
-namespace Open.Tests.Infra.Country
-{
-    class CountryDbContextTests
-    {
+namespace Open.Tests.Infra.Country {
+ 
+    [TestClass]
+    public class CountryDbContextTests : ObjectTests<CountryDbContext> {
+    
+        protected override CountryDbContext getRandomTestObject() {
+            throw new System.NotImplementedException();
+        }
     }
 }

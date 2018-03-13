@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Open.Tests.Facade.Country
-{
-    class CountryViewModelFactoryTests
-    {
-    }
+namespace Open.Tests.Facade.Country {
+ 
+    [TestClass]
+    public class CountryViewModelFactoryTests : BaseTests {}
 }

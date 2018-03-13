@@ -2,20 +2,43 @@
 using Open.Aids;
 
 namespace Open.Tests.Aids {
+    
     [TestClass]
-    public class GetSolutionTests : ObjectTests<GetSolution> {
+    public class GetSolutionTests : BaseTests {
+        
         [TestInitialize]
         public override void TestInitialize() {
             base.TestInitialize();
             type = typeof(GetSolution);
         }
 
-        protected override GetSolution getRandomTestObject() {
-            return null;
+        [TestMethod]
+        public void DomainTest() {
+            Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void InitializeTest() {
+        public void AssembliesTest() {
+            Assert.Inconclusive();
+        }
+
+        [TestMethod]
+        public void AssemblyByNameTest() {
+            Assert.Inconclusive();
+        }
+
+        [TestMethod]
+        public void TypesForAssemblyTest() {
+            Assert.Inconclusive();
+        }
+
+        [TestMethod]
+        public void TypeNamesForAssemblyTest() {
+            Assert.Inconclusive();
+        }
+
+        [TestMethod]
+        public void NameTest() {
             Assert.Inconclusive();
         }
     }

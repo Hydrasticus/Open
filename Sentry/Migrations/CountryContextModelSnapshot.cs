@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using Open.Infra;
+using Open.Infra.Country;
 
 namespace Open.Sentry.Migrations
 {

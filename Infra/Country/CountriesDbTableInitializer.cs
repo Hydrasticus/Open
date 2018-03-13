@@ -2,7 +2,9 @@
 using Open.Domain.Country;
 
 namespace Open.Infra.Country {
+    
     public class CountriesDbTableInitializer {
+        
         public static void Initialize(ICountryObjectsRepository c) {
             if (c.IsInitialized()) return;
             var regions = SystemRegionInfo.GetRegionsList();

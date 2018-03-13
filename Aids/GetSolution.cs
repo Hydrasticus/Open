@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace Open.Aids {
+    
     public class GetSolution {
         public static AppDomain Domain => AppDomain.CurrentDomain;
 

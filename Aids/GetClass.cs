@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 
 namespace Open.Aids {
+    
     public class GetClass {
+        
         private const string g = "get_";
         private const string s = "set_";
         private const string a = "add_";

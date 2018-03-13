@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Open.Facade.Country;
 
-namespace Open.Tests.Facade.Country
-{
-    class CountryViewModelsListTests
-    {
+namespace Open.Tests.Facade.Country {
+ 
+    [TestClass]
+    public class CountryViewModelsListTests : ObjectTests<CountryViewModelsList> {
+        
+        protected override CountryViewModelsList getRandomTestObject() {
+            return null;
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Open.Domain.Country;
 
 namespace Open.Facade.Country {
+    
     public static class CountryViewModelFactory {
+        
         public static CountryViewModel Create(CountryObject o) {
             return new CountryViewModel {
                 Name = o.DbRecord.Name,

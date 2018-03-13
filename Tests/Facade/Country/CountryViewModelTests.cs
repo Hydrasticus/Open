@@ -1,14 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Facade.Country;
 
-namespace Tests.Facade.Country {
+namespace Open.Tests.Facade.Country {
 
     [TestClass]
-    public class CountryViewModelTests {
+    public class CountryViewModelTests : ObjectTests<CountryViewModel> {
 
         [TestMethod]
         public void CanCreateTest() {
             Assert.IsNotNull(new CountryViewModel());
+        }
+
+        protected override CountryViewModel getRandomTestObject() {
+            return null;
         }
     }
 }
