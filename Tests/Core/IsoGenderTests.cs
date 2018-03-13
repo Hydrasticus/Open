@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Core;
+using Open.Tests;
 
 namespace Tests.Core {
+    
     [TestClass]
-    public class IsoGenderTests {
+    public class IsoGenderTests : ClassTests<IsoGender> {
 
         [TestMethod]
         public void CountTest() {

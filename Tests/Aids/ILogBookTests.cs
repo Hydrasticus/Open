@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Open.Aids;
 
-namespace Open.Tests.Aids
-{
-    class ILogBookTests
-    {
+namespace Open.Tests.Aids {
+    
+    [TestClass]
+    public class ILogBookTests : ObjectTests<ILogBook> {
+        
+        protected override ILogBook getRandomTestObject() {
+            return null;
+        }
     }
 }

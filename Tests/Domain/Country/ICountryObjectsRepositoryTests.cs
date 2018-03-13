@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Open.Tests.Domain.Country
-{
-    class ICountryObjectsRepositoryTests
-    {
+namespace Open.Tests.Domain.Country {
+
+    [TestClass]
+    public class ICountryObjectsRepositoryTests {
     }
 }

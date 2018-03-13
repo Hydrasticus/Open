@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Open.Tests.Core
-{
-    class IObjectsRepositoryTests
-    {
+namespace Open.Tests.Core {
+    
+    [TestClass]
+    public class IObjectsRepositoryTests {
     }
 }

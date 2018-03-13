@@ -1,4 +1,5 @@
 ﻿namespace Open.Aids {
+    
     public static class GetString {
 
         public static string Head(string s, char separator = '.') {

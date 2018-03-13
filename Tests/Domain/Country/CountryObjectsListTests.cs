@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Open.Domain.Country;
 
-namespace Open.Tests.Domain.Country
-{
-    class CountryObjectsListTests
-    {
+namespace Open.Tests.Domain.Country {
+
+    [TestClass]
+    public class CountryObjectsListTests : ClassTests<CountryObjectsList> {
     }
 }

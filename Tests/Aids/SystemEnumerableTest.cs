@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Open.Aids;
 
-namespace Open.Tests.Aids
-{
-    class SystemEnumerableTest
-    {
-    }
+namespace Open.Tests.Aids {
+    
+    [TestClass]
+    public class SystemEnumerableTest : ClassTests<SystemEnumerable> {}
 }

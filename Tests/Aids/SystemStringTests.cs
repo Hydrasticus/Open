@@ -2,6 +2,7 @@
 using Open.Aids;
 
 namespace Open.Tests.Aids {
+    
     [TestClass]
     public class SystemStringTests : BaseTests {
 

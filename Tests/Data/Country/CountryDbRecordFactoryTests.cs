@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Open.Tests.Data.Country
-{
-    class CountryDbRecordFactoryTests
-    {
+namespace Open.Tests.Data.Country {
+    
+    [TestClass]
+    public class CountryDbRecordFactoryTests : BaseTests {
     }
 }

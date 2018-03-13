@@ -1,6 +1,7 @@
 ﻿using Open.Data.Country;
 
 namespace Open.Domain.Country {
+    
     public class CountryObject {
         public readonly CountryDbRecord DbRecord;
 

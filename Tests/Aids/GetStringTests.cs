@@ -2,8 +2,10 @@
 using Open.Aids;
 
 namespace Open.Tests.Aids {
+    
     [TestClass]
     public class GetStringTests : BaseTests {
+        
         [TestMethod]
         public void HeadTest() {
             Assert.AreEqual("a", GetString.Head("a.b.c"));

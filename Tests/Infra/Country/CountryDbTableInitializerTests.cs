@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Infra;
+using Open.Infra.Country;
 
 namespace Open.Tests.Infra.Country {
     [TestClass]

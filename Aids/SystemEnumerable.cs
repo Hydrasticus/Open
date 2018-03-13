@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Open.Aids {
 
-    class SystemEnumerable {
+    public class SystemEnumerable {
 
         public static IEnumerable<T> OrderBy<T>(IEnumerable<T> list, Func<T, string> func) {
             return list.OrderBy(func);
