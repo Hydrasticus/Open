@@ -1,22 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <AssemblyName>Open.Tests</AssemblyName>
-
     <RootNamespace>Open.Tests</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeCoverage" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Aids\Aids.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
@@ -26,9 +20,7 @@
     <ProjectReference Include="..\Infra\Infra.csproj" />
     <ProjectReference Include="..\Sentry\Sentry.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Sentry\Controllers\" />
   </ItemGroup>
-
 </Project>

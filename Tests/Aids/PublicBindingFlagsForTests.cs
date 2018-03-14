@@ -4,8 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 
 namespace Open.Tests.Aids {
+    
     [TestClass]
     public class PublicBindingFlagsForTests : BaseTests {
+        
         private const BindingFlags p = BindingFlags.Public;
         private const BindingFlags i = BindingFlags.Instance;
         private const BindingFlags s = BindingFlags.Static;
@@ -13,6 +15,7 @@ namespace Open.Tests.Aids {
         private Type testType;
 
         internal class testClass {
+            
             public void Aaa() {
                 bbb();
             }

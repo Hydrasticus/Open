@@ -5,7 +5,8 @@ using System.Reflection;
 
 namespace Open.Aids {
     
-    public class GetSolution {
+    public static class GetSolution {
+        
         public static AppDomain Domain => AppDomain.CurrentDomain;
 
         public static List<Assembly> Assemblies =>
@@ -29,9 +30,7 @@ namespace Open.Aids {
             }, new List<string>());
         }
 
-        public static string Name => Safe.Run(() => {
-            var n = GetClass.Namespace(typeof(GetSolution));
-            return GetString.Head(n);
-        }, string.Empty);
+        public static string Name => 
+            GetString.Head(GetClass.Namespace(typeof(GetSolution)));
     }
 }

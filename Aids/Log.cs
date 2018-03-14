@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Open.Aids {
+    
     public static class Log {
+        
         internal static ILogBook logBook;
 
         public static void Message(string message) {
