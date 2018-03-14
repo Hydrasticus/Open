@@ -5,7 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 
 namespace Open.Tests {
+
     public class AssemblyTests {
+
         private static string isNotTested => "<{0}> is not tested";
         private static string noClassesInAssembly => "No classes found in assembly {0}";
         private static string noClassesInNamespace => "No classes found in namespace {0}";
@@ -17,7 +19,10 @@ namespace Open.Tests {
         private static string shell32 => "Shell32.";
         private List<string> list;
 
-        [TestInitialize] public void CreateList() { list = new List<string>();}
+        [TestInitialize]
+        public void CreateList() {
+            list = new List<string>();
+        }
 
         protected virtual string Namespace(string name) {
             return $"{assembly}.{name}";

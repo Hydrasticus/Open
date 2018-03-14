@@ -7,15 +7,17 @@ namespace Open.Aids {
     public static class SystemRegionInfo {
 
         public static bool IsCountry(RegionInfo r) {
-            return SystemString.StartsWithLetter(r.ThreeLetterISORegionName);
+            return Safe.Run(() => SystemString.StartsWithLetter(r.ThreeLetterISORegionName), false);
         }
 
         public static List<RegionInfo> GetRegionsList() {
-            var cultures = SystemCultureInfo.GetSpecificCultures();
-            var regions = SystemEnumerable.Convert(cultures, SystemCultureInfo.ToRegionInfo);
-            regions = SystemEnumerable.Distinct(regions);
-            regions = SystemEnumerable.OrderBy(regions, p => p.EnglishName);
-            return regions.ToList();
+            return Safe.Run(() => {
+                var cultures = SystemCultureInfo.GetSpecificCultures();
+                var regions = SystemEnumerable.Convert(cultures, SystemCultureInfo.ToRegionInfo);
+                regions = SystemEnumerable.Distinct(regions);
+                regions = SystemEnumerable.OrderBy(regions, p => p.EnglishName);
+                return regions.ToList();
+            }, new List<RegionInfo>());
         }
     }
 }
