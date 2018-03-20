@@ -7,22 +7,55 @@ namespace Open.Tests.Aids {
 
     [TestClass]
     public class GetRandomTests : BaseTests {
-
         [TestInitialize]
         public override void TestInitialize() {
             base.TestInitialize();
             type = typeof(GetRandom);
         }
 
+        private static void doGetRandomTests<T>(Func<T, T, T> funct, T min, T max) where T : IComparable {
+            doTests(funct, min);
+            doTests(funct, max);
+            doTests(funct, min, max);
+            doTests((x, y) => funct(max, min), min, max);
+        }
+
+        private static void doTests<T>(Func<T, T, T> funct, T min, T max) where T : IComparable {
+            var l = new List<T>();
+            for (var i = 0; i < 10; i++) {
+                T r;
+                do { r = funct(min, max); } while (l.Contains(r));
+                Assert.IsInstanceOfType(r, typeof(T));
+                Assert.IsTrue(r.CompareTo(min) >= 0);
+                Assert.IsTrue(r.CompareTo(max) <= 0);
+                l.Add(r);
+            }
+        }
+
+        private static void doTests<T>(Func<T, T, T> funct, T x) {
+            Assert.AreEqual(x, funct(x, x));
+        }
+
         [TestMethod]
         public void DoubleTest() {
             var d = 10000;
-            doGetRandomTests(GetRandom.Double, (double)10, (double)110);
-            doGetRandomTests(GetRandom.Double, (double)-110, (double)-10);
-            doGetRandomTests(GetRandom.Double, (double)-50, (double)50);
+            doGetRandomTests(GetRandom.Double, (double)10, 110);
+            doGetRandomTests(GetRandom.Double, (double)-110, -10);
+            doGetRandomTests(GetRandom.Double, (double)-50, 50);
             doGetRandomTests(GetRandom.Double, double.MinValue, double.MaxValue);
             doGetRandomTests(GetRandom.Double, double.MaxValue / d, double.MaxValue);
             doGetRandomTests(GetRandom.Double, double.MinValue, double.MinValue / d);
+        }
+
+        [TestMethod]
+        public void FloatTest() {
+            var d = 10F;
+            doGetRandomTests(GetRandom.Float, 10F, 110F);
+            doGetRandomTests(GetRandom.Float, -110F, -10F);
+            doGetRandomTests(GetRandom.Float, -50F, 50F);
+            doGetRandomTests(GetRandom.Float, float.MinValue, float.MaxValue);
+            doGetRandomTests(GetRandom.Float, float.MaxValue / d, float.MaxValue);
+            doGetRandomTests(GetRandom.Float, float.MinValue, float.MinValue / d);
         }
 
         [TestMethod]
@@ -78,7 +111,7 @@ namespace Open.Tests.Aids {
             doGetRandomTests(GetRandom.UInt16, (ushort)(ushort.MaxValue - 100), ushort.MaxValue);
             doGetRandomTests(GetRandom.UInt16, ushort.MinValue, ushort.MaxValue);
         }
-        
+
         [TestMethod]
         public void UInt32Test() {
             doGetRandomTests(GetRandom.UInt32, (uint)100, (uint)200);
@@ -86,47 +119,13 @@ namespace Open.Tests.Aids {
             doGetRandomTests(GetRandom.UInt32, uint.MaxValue - 100, uint.MaxValue);
             doGetRandomTests(GetRandom.UInt32, uint.MinValue, uint.MaxValue);
         }
-        
+
         [TestMethod]
         public void UInt64Test() { //TODO: fix UInt64Test
             doGetRandomTests(GetRandom.UInt64, (ulong)100, (ulong)200);
             doGetRandomTests(GetRandom.UInt64, ulong.MinValue, ulong.MinValue + 200);
             //doGetRandomTests(GetRandom.UInt64, ulong.MaxValue - 100, ulong.MaxValue);
             //doGetRandomTests(GetRandom.UInt64, ulong.MinValue, ulong.MaxValue);
-        }
-
-        [TestMethod]
-        public void FloatTest() {
-            var d = 10F;
-            doGetRandomTests(GetRandom.Float, 10F, 110F);
-            doGetRandomTests(GetRandom.Float, -110F, -10F);
-            doGetRandomTests(GetRandom.Float, -50F, 50F);
-            doGetRandomTests(GetRandom.Float, float.MinValue, float.MaxValue);
-            doGetRandomTests(GetRandom.Float, float.MaxValue / d, float.MaxValue);
-            doGetRandomTests(GetRandom.Float, float.MinValue, float.MinValue / d);
-        }
-        
-        private static void doGetRandomTests<T>(Func<T, T, T> funct, T min, T max) where T : IComparable {
-            doTests(funct, min);
-            doTests(funct, max);
-            doTests(funct, min, max);
-            doTests((x, y) => funct(max, min), min, max);
-        }
-        
-        private static void doTests<T>(Func<T, T, T> funct, T min, T max) where T : IComparable {
-            var l = new List<T>();
-            for (var i = 0; i < 10; i++) {
-                T r;
-                do { r = funct(min, max); } while (l.Contains(r));
-                Assert.IsInstanceOfType(r, typeof(T));
-                Assert.IsTrue(r.CompareTo(min) >= 0);
-                Assert.IsTrue(r.CompareTo(max) <= 0);
-                l.Add(r);
-            }
-        }
-
-        private static void doTests<T>(Func<T, T, T> funct, T x) {
-            Assert.AreEqual(x, funct(x, x));
         }
     }
 }
