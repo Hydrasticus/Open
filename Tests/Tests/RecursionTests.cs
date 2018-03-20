@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 
-namespace Tests.Tests {
+namespace Open.Tests.Tests {
 
     [TestClass]
     public class RecursionTests {

@@ -86,6 +86,7 @@ namespace Open.Tests.Aids {
             var t1 = new Thread(() => method(l, "method1: ", () => throw new ArgumentNullException()));
             var t2 = new Thread(() => method(l, "method2: ", () => throw new ArithmeticException()));
             t1.Start();
+            Thread.Sleep(50);
             t2.Start();
             Thread.Sleep(1000);
         }

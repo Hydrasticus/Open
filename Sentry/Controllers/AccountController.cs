@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Sentry.Models;
-using Sentry.Models.AccountViewModels;
-using Sentry.Services;
+using Open.Sentry.Extensions;
+using Open.Sentry.Models;
+using Open.Sentry.Models.AccountViewModels;
+using Open.Sentry.Services;
 
-namespace Sentry.Controllers {
+namespace Open.Sentry.Controllers {
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller {

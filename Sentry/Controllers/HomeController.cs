@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Sentry.Models;
+using Open.Sentry.Models;
 
-namespace Sentry.Controllers {
+namespace Open.Sentry.Controllers {
     public class HomeController : Controller {
         public IActionResult Index() {
             return View();

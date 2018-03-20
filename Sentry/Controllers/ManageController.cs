@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Sentry.Models;
-using Sentry.Models.ManageViewModels;
-using Sentry.Services;
+using Open.Sentry.Extensions;
+using Open.Sentry.Models;
+using Open.Sentry.Models.ManageViewModels;
+using Open.Sentry.Services;
 
-namespace Sentry.Controllers {
+namespace Open.Sentry.Controllers {
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller {
@@ -97,6 +98,7 @@ namespace Sentry.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendVerificationEmail(IndexViewModel model) {
             if (!ModelState.IsValid) {
+                // ReSharper disable once Mvc.ViewNotResolved
                 return View(model);
             }
 

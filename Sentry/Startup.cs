@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Open.Domain.Country;
 using Open.Infra;
 using Open.Infra.Country;
-using Sentry.Data;
-using Sentry.Models;
-using Sentry.Services;
+using Open.Sentry.Data;
+using Open.Sentry.Models;
+using Open.Sentry.Services;
 
 namespace Open.Sentry {
     public class Startup {

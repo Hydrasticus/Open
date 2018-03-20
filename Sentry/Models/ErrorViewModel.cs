@@ -1,6 +1,4 @@
-using System;
-
-namespace Sentry.Models
+namespace Open.Sentry.Models
 {
     public class ErrorViewModel
     {

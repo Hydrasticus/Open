@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Core;
-using Open.Tests;
 
-namespace Tests.Core {
+namespace Open.Tests.Core {
     
     [TestClass]
     public class IsoGenderTests : ClassTests<IsoGender> {

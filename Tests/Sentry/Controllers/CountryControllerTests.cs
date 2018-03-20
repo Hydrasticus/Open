@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Sentry.Controllers;
 
-namespace Tests.Sentry {
+namespace Open.Tests.Sentry.Controllers {
 
     [TestClass]
     public class CountryControllerTests {

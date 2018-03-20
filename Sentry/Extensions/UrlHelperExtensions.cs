@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Sentry.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Open.Sentry.Controllers;
 
-namespace Microsoft.AspNetCore.Mvc
+namespace Open.Sentry.Extensions
 {
     public static class UrlHelperExtensions
     {
