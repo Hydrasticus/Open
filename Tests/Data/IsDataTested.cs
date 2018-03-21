@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Open.Tests.Data {
+    
     [TestClass]
     public class IsDataTested : AssemblyTests {
         private const string assembly = "Open.Data";

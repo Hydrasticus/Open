@@ -3,7 +3,7 @@
 namespace Open.Tests.Infra {
     
     [TestClass]
-    public class IsDomainTested : AssemblyTests {
+    public class IsInfraTested : AssemblyTests {
         private const string assembly = "Open.Infra";
 
         protected override string Namespace(string name) {

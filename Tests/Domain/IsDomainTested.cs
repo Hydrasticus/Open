@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Open.Tests.Domain {
+    
     [TestClass]
     public class IsDomainTested : AssemblyTests {
         private const string assembly = "Open.Domain";
