@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 
 namespace Open.Aids {
-    
-    public class GetClass {
-        
+
+    public static class GetClass {
+
         private const string g = "get_";
         private const string s = "set_";
         private const string a = "add_";
@@ -48,6 +48,18 @@ namespace Open.Aids {
             if (n.Contains(r)) return true;
             if (n.Contains(v)) return true;
             return n.Contains(t) || n.Contains(c);
+        }
+
+        public static List<object> ReadWritePropertyValues(object obj) {
+            var l = new List<object>();
+            if (obj is null) return l;
+            foreach (var p in Properties(obj.GetType())) {
+                if (!p.CanWrite) continue;
+                var value = p.GetValue(obj);
+                l.Add(value);
+            }
+
+            return l;
         }
     }
 }

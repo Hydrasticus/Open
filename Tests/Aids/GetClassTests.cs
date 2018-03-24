@@ -58,5 +58,13 @@ namespace Open.Tests.Aids {
             Assert.AreEqual(1, a.Count);
             Assert.AreEqual("F", a[0].Name);
         }
+
+        [TestMethod]
+        public void ReadWritePropertyValuesTest() {
+            var o = GetRandom.Object<classTest>();
+            var l = GetClass.ReadWritePropertyValues(o);
+            Assert.AreEqual(1, l.Count);
+            Assert.AreEqual(l[0], o.F);
+        }
     }
 }

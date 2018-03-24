@@ -1,6 +1,7 @@
 ﻿using System;
 
 namespace Open.Data.Country {
+    
     public class CountryDbRecord {
         public string ID { get; set; }
         public string Name { get; set; }
