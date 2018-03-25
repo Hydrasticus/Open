@@ -55,11 +55,26 @@ namespace Open.Aids {
             if (obj is null) return l;
             foreach (var p in Properties(obj.GetType())) {
                 if (!p.CanWrite) continue;
-                var value = p.GetValue(obj);
-                l.Add(value);
+                addValue(p, obj, l);
             }
 
             return l;
+        }
+
+        private static void addValue(PropertyInfo p, object o, List<object> l) {
+            var indexer = p.GetIndexParameters();
+            if (indexer is null || indexer.Length == 0) l.Add(p.GetValue(o));
+            else {
+                var i = 0;
+                while (true) {
+                    try {
+                        l.Add(p.GetValue(o, new object[] {i++}));
+                    } catch {
+                        l.Add(i);
+                        return;
+                    }
+                }
+            }
         }
     }
 }

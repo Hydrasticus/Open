@@ -8,7 +8,7 @@ namespace Open.Tests.Data.Country {
     public class CountryDbRecordTests : ObjectTests<CountryDbRecord> {
         
         [TestMethod]
-        public void CanCreateTest() {
+        public void CanCreate() {
             Assert.IsNotNull(obj);
         }
 

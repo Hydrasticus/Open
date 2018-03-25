@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
+using Open.Data.Country;
 using Open.Domain.Country;
 
 namespace Open.Tests.Domain.Country {
@@ -8,7 +10,9 @@ namespace Open.Tests.Domain.Country {
     public class CountryObjectsListTests : ObjectTests<CountryObjectsList> {
         
         protected override CountryObjectsList getRandomTestObject() {
-            return GetRandom.Object<CountryObjectsList>();
+            var l = new List<CountryDbRecord>();
+            SetRandom.Values(l);
+            return new CountryObjectsList(l);
         }
 
         [TestMethod]

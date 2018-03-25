@@ -11,6 +11,11 @@ namespace Open.Tests.Data {
         }
 
         [TestMethod]
+        public new void CanCreateTest() {
+            Assert.Inconclusive();
+        }
+        
+        [TestMethod]
         public void IDTest() {
             Assert.Inconclusive();
         }

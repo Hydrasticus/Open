@@ -4,15 +4,11 @@ using Open.Infra.Country;
 namespace Open.Tests.Infra.Country {
 
     [TestClass]
-    public class CountryObjectsRepositoryTests : ObjectTests<CountryObjectsRepository> {
+    public class CountryObjectsRepositoryTests : ClassTests<CountryObjectsRepository> {
 
         [TestMethod]
-        public void CanCreateTest() {
+        public void CanCreate() {
             Assert.IsNotNull(new CountryObjectsRepository(null));
-        }
-
-        protected override CountryObjectsRepository getRandomTestObject() {
-            return null;
         }
 
         [TestMethod]

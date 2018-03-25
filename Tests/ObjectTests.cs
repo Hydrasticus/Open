@@ -7,7 +7,7 @@ namespace Open.Tests {
 
     public abstract class ObjectTests<T> : ClassTests<T> {
         protected T obj;
-        private List<Object> list;
+        private List<object> list;
 
         [TestInitialize]
         public override void TestInitialize() {

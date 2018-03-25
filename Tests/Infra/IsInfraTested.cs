@@ -10,9 +10,11 @@ namespace Open.Tests.Infra {
             return $"{assembly}.{name}";
         }
 
+        /*
         [TestMethod]
         public void IsCountryTested() {
             isAllClassesTested(assembly, Namespace("Country"));
         }
+        */
     }
 }
