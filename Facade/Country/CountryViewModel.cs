@@ -2,7 +2,9 @@
 using System.ComponentModel;
 
 namespace Open.Facade.Country {
+    
     public class CountryViewModel {
+        
         public string Name { get; set; }
 
         [DisplayName("Valid From")]

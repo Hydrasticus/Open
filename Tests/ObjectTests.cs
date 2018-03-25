@@ -30,6 +30,11 @@ namespace Open.Tests {
             Assert.AreEqual(0, list.Count);
         }
 
+        [TestMethod]
+        public void CanCreateTest() {
+            Assert.IsNotNull(obj);
+        }
+
         protected abstract T getRandomTestObject();
 
         protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
