@@ -37,15 +37,19 @@ namespace Open.Tests {
 
         protected abstract T getRandomTestObject();
 
-        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
+        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set, Func<TR> getRandom) {
             var x = get();
             Assert.AreEqual(x, get());
-            var y = (TR) GetRandom.Value(typeof(TR));
+            var y = getRandom();
             set(y);
             Assert.AreEqual(y, get());
             Assert.AreNotEqual(x, y);
             list.Remove(x);
             list.Add(y);
+        }
+
+        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
+            testReadWriteProperty(get, set, () => (TR) GetRandom.Value(typeof(TR)));
         }
     }
 }

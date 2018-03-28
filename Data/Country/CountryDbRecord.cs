@@ -1,12 +1,39 @@
 ﻿using System;
+using Open.Core;
 
 namespace Open.Data.Country {
-    
-    public class CountryDbRecord {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public DateTime ValidFrom { get; set; }
-        public DateTime ValidTo { get; set; }
+
+    public class CountryDbRecord : RootObject {
+
+        private string id;
+        private string code;
+        private string name;
+        private DateTime validFrom;
+        private DateTime validTo;
+
+        public string ID {
+            get => GetValue(ref id, Name);
+            set => id = value;
+        }
+
+        public string Code {
+            get => GetValue(ref code, Constants.Unspecified);
+            set => code = value;
+        }
+
+        public string Name {
+            get => GetValue(ref name, Code);
+            set => name = value;
+        }
+
+        public DateTime ValidFrom {
+            get => GetMinValue(ref validFrom, ref validTo); 
+            set => validFrom = value;
+        }
+
+        public DateTime ValidTo {
+            get => GetMaxValue(ref validTo, ref validFrom); 
+            set => validTo = value;
+        }
     }
 }

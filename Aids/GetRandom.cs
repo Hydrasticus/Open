@@ -10,16 +10,9 @@ namespace Open.Aids {
 
         private static readonly Random r = new Random();
 
-        private static void toTheSequenceOfGrowing(ref double min, ref double max) {
-            if (min <= max) return;
-            var d = min;
-            min = max;
-            max = d;
-        }
-
         public static double Double(double min = double.MinValue, double max = double.MaxValue) {
             if (min.CompareTo(max) == 0) return min;
-            toTheSequenceOfGrowing(ref min, ref max);
+            ToTheSequence.OfGrowing(ref min, ref max);
             var d = r.NextDouble();
             if (max > 0) return min + d * max - d * min;
             return min - d * min + d * max;

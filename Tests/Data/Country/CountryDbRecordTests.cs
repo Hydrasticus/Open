@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Country;
 
@@ -33,12 +34,14 @@ namespace Open.Tests.Data.Country {
 
         [TestMethod]
         public void ValidFromTest() {
-            testReadWriteProperty(() => obj.ValidFrom, x => obj.ValidFrom = x);
+            DateTime rnd() => GetRandom.DateTime(null, obj.ValidTo.AddYears(-1));
+            testReadWriteProperty(() => obj.ValidFrom, x => obj.ValidFrom = x, rnd);
         }
         
         [TestMethod]
         public void ValidToTest() {
-            testReadWriteProperty(() => obj.ValidTo, x => obj.ValidTo = x);
+            DateTime rnd() => GetRandom.DateTime(obj.ValidFrom.AddYears(1));
+            testReadWriteProperty(() => obj.ValidTo, x => obj.ValidTo = x, rnd);
         }
     }
 }
