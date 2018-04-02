@@ -1,19 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Open.Data</AssemblyName>
     <RootNamespace>Open.Data</RootNamespace>
     <DebugType>Full</DebugType>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Aids\Aids.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
-
 </Project>
