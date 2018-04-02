@@ -8,8 +8,8 @@ namespace Open.Data.Country {
         private string id;
         private string code;
         private string name;
-        private DateTime validFrom;
-        private DateTime validTo;
+        private DateTime validFrom = DateTime.MinValue;
+        private DateTime validTo = DateTime.MaxValue;
 
         public string ID {
             get => GetValue(ref id, Name);

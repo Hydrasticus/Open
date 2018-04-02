@@ -11,7 +11,7 @@ namespace Open.Infra.Country {
 
         public CountryObjectsRepository(CountryDbContext context) { db = context; }
 
-        public async Task<CountryObject> GetObject(int id) {
+        public async Task<CountryObject> GetObject(string id) {
             var o = await db.Countries.FindAsync(id);
             return new CountryObject(o);
         }

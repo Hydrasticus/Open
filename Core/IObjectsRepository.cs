@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Open.Core {
     public interface IObjectsRepository<T> {
-        Task<T> GetObject(int id);
+        Task<T> GetObject(string id);
 
         Task<IEnumerable<T>> GetObjectsList();
 

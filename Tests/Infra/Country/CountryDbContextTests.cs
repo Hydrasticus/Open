@@ -4,11 +4,11 @@ using Open.Infra.Country;
 namespace Open.Tests.Infra.Country {
 
     [TestClass]
-    public class CountryDbContextTests : ClassTests<CountryDbContext> {
+    public class CountryDbContextTests : CountryDbTests<CountryDbContext> {
 
         [TestMethod]
         public void CountriesTest() {
-            Assert.Inconclusive();
+            Assert.IsNotNull(db.Countries);
         }
     }
 }
