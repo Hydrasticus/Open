@@ -86,21 +86,23 @@ namespace Open.Tests.Aids {
             var t1 = new Thread(() => method(l, "method1: ", () => throw new ArgumentNullException()));
             var t2 = new Thread(() => method(l, "method2: ", () => throw new ArithmeticException()));
             t1.Start();
-            Thread.Sleep(50);
+            Thread.Sleep(1);
             t2.Start();
-            Thread.Sleep(1000);
+            Thread.Sleep(40);
         }
 
         private static void method(ICollection<string> list, string message, Action exception) {
             Safe.Run(() => {
-                for (var i = 0; i < 10; i++) {
-                    list.Add(message + DateTime.Now);
-                    Thread.Sleep(5);
-                }
+                Safe.Run(() => {
+                    for (var i = 0; i < 10; i++) {
+                        list.Add(message + DateTime.Now);
+                        Thread.Sleep(1);
+                    }
 
-                exception();
+                    exception();
+                }, true);
+                list.Add(message + DateTime.Now);
             }, true);
-            list.Add(message + DateTime.Now);
         }
 
         private void validateList(List<string> l) {

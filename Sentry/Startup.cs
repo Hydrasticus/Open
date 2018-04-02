@@ -12,7 +12,17 @@ using Open.Sentry.Models;
 using Open.Sentry.Services;
 
 namespace Open.Sentry {
+    
     public class Startup {
+        
+        protected virtual void setAuthentication(IServiceCollection services) {}
+
+        protected virtual void setDatabase(IServiceCollection services) {
+            var s = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(s));
+            services.AddDbContext<CountryDbContext>(options => options.UseSqlServer(s));
+        }
+        
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
@@ -21,14 +31,11 @@ namespace Open.Sentry {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<CountryDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            setDatabase(services);
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            setAuthentication(services);
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc();
             services.AddScoped<ICountryObjectsRepository, CountryObjectsRepository>();

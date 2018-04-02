@@ -46,7 +46,7 @@ namespace Open.Tests.Tests {
             var th2 = new Thread(() => method(thread2));
             th1.Start();
             th2.Start();
-            Thread.Sleep(1000);
+            Thread.Sleep(40);
         }
 
         private void addToListNotSafe(string thread) {
@@ -74,7 +74,7 @@ namespace Open.Tests.Tests {
         private void addValue(int value, string thread) {
             var s = value.ToString();
             if (!values.Contains(s)) {
-                Thread.Sleep(50);
+                Thread.Sleep(1);
                 values.Add(s);
                 if (threads.Contains(thread)) return;
                 threads.Add(thread);
