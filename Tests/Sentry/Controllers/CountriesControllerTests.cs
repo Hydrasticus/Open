@@ -8,7 +8,7 @@ namespace Open.Tests.Sentry.Controllers {
 
         [TestMethod]
         public void CanCreateTest() {
-            Assert.IsNotNull(new CountryController(null));
+            Assert.IsNotNull(new CountriesController(null));
         }
     }
 }

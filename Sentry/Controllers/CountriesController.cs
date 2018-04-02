@@ -5,10 +5,10 @@ using Open.Domain.Country;
 using Open.Facade.Country;
 
 namespace Open.Sentry.Controllers {
-    public class CountryController : Controller {
+    public class CountriesController : Controller {
         private readonly ICountryObjectsRepository repository;
 
-        public CountryController(ICountryObjectsRepository r) {
+        public CountriesController(ICountryObjectsRepository r) {
             repository = r;
         }
 
