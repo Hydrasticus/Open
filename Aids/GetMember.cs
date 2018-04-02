@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
-using System.Runtime.InteropServices;
 
 namespace Open.Aids {
 
     public class GetMember {
+        
         public static string Name<T>(Expression<Func<T, object>> ex) {
             return name(ex.Body);
         }
