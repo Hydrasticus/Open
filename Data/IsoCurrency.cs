@@ -20,7 +20,7 @@ namespace Open.Data {
         public string Code { get; set; }
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
-        public string Alpha3Code => ID;
-        public string Alpha2Code => Code;
+        public string IsoCurrencySymbol => ID;
+        public string CurrencySymbol => Code;
     }
 }

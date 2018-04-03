@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Open.Domain.Country;
+using Open.Domain.Currency;
 using Open.Infra.Country;
 using Open.Infra.Currency;
 using Open.Sentry.Data;
@@ -40,6 +41,7 @@ namespace Open.Sentry {
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddMvc();
             services.AddScoped<ICountryObjectsRepository, CountryObjectsRepository>();
+            services.AddScoped<ICurrencyObjectsRepository, CurrencyObjectsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
