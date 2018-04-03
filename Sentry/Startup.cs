@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Open.Domain.Country;
-using Open.Infra;
 using Open.Infra.Country;
+using Open.Infra.Currency;
 using Open.Sentry.Data;
 using Open.Sentry.Models;
 using Open.Sentry.Services;
@@ -21,6 +21,7 @@ namespace Open.Sentry {
             var s = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(s));
             services.AddDbContext<CountryDbContext>(options => options.UseSqlServer(s));
+            services.AddDbContext<CurrencyDbContext>(options => options.UseSqlServer(s));
         }
         
         public Startup(IConfiguration configuration) {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using Open.Data.Country;
+using Open.Data.Currency;
 
-namespace Open.Domain.Country {
+namespace Open.Domain.Currency {
+    
+    public class CurrencyObjectFactory {
 
-    public static class CountryObjectFactory {
-
-        public static CountryObject Create(string id, string name, string code,
+        public static CurrencyObject Create(string id, string name, string code,
             DateTime? validFrom = null, DateTime? validTo = null) {
-            var o = new CountryDbRecord {
+            var o = new CurrencyDbRecord {
                 ID = id,
                 Name = name,
                 Code = code,
@@ -16,13 +16,13 @@ namespace Open.Domain.Country {
                 ValidTo = validTo ?? DateTime.MaxValue
             };
             
-            return new CountryObject(o);
+            return new CurrencyObject(o);
         }
 
-        public static CountryObject Create(RegionInfo r) {
-            var id = r?.ThreeLetterISORegionName;
+        public static CurrencyObject Create(RegionInfo r) {
+            var id = r?.ISOCurrencySymbol;
             var name = r?.DisplayName;
-            var code = r?.TwoLetterISORegionName;
+            var code = r?.CurrencySymbol;
             return Create(id, name, code);
         }
     }

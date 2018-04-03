@@ -4,19 +4,24 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Open.Domain.Country;
-using Open.Infra;
+using Open.Domain.Currency;
 using Open.Infra.Country;
+using Open.Infra.Currency;
 
 namespace Open.Sentry {
+
     public class Program {
+
         public static void Main(string[] args) {
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var context = services.GetRequiredService<ICountryObjectsRepository>();
-                    CountriesDbTableInitializer.Initialize(context);
+                    var countryContext = services.GetRequiredService<ICountryObjectsRepository>();
+                    CountriesDbTableInitializer.Initialize(countryContext);
+                    var currencyContext = services.GetRequiredService<ICurrencyObjectsRepository>();
+                    CurrenciesDbTableInitializer.Initialize(currencyContext);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occured while seeding the database.");

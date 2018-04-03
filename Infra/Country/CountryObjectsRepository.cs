@@ -7,6 +7,7 @@ using Open.Domain.Country;
 namespace Open.Infra.Country {
     
     public class CountryObjectsRepository : ICountryObjectsRepository {
+        
         private readonly CountryDbContext db;
 
         public CountryObjectsRepository(CountryDbContext context) { db = context; }
