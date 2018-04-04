@@ -58,8 +58,16 @@ namespace Open.Sentry.Controllers {
             return View(CountryViewModelFactory.Create(c));
         }
 
-        public IActionResult Delete() {
-            return View(new CountryViewModel());
+        public async Task<IActionResult> Delete(string id) {
+            var c = await repository.GetObject(id);
+            return View(CountryViewModelFactory.Create(c));
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(string id) {
+            var c = await repository.GetObject(id);
+            repository.DeleteObject(c);
+            return RedirectToAction("Index");
         }
     }
 }
