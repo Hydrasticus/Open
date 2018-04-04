@@ -16,7 +16,6 @@ namespace Open.Sentry.Controllers {
             repository = r;
         }
 
-        [Authorize]
         public async Task<IActionResult> Index() {
             var l = await repository.GetObjectsList();
             return View(new CurrencyViewModelsList(l));

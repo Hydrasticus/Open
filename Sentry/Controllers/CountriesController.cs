@@ -19,5 +19,21 @@ namespace Open.Sentry.Controllers {
             var l = await repository.GetObjectsList();
             return View(new CountryViewModelsList(l));
         }
+
+        public IActionResult Create() {
+            return View();
+        }
+
+        public IActionResult Edit() {
+            return View(new CountryViewModel());
+        }
+
+        public IActionResult Details() {
+            return View(new CountryViewModel());
+        }
+
+        public IActionResult Delete() {
+            return View(new CountryViewModel());
+        }
     }
 }
