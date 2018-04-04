@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Open.Domain.Country;
@@ -34,8 +35,22 @@ namespace Open.Sentry.Controllers {
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit() {
-            return View(new CountryViewModel());
+        public async Task<IActionResult> Edit(string id) {
+            var c = await repository.GetObject(id);
+            return View(CountryViewModelFactory.Create(c));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind(properties)] CountryViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            var o = await repository.GetObject(c.Alpha3Code);
+            o.DbRecord.Name = c.Name;
+            o.DbRecord.Code = c.Alpha2Code;
+            o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
+            o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
+            repository.UpdateObject(o);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Details() {
