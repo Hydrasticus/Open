@@ -53,8 +53,9 @@ namespace Open.Sentry.Controllers {
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details() {
-            return View(new CountryViewModel());
+        public async Task<IActionResult> Details(string id) {
+            var c = await repository.GetObject(id);
+            return View(CountryViewModelFactory.Create(c));
         }
 
         public IActionResult Delete() {

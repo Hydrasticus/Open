@@ -23,5 +23,19 @@ namespace Open.Sentry.Extensions {
             
             return new HtmlContentBuilder(htmlStrings);
         }
+
+        public static IHtmlContent ViewingControlsFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TResult>> expression) {
+            var htmlStrings = new List<object> {
+                new HtmlString("<div class=\"form-group\">"),
+                htmlHelper.LabelFor(expression, new {@class = "control-label col-md-2"}),
+                new HtmlString("<div class=\"col-md-10\" style=\"margin-top:10px\">"),
+                htmlHelper.DisplayFor(expression, new {htmlAttributes = new {@class = "form-control"}}),
+                new HtmlString("</div>"),
+                new HtmlString("</div>")
+            };
+            
+            return new HtmlContentBuilder(htmlStrings);
+        }
     }
 }
