@@ -5,10 +5,11 @@ using Open.Domain.Country;
 using Open.Facade.Country;
 
 namespace Open.Sentry.Controllers {
-    
+
     public class CountriesController : Controller {
-        
+
         private readonly ICountryObjectsRepository repository;
+        public const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
 
         public CountriesController(ICountryObjectsRepository r) {
             repository = r;
@@ -22,6 +23,15 @@ namespace Open.Sentry.Controllers {
 
         public IActionResult Create() {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind(properties)] CountryViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            var o = CountryObjectFactory.Create(c.Alpha3Code, c.Name, c.Alpha2Code, c.ValidFrom, c.ValidTo);
+            await repository.AddObject(o);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit() {

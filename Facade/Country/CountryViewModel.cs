@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Open.Core;
 
 namespace Open.Facade.Country {
@@ -17,17 +18,13 @@ namespace Open.Facade.Country {
             set => name = value;
         }
 
+        [DataType(DataType.Date)]
         [DisplayName("Valid From")]
-        public DateTime ValidFrom {
-            get => GetMinValue(ref validFrom, ref validTo);
-            set => validFrom = value;
-        }
+        public DateTime? ValidFrom { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayName("Valid To")]
-        public DateTime ValidTo {
-            get => GetMaxValue(ref validTo, ref validFrom);
-            set => validTo = value;
-        }
+        public DateTime? ValidTo { get; set; }
 
         [DisplayName("ISO Three Character Code")]
         public string Alpha3Code {

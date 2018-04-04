@@ -24,13 +24,13 @@ namespace Open.Tests.Facade.Country {
 
         [TestMethod]
         public void ValidFromTest() {
-            DateTime rnd() => GetRandom.DateTime(null, obj.ValidTo.AddYears(-1));
+            DateTime? rnd() => GetRandom.DateTime(null, obj.ValidTo?.AddYears(-1));
             testReadWriteProperty(() => obj.ValidFrom, x => obj.ValidFrom = x, rnd);
         }
 
         [TestMethod]
         public void ValidToTest() {
-            DateTime rnd() => GetRandom.DateTime(obj.ValidFrom.AddYears(1));
+            DateTime? rnd() => GetRandom.DateTime(obj.ValidFrom?.AddYears(1));
             testReadWriteProperty(() => obj.ValidTo, x => obj.ValidTo = x, rnd);
         }
 
