@@ -10,7 +10,6 @@ namespace Open.Sentry.Extensions {
 
         public static IHtmlContent EditingControlsFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TResult>> expression) {
-
             var htmlStrings = new List<object> {
                 new HtmlString("<div class=\"form-group\">"),
                 htmlHelper.LabelFor(expression, new {@class = "control-label col-md-2"}),
