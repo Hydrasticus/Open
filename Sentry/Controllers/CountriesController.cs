@@ -2,6 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Open.Aids;
+using Open.Core;
 using Open.Domain.Country;
 using Open.Facade.Country;
 
@@ -29,6 +33,7 @@ namespace Open.Sentry.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind(properties)] CountryViewModel c) {
+            await validateId(c.Alpha3Code, ModelState);
             if (!ModelState.IsValid) return View(c);
             var o = CountryObjectFactory.Create(c.Alpha3Code, c.Name, c.Alpha2Code, c.ValidFrom, c.ValidTo);
             await repository.AddObject(o);
@@ -68,6 +73,19 @@ namespace Open.Sentry.Controllers {
             var c = await repository.GetObject(id);
             repository.DeleteObject(c);
             return RedirectToAction("Index");
+        }
+
+        private async Task validateId(string id, ModelStateDictionary d) {
+            if (await isIdInUse(id)) d.AddModelError(string.Empty, idIsInUseMessage(id));
+        }
+
+        private async Task<bool> isIdInUse(string id) {
+            return (await repository.GetObject(id))?.DbRecord?.ID == id;
+        }
+
+        private static string idIsInUseMessage(string id) {
+            var name = GetMember.DisplayName<CountryViewModel>(c => c.Alpha3Code);
+            return string.Format(Messages.ValueIsAlreadyInUse, id, name);
         }
     }
 }

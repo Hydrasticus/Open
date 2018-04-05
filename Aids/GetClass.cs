@@ -76,5 +76,9 @@ namespace Open.Aids {
                 }
             }
         }
+
+        public static PropertyInfo Property<T>(string name) {
+            return Safe.Run(() => typeof(T).GetProperty(name), null);
+        }
     }
 }
