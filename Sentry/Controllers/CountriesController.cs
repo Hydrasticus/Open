@@ -20,9 +20,22 @@ namespace Open.Sentry.Controllers {
         }
 
         [Authorize]
-        public async Task<IActionResult> Index() {
-            var l = await repository.GetObjectsList();
-            return View(new CountryViewModelsList(l));
+        public async Task<IActionResult> Index(string sortOrder = null,
+            string currentFilter = null,
+            string searchString = null,
+            int? page = null) {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["SortName"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["SortAlpha3"] = sortOrder == "alpha3" ? "alpha3_desc" : "alpha3";
+            ViewData["SortAlpha2"] = sortOrder == "alpha2" ? "alpha2_desc" : "alpha2";
+            ViewData["SortValidFrom"] = sortOrder == "validFrom" ? "validFrom_desc" : "validFrom";
+            ViewData["SortValidTo"] = sortOrder == "validTo" ? "validTo_desc" : "validTo";
+            if (searchString != null) page = 1;
+            else searchString = currentFilter;
+            ViewData["CurrentFilter"] = searchString;
+            
+            var l = await repository.GetObjectsList(searchString, page);
+            return View(new CountryViewModelsList(l, sortOrder));
         }
 
         public IActionResult Create() {

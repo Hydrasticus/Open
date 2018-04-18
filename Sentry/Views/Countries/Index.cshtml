@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Open.Facade.Country.CountryViewModel>
+﻿@model Open.Core.IPaginatedList<Open.Facade.Country.CountryViewModel>
 @{
     ViewData["Title"] = "Countries";
 }
@@ -9,14 +9,45 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<form asp-action="Index" method="get">
+    <div class="form-horizontal">
+        <p>
+            Find by: <input type="text" name="SearchString" value="@ViewData["currentFilter"]"/>
+            <input type="submit" value="Search" class="btn btn-default"/> |
+            <a asp-action="Index">Back to full list</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
+    @{ var dummy = Model.FirstOrDefault();}
     <thead>
     <tr>
-        <th>@Html.DisplayNameFor(model => model.Alpha3Code)</th>
-        <th>@Html.DisplayNameFor(model => model.Alpha2Code)</th>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th>@Html.DisplayNameFor(model => model.ValidFrom)</th>
-        <th>@Html.DisplayNameFor(model => model.ValidTo)</th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["SortAlpha3"]">
+                @Html.DisplayNameFor(model => dummy.Alpha3Code)
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="SortAlpha2">
+                @Html.DisplayNameFor(model => dummy.Alpha2Code)
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["SortName"]">
+                @Html.DisplayNameFor(model => dummy.Name)
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="SortValidFrom">
+                @Html.DisplayNameFor(model => dummy.ValidFrom)
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="SortValidTo">
+                @Html.DisplayNameFor(model => dummy.ValidTo)
+            </a>
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -36,3 +67,18 @@
     }
     </tbody>
 </table>
+ @{
+     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+ }
+<a asp-action="Index" 
+   asp-route-sortOrder="@ViewData["CurrentSort"]" 
+   asp-route-page="@(Model.PageIndex - 1)" 
+   asp-route-currentFilter="@ViewData["CurrentFilter"]" 
+   class="btn btn-default @prevDisabled">Previous</a>
+<a asp-action="Index" 
+   asp-route-sortOrder="@ViewData["CurrentSort"]" 
+   asp-route-page="@(Model.PageIndex + 1)" 
+   asp-route-currentFilter="@ViewData["CurrentFilter"]" 
+   class="btn btn-default @nextDisabled">Next</a>
+   

@@ -2,24 +2,28 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Open.Core;
 using Open.Domain.Currency;
 
 namespace Open.Infra.Currency {
-    
+
     public class CurrencyObjectsRepository : ICurrencyObjectsRepository {
 
         private readonly CurrencyDbContext db;
 
-        public CurrencyObjectsRepository(CurrencyDbContext context) { db = context; }
-        
+        public CurrencyObjectsRepository(CurrencyDbContext context) {
+            db = context;
+        }
+
         public async Task<CurrencyObject> GetObject(string id) {
             var o = await db.Currencies.FindAsync(id);
             return new CurrencyObject(o);
         }
 
-        public async Task<IEnumerable<CurrencyObject>> GetObjectsList() {
-            var l = await db.Currencies.ToListAsync();
-            return new CurrencyObjectsList(l);
+        public Task<PaginatedList<CurrencyObject>> GetObjectsList(string searchString = null,
+            int? page = null,
+            int? pageSize = null) {
+            throw new System.NotImplementedException();
         }
 
         public async Task<CurrencyObject> AddObject(CurrencyObject o) {

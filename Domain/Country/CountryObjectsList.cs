@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Open.Core;
 using Open.Data.Country;
 
 namespace Open.Domain.Country {
 
-    public class CountryObjectsList : List<CountryObject> {
+    public class CountryObjectsList : PaginatedList<CountryObject> {
 
-        public CountryObjectsList(IEnumerable<CountryDbRecord> l) {
-            if (l is null) return;
-            foreach (var e in l) {
-                Add(new CountryObject(e));
+        public CountryObjectsList(IPaginatedList<CountryDbRecord> items) {
+            if (items is null) return;
+            PageIndex = items.PageIndex;
+            TotalPages = items.TotalPages;
+            
+            foreach (var dbRecord in items) {
+                Add(new CountryObject(dbRecord));
             }
         }
     }
