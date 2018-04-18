@@ -14,7 +14,6 @@ namespace Open.Facade.Country {
         private string alpha3Code;
         private string alpha2Code;
 
-        
         [Required]
         [RegularExpression(RegularExpressionFor.EnglishTextOnly)]
         public string Name {
@@ -41,11 +40,11 @@ namespace Open.Facade.Country {
         }
 
         [DataType(DataType.Date)]
-        [DisplayName("Valid To")]
-        public DateTime? ValidTo { get; set; }
-
-        [DataType(DataType.Date)]
         [DisplayName("Valid From")]
         public DateTime? ValidFrom { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayName("Valid To")]
+        public DateTime? ValidTo { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Open.Aids;
 using Open.Core;
 
 namespace Open.Facade.Currency {
@@ -12,33 +14,36 @@ namespace Open.Facade.Currency {
         private string isoCurrencySymbol;
         private string currencySymbol;
 
+        [Required]
+        [RegularExpression((RegularExpressionFor.EnglishTextOnly))]
         public string Name {
             get => GetValue(ref name, Constants.Unspecified);
             set => name = value;
         }
 
-        [DisplayName("Valid From")]
-        public DateTime ValidFrom {
-            get => GetMinValue(ref validFrom, ref validTo);
-            set => validFrom = value;
-        }
-
-        [DisplayName("Valid To")]
-        public DateTime ValidTo {
-            get => GetMaxValue(ref validTo, ref validFrom);
-            set => validTo = value;
-        }
-
+        [Required]
+        [StringLength(3, MinimumLength = 3)]
+        [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Currency Symbol")]
         public string IsoCurrencySymbol {
             get => GetValue(ref isoCurrencySymbol, Constants.Unspecified);
             set => isoCurrencySymbol = value;
         }
 
+        [Required]
+        [StringLength(4, MinimumLength = 1)]
         [DisplayName("Currency Symbol")]
         public string CurrencySymbol {
             get => GetValue(ref currencySymbol, Constants.Unspecified);
             set => currencySymbol = value;
         }
+
+        [DataType(DataType.Date)]
+        [DisplayName("Valid From")]
+        public DateTime? ValidFrom { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayName("Valid To")]
+        public DateTime? ValidTo { get; set; }
     }
 }

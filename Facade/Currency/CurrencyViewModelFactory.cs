@@ -1,4 +1,5 @@
-﻿using Open.Domain.Currency;
+﻿using System;
+using Open.Domain.Currency;
 
 namespace Open.Facade.Currency {
     
@@ -12,9 +13,15 @@ namespace Open.Facade.Currency {
             };
 
             if (o is null) return v;
-            v.ValidFrom = o.DbRecord.ValidFrom;
-            v.ValidTo = o.DbRecord.ValidTo;
+            v.ValidFrom = setNullIfExtremum(o.DbRecord.ValidFrom);
+            v.ValidTo = setNullIfExtremum(o.DbRecord.ValidTo);
             return v;
+        }
+
+        private static DateTime? setNullIfExtremum(DateTime d) {
+            if (d.Date >= DateTime.MaxValue.Date) return null;
+            if (d.Date <= DateTime.MinValue.AddDays(1).Date) return null;
+            return d;
         }
     }
 }
