@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
+using Open.Core;
 using Open.Data.Currency;
 
 namespace Open.Domain.Currency {
     
-    public class CurrencyObjectsList : List<CurrencyObject> {
+    public class CurrencyObjectsList : PaginatedList<CurrencyObject> {
 
-        public CurrencyObjectsList(IEnumerable<CurrencyDbRecord> l) {
-            if (l is null) return;
-            foreach (var e in l) {
-                Add(new CurrencyObject(e));
+        public CurrencyObjectsList(IPaginatedList<CurrencyDbRecord> items) {
+            if (items is null) return;
+            PageIndex = items.PageIndex;
+            TotalPages = items.TotalPages;
+            
+            foreach (var dbRecord in items) {
+                Add(new CurrencyObject(dbRecord));
             }
         }
     }

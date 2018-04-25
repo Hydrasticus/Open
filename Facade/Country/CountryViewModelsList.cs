@@ -8,6 +8,7 @@ namespace Open.Facade.Country {
     public class CountryViewModelsList : PaginatedList<CountryViewModel> {
         
         public CountryViewModelsList(IPaginatedList<CountryObject> l, string sortOrder = null) {
+            
             if (l is null) return;
             PageIndex = l.PageIndex;
             TotalPages = l.TotalPages;

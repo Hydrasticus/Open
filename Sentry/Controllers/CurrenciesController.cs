@@ -18,9 +18,22 @@ namespace Open.Sentry.Controllers {
             repository = r;
         }
 
-        public async Task<IActionResult> Index() {
-            var l = await repository.GetObjectsList();
-            return View(new CurrencyViewModelsList(l));
+        public async Task<IActionResult> Index(string sortOrder = null,
+            string currentFilter = null,
+            string searchString = null,
+            int? page = null) {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["SortName"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewData["SortIsoCurrency"] = sortOrder == "isoCurrency" ? "isoCurrency_desc" : "isoCurrency";
+                ViewData["SortCurrency"] = sortOrder == "currency" ? "currency_desc" : "currency";
+                ViewData["SortValidFrom"] = sortOrder == "validFrom" ? "validFrom_desc" : "validFrom";
+                ViewData["SortValidTo"] = sortOrder == "validTo" ? "validTo_desc" : "validTo";
+                if (searchString != null) page = 1;
+                else searchString = currentFilter;
+                ViewData["CurrentFilter"] = searchString;
+            
+            var l = await repository.GetObjectsList(searchString, page);
+            return View(new CurrencyViewModelsList(l, sortOrder));
         }
 
         public IActionResult Create() {

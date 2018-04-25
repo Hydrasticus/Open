@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Core;
+using Open.Data.Currency;
 using Open.Domain.Currency;
 
 namespace Open.Infra.Currency {
@@ -20,10 +21,23 @@ namespace Open.Infra.Currency {
             return new CurrencyObject(o);
         }
 
-        public Task<PaginatedList<CurrencyObject>> GetObjectsList(string searchString = null,
+        public async Task<PaginatedList<CurrencyObject>> GetObjectsList(string searchString = null,
             int? page = null,
             int? pageSize = null) {
-            throw new System.NotImplementedException();
+            var currencies = from s in db.Currencies select s;
+
+            if (!string.IsNullOrEmpty(searchString)) {
+                searchString = searchString.ToLower();
+                currencies = currencies.Where(
+                    s => s.ID.ToLower().Contains(searchString)
+                         || s.Name.ToLower().Contains(searchString)
+                         || s.Code.ToLower().Contains(searchString)
+                         || s.ValidFrom.ToString(CultureInfo.CurrentCulture).Contains(searchString)
+                         || s.ValidTo.ToString(CultureInfo.CurrentCulture).Contains(searchString));
+            }
+
+            var list = await PaginatedList<CurrencyDbRecord>.CreateAsync(currencies.AsNoTracking(), page, pageSize);
+            return new CurrencyObjectsList(list);
         }
 
         public async Task<CurrencyObject> AddObject(CurrencyObject o) {
