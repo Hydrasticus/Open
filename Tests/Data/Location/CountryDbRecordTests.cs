@@ -1,20 +1,27 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
+using Open.Data.Common;
 using Open.Data.Location;
 
-namespace Open.Tests.Data.Country {
+namespace Open.Tests.Data.Location {
     
     [TestClass]
     public class CountryDbRecordTests : ObjectTests<CountryDbRecord> {
         
+        protected override CountryDbRecord getRandomTestObject() {
+            return GetRandom.Object<CountryDbRecord>();
+        }
+
+        [TestMethod]
+        public void BaseTypeIsIdentifiedDbRecord() {
+            Assert.AreEqual(typeof(IdentifiedDbRecord), typeof(CountryDbRecord).BaseType);
+        }
+        
+        /*
         [TestMethod]
         public void CanCreate() {
             Assert.IsNotNull(obj);
-        }
-
-        protected override CountryDbRecord getRandomTestObject() {
-            return GetRandom.Object<CountryDbRecord>();
         }
 
         [TestMethod]
@@ -43,5 +50,6 @@ namespace Open.Tests.Data.Country {
             DateTime rnd() => GetRandom.DateTime(obj.ValidFrom.AddYears(1));
             testReadWriteProperty(() => obj.ValidTo, x => obj.ValidTo = x, rnd);
         }
+        */
     }
 }
