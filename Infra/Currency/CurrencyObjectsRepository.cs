@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Core;
-using Open.Data.Currency;
+using Open.Data.Money;
 using Open.Domain.Currency;
 
 namespace Open.Infra.Currency {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Open.Data.Country;
+using Open.Data.Location;
 
 namespace Open.Infra.Country {
     

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using Open.Data.Country;
+using Open.Data.Location;
 
 namespace Open.Domain.Country {
 

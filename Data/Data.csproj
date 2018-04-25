@@ -13,4 +13,17 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
     <PackageReference Include="Microsoft.NETCore.App" Version="2.0.6" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="IsoCountry.cs" />
+    <Compile Remove="IsoCurrency.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Inventory" />
+    <Folder Include="Order" />
+    <Folder Include="Party" />
+    <Folder Include="Process" />
+    <Folder Include="Product" />
+    <Folder Include="Relationship" />
+    <Folder Include="Rule" />
+  </ItemGroup>
 </Project>

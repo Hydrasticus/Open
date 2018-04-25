@@ -25,4 +25,7 @@
   <ItemGroup>
     <Folder Include="Sentry\Controllers\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\IsoCountryTests.cs" />
+  </ItemGroup>
 </Project>

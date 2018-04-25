@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
-using Open.Data.Country;
+using Open.Data.Location;
 using Open.Domain.Country;
 
 namespace Open.Tests.Domain.Country {

@@ -1,10 +1,10 @@
-﻿using System;
-using Open.Core;
+﻿using Open.Data.Common;
 
-namespace Open.Data.Currency {
+namespace Open.Data.Location {
 
-    public class CurrencyDbRecord : RootObject {
+    public class CountryDbRecord : IdentifiedDbRecord {
 
+        /*
         private string id;
         private string code;
         private string name;
@@ -12,28 +12,29 @@ namespace Open.Data.Currency {
         private DateTime validTo = DateTime.MaxValue;
 
         public string ID {
-            get => GetValue(ref id, Name);
+            get => getValue(ref id, Name);
             set => id = value;
         }
 
         public string Code {
-            get => GetValue(ref code, Constants.Unspecified);
+            get => getValue(ref code, Constants.Unspecified);
             set => code = value;
         }
-        
+
         public string Name {
-            get => GetValue(ref name, Code);
+            get => getValue(ref name, Code);
             set => name = value;
         }
 
         public DateTime ValidFrom {
-            get => GetMinValue(ref validFrom, ref validTo);
+            get => getMinValue(ref validFrom, ref validTo); 
             set => validFrom = value;
         }
 
         public DateTime ValidTo {
-            get => GetMaxValue(ref validTo, ref validFrom);
+            get => getMaxValue(ref validTo, ref validFrom); 
             set => validTo = value;
         }
+        */
     }
 }

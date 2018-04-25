@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
-using Open.Data.Country;
+using Open.Data.Location;
 
 namespace Open.Tests.Data.Country {
     

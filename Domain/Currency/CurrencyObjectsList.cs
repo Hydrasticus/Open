@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Open.Core;
-using Open.Data.Currency;
+using Open.Data.Money;
 
 namespace Open.Domain.Currency {
     

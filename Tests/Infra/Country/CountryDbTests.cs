@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
-using Open.Data.Country;
+using Open.Data.Location;
 using Open.Infra.Country;
 
 namespace Open.Tests.Infra.Country {

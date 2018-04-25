@@ -1,4 +1,4 @@
-﻿using Open.Data.Currency;
+﻿using Open.Data.Money;
 
 namespace Open.Domain.Currency {
 

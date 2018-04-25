@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Open.Data.Currency;
+using Open.Data.Money;
 
 namespace Open.Infra.Currency {
     

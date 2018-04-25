@@ -16,9 +16,7 @@ namespace Open.Tests {
             list = GetClass.ReadWritePropertyValues(obj);
         }
 
-        [TestCleanup]
-        public override void TestCleanup() {
-            base.TestCleanup();
+        private void validatePropertyValues() {
             var l = GetClass.ReadWritePropertyValues(obj);
             Assert.AreEqual(l.Count, list.Count);
             for (var i = list.Count; i > 0; i--) {
@@ -37,6 +35,10 @@ namespace Open.Tests {
 
         protected abstract T getRandomTestObject();
 
+        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
+            testReadWriteProperty(get, set, () => (TR) GetRandom.Value(typeof(TR)));
+        }
+
         protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set, Func<TR> getRandom) {
             var x = get();
             Assert.AreEqual(x, get());
@@ -46,10 +48,19 @@ namespace Open.Tests {
             Assert.AreNotEqual(x, y);
             list.Remove(x);
             list.Add(y);
+            validatePropertyValues();
         }
+        
+        protected void testNullEmptyAndWhitespaceCases(Func<string> get, Func<string, string> set,
+            Func<string> expected) {
+            void test(string s) {
+                set(s);
+                Assert.AreEqual(get(), expected());
+            }
 
-        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
-            testReadWriteProperty(get, set, () => (TR) GetRandom.Value(typeof(TR)));
+            test(null);
+            test(string.Empty);
+            test("    ");
         }
     }
 }
