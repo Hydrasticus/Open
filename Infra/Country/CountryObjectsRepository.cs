@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Core;
 using Open.Data.Location;
-using Open.Domain.Country;
+using Open.Domain.Location;
 
 namespace Open.Infra.Country {
 

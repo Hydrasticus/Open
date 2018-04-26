@@ -3,8 +3,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Open.Domain.Country;
-using Open.Domain.Currency;
+using Open.Domain.Location;
+using Open.Domain.Money;
 using Open.Infra.Country;
 using Open.Infra.Currency;
 

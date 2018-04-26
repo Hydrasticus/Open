@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Core;
-using Open.Domain.Country;
+using Open.Domain.Location;
 using Open.Facade.Country;
 
 namespace Open.Tests.Facade.Country {

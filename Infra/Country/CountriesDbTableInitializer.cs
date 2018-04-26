@@ -1,5 +1,5 @@
 ﻿using Open.Aids;
-using Open.Domain.Country;
+using Open.Domain.Location;
 
 namespace Open.Infra.Country {
     

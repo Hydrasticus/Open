@@ -2,7 +2,7 @@
 using Open.Core;
 using Open.Data.Money;
 
-namespace Open.Domain.Currency {
+namespace Open.Domain.Money {
 
     public class CurrencyObjectsList : PaginatedList<CurrencyObject> {
 

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Open.Aids;
 using Open.Core;
-using Open.Domain.Currency;
+using Open.Domain.Money;
 using Open.Facade.Currency;
 
 namespace Open.Sentry.Controllers {

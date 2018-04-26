@@ -1,5 +1,5 @@
 ﻿using System;
-using Open.Domain.Currency;
+using Open.Domain.Money;
 
 namespace Open.Facade.Currency {
     

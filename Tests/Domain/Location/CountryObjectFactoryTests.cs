@@ -3,9 +3,9 @@ using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Core;
-using Open.Domain.Country;
+using Open.Domain.Location;
 
-namespace Open.Tests.Domain.Country {
+namespace Open.Tests.Domain.Location {
 
     [TestClass]
     public class CountryObjectFactoryTests : BaseTests {

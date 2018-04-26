@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Open.Aids;
-using Open.Domain.Country;
+using Open.Domain.Location;
 using Open.Infra.Country;
 using Open.Sentry;
 

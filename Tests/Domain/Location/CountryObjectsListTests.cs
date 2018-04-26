@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
-using Open.Domain.Country;
+using Open.Domain.Location;
 
-namespace Open.Tests.Domain.Country {
+namespace Open.Tests.Domain.Location {
 
     [TestClass]
     public class CountryObjectsListTests : ObjectTests<CountryObjectsList> {

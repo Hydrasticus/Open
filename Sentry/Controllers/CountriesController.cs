@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Open.Aids;
 using Open.Core;
-using Open.Domain.Country;
+using Open.Domain.Location;
 using Open.Facade.Country;
 
 namespace Open.Sentry.Controllers {

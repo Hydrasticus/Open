@@ -2,7 +2,7 @@
 using System.Globalization;
 using Open.Data.Location;
 
-namespace Open.Domain.Country {
+namespace Open.Domain.Location {
 
     public static class CountryObjectFactory {
 

@@ -2,7 +2,7 @@
 using Open.Core;
 using Open.Data.Location;
 
-namespace Open.Domain.Country {
+namespace Open.Domain.Location {
 
     public class CountryObjectsList : PaginatedList<CountryObject> {
 

@@ -13,4 +13,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.App" Version="2.0.6" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Inventory" />
+    <Folder Include="Order" />
+    <Folder Include="Process" />
+    <Folder Include="Product" />
+    <Folder Include="Relationship" />
+    <Folder Include="Rule" />
+  </ItemGroup>
 </Project>

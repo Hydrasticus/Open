@@ -1,5 +1,5 @@
 ﻿using System;
-using Open.Domain.Country;
+using Open.Domain.Location;
 
 namespace Open.Facade.Country {
     

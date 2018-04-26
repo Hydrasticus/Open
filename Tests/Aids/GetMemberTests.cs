@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
-using Open.Domain.Country;
+using Open.Domain.Location;
 using Open.Facade.Country;
 
 namespace Open.Tests.Aids {

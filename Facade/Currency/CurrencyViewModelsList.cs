@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Open.Core;
-using Open.Domain.Currency;
+using Open.Domain.Money;
 
 namespace Open.Facade.Currency {
     

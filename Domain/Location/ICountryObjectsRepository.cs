@@ -1,6 +1,6 @@
 ﻿using Open.Core;
 
-namespace Open.Domain.Country {
+namespace Open.Domain.Location {
     
     public interface ICountryObjectsRepository : IObjectsRepository<CountryObject> {
         bool IsInitialized();
