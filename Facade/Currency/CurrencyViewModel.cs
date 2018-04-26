@@ -17,7 +17,7 @@ namespace Open.Facade.Currency {
         [Required]
         [RegularExpression((RegularExpressionFor.EnglishTextOnly))]
         public string Name {
-            get => getValue(ref name, Constants.Unspecified);
+            get => GetValue(ref name, Constants.Unspecified);
             set => name = value;
         }
 
@@ -26,7 +26,7 @@ namespace Open.Facade.Currency {
         [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Currency Symbol")]
         public string IsoCurrencySymbol {
-            get => getValue(ref isoCurrencySymbol, Constants.Unspecified);
+            get => GetValue(ref isoCurrencySymbol, Constants.Unspecified);
             set => isoCurrencySymbol = value;
         }
 
@@ -34,7 +34,7 @@ namespace Open.Facade.Currency {
         [StringLength(4, MinimumLength = 1)]
         [DisplayName("Currency Symbol")]
         public string CurrencySymbol {
-            get => getValue(ref currencySymbol, Constants.Unspecified);
+            get => GetValue(ref currencySymbol, Constants.Unspecified);
             set => currencySymbol = value;
         }
 

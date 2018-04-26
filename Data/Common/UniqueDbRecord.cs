@@ -7,7 +7,7 @@ namespace Open.Data.Common {
         protected string id;
 
         public virtual string ID {
-            get => getValue(ref id, Constants.Unspecified);
+            get => GetValue(ref id, Constants.Unspecified);
             set => id = value;
         }
     }

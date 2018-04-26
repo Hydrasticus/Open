@@ -7,7 +7,7 @@ namespace Open.Data.Location {
         private string emailAddress;
 
         public string EmailAddress {
-            get => getValue(ref emailAddress, Constants.Unspecified);
+            get => GetValue(ref emailAddress, Constants.Unspecified);
             set => emailAddress = value;
         }
     }

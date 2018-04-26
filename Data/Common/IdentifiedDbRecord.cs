@@ -8,17 +8,17 @@ namespace Open.Data.Common {
         private string name;
 
         public string Code {
-            get => getValue(ref code, Constants.Unspecified);
+            get => GetValue(ref code, Constants.Unspecified);
             set => code = value;
         }
 
         public string Name {
-            get => getValue(ref name, Code);
+            get => GetValue(ref name, Code);
             set => name = value;
         }
 
         public override string ID {
-            get => getValue(ref id, Name);
+            get => GetValue(ref id, Name);
             set => id = value;
         }
     }

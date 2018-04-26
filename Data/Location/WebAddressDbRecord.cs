@@ -7,7 +7,7 @@ namespace Open.Data.Location {
         private string webAddress;
 
         public string WebAddress {
-            get => getValue(ref webAddress, Constants.Unspecified);
+            get => GetValue(ref webAddress, Constants.Unspecified);
             set => webAddress = value;
         }
     }

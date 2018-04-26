@@ -9,12 +9,12 @@ namespace Open.Data.Common {
         private DateTime validTo = DateTime.MaxValue;
 
         public DateTime ValidFrom {
-            get => getMinValue(ref validFrom, ref validTo);
+            get => GetMinValue(ref validFrom, ref validTo);
             set => validFrom = value;
         }
 
         public DateTime ValidTo {
-            get => getMaxValue(ref validTo, ref validFrom);
+            get => GetMaxValue(ref validTo, ref validFrom);
             set => validTo = value;
         }
     }

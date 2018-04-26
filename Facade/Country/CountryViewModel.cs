@@ -17,7 +17,7 @@ namespace Open.Facade.Country {
         [Required]
         [RegularExpression(RegularExpressionFor.EnglishTextOnly)]
         public string Name {
-            get => getValue(ref name, Constants.Unspecified);
+            get => GetValue(ref name, Constants.Unspecified);
             set => name = value;
         }
 
@@ -26,7 +26,7 @@ namespace Open.Facade.Country {
         [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Three Character Code")]
         public string Alpha3Code {
-            get => getValue(ref alpha3Code, Constants.Unspecified);
+            get => GetValue(ref alpha3Code, Constants.Unspecified);
             set => alpha3Code = value;
         }
 
@@ -35,7 +35,7 @@ namespace Open.Facade.Country {
         [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Two Character Code")]
         public string Alpha2Code {
-            get => getValue(ref alpha2Code, Constants.Unspecified);
+            get => GetValue(ref alpha2Code, Constants.Unspecified);
             set => alpha2Code = value;
         }
 
