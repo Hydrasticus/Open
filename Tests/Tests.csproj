@@ -23,8 +23,6 @@
     <ProjectReference Include="..\Sentry\Sentry.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Money" />
-    <Folder Include="Domain\Quantity" />
     <Folder Include="Sentry\Controllers\" />
   </ItemGroup>
   <ItemGroup>

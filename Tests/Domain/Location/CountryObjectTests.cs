@@ -2,34 +2,17 @@
 using Open.Aids;
 using Open.Data.Location;
 using Open.Domain.Location;
+using Open.Tests.Domain.Common;
 
 namespace Open.Tests.Domain.Location {
 
     [TestClass]
-    public class CountryObjectTests : ObjectTests<CountryObject> {
+    public class CountryObjectTests : DomainObjectTests<CountryObject, CountryDbRecord> {
 
         protected override CountryObject getRandomTestObject() {
+            createdWithNullArg = new CountryObject(null);
+            dbRecordType = typeof(CountryDbRecord);
             return GetRandom.Object<CountryObject>();
-        }
-
-        [TestMethod]
-        public void DbRecordTest() {
-            var r = GetRandom.Object<CountryDbRecord>();
-            obj = new CountryObject(r);
-            Assert.AreSame(r, obj.DbRecord);
-        }
-
-        [TestMethod]
-        public void CanCreateWithNullTest() {
-            obj = new CountryObject(null);
-            Assert.IsNotNull(obj);
-            Assert.IsNotNull(obj.DbRecord);
-        }
-
-        [TestMethod]
-        public void DbRecordIsReadOnlyTest() {
-            var name = GetMember.Name<CountryObject>(x => x.DbRecord);
-            Assert.IsTrue(IsReadOnly.Field<CountryObject>(name));
         }
     }
 }
