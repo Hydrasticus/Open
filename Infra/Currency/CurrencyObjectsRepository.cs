@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Core;
@@ -22,22 +21,17 @@ namespace Open.Infra.Currency {
         }
 
         public async Task<PaginatedList<CurrencyObject>> GetObjectsList(string searchString = null,
-            int? page = null,
-            int? pageSize = null) {
-            var currencies = from s in db.Currencies select s;
+            int? pageIndex = null, int? pageSize = null) {
+            var currencies = getCurrencies().Where(s => s.Contains(searchString)).AsNoTracking();
+            var count = await currencies.CountAsync();
+            var p = new RepositoryPage(count, pageIndex, pageSize);
+            var items = await currencies.Skip(p.FirstItemIndex).Take(p.PageIndex).ToListAsync();
+            
+            return new CurrencyObjectsList(items, p);
+        }
 
-            if (!string.IsNullOrEmpty(searchString)) {
-                searchString = searchString.ToLower();
-                currencies = currencies.Where(
-                    s => s.ID.ToLower().Contains(searchString)
-                         || s.Name.ToLower().Contains(searchString)
-                         || s.Code.ToLower().Contains(searchString)
-                         || s.ValidFrom.ToString(CultureInfo.CurrentCulture).Contains(searchString)
-                         || s.ValidTo.ToString(CultureInfo.CurrentCulture).Contains(searchString));
-            }
-
-            var list = await PaginatedList<CurrencyDbRecord>.CreateAsync(currencies.AsNoTracking(), page, pageSize);
-            return new CurrencyObjectsList(list);
+        private IQueryable<CurrencyDbRecord> getCurrencies() {
+            return from s in db.Currencies select s;
         }
 
         public async Task<CurrencyObject> AddObject(CurrencyObject o) {

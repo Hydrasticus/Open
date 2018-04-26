@@ -17,39 +17,21 @@ namespace Open.Tests.Data.Location {
         public void BaseTypeIsIdentifiedDbRecord() {
             Assert.AreEqual(typeof(IdentifiedDbRecord), typeof(CountryDbRecord).BaseType);
         }
-        
-        /*
-        [TestMethod]
-        public void CanCreate() {
-            Assert.IsNotNull(obj);
-        }
 
         [TestMethod]
-        public void IDTest() {
-            testReadWriteProperty(() => obj.ID, x => obj.ID = x);
+        public void ContainsTest() {
+            Assert.IsFalse(obj.Contains(GetRandom.String()));
+            Assert.IsTrue(obj.Contains(string.Empty));
+            Assert.IsTrue(obj.Contains(null));
+            Assert.IsTrue(obj.Contains(obj.ID));
+            Assert.IsTrue(obj.Contains(obj.Name));
+            Assert.IsTrue(obj.Contains(obj.Code));
+            Assert.IsTrue(obj.Contains(obj.ValidFrom.Year.ToString()));
+            Assert.IsTrue(obj.Contains(obj.ValidFrom.Day.ToString()));
+            Assert.IsTrue(obj.Contains(obj.ValidFrom.Month.ToString()));
+            Assert.IsTrue(obj.Contains(obj.ValidTo.Year.ToString()));
+            Assert.IsTrue(obj.Contains(obj.ValidTo.Day.ToString()));
+            Assert.IsTrue(obj.Contains(obj.ValidTo.Month.ToString()));
         }
-
-        [TestMethod]
-        public void NameTest() {
-            testReadWriteProperty(() => obj.Name, x => obj.Name = x);
-        }
-
-        [TestMethod]
-        public void CodeTest() {
-            testReadWriteProperty(() => obj.Code, x => obj.Code = x);
-        }
-
-        [TestMethod]
-        public void ValidFromTest() {
-            DateTime rnd() => GetRandom.DateTime(null, obj.ValidTo.AddYears(-1));
-            testReadWriteProperty(() => obj.ValidFrom, x => obj.ValidFrom = x, rnd);
-        }
-        
-        [TestMethod]
-        public void ValidToTest() {
-            DateTime rnd() => GetRandom.DateTime(obj.ValidFrom.AddYears(1));
-            testReadWriteProperty(() => obj.ValidTo, x => obj.ValidTo = x, rnd);
-        }
-        */
     }
 }

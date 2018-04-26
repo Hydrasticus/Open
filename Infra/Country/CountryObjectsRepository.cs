@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Open.Core;
@@ -22,22 +21,17 @@ namespace Open.Infra.Country {
         }
 
         public async Task<PaginatedList<CountryObject>> GetObjectsList(string searchString = null,
-            int? page = null,
-            int? pageSize = null) {
-            var countries = from s in db.Countries select s;
+            int? pageIndex = null, int? pageSize = null) {
+            var countries = getCountries().Where(s => s.Contains(searchString)).AsNoTracking();
+            var count = await countries.CountAsync();
+            var p = new RepositoryPage(count, pageIndex, pageSize);
+            var items = await countries.Skip(p.FirstItemIndex).Take(p.PageSize).ToListAsync();
+            
+            return new CountryObjectsList(items, p);
+        }
 
-            if (!string.IsNullOrEmpty(searchString)) {
-                searchString = searchString.ToLower();
-                countries = countries.Where(
-                    s => s.ID.ToLower().Contains(searchString)
-                         || s.Name.ToLower().Contains(searchString)
-                         || s.Code.ToLower().Contains(searchString)
-                         || s.ValidFrom.ToString(CultureInfo.CurrentCulture).Contains(searchString)
-                         || s.ValidTo.ToString(CultureInfo.CurrentCulture).Contains(searchString));
-            }
-
-            var list = await PaginatedList<CountryDbRecord>.CreateAsync(countries.AsNoTracking(), page, pageSize);
-            return new CountryObjectsList(list);
+        private IQueryable<CountryDbRecord> getCountries() {
+            return from s in db.Countries select s;
         }
 
         public async Task<CountryObject> AddObject(CountryObject o) {

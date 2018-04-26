@@ -7,6 +7,7 @@ namespace Open.Tests.Core {
 
     [TestClass]
     public class RootObjectTests : ClassTests<RootObject> {
+        
         private string x;
         private string y;
         private testClass obj;
@@ -15,12 +16,14 @@ namespace Open.Tests.Core {
             public string S;
             public DateTime F;
             public DateTime T;
+            
+            public string Name { get; set; }
+            public DateTime Date { get; set; }
         }
 
         private void testGetValue(string field, string value, string expected) {
             obj.S = field;
-            //TODO: fix
-            //obj.getValue(ref obj.S, value);
+            obj.getValue(ref obj.S, value);
             Assert.AreEqual(expected, obj.S);
         }
 
@@ -48,14 +51,24 @@ namespace Open.Tests.Core {
 
         [TestMethod]
         public void GetMinValueTest() {
-            //TODO: fix
-            //testMinMax(() => obj.getMinValue(ref obj.F, ref obj.T));
+            testMinMax(() => obj.getMinValue(ref obj.F, ref obj.T));
         }
 
         [TestMethod]
         public void GetMaxValueTest() {
-            //TODO: fix
-            //testMinMax(() => obj.getMaxValue(ref obj.T, ref obj.F));
+            testMinMax(() => obj.getMaxValue(ref obj.T, ref obj.F));
+        }
+
+        [TestMethod]
+        public void ContainsTest() {
+            obj = GetRandom.Object<testClass>();
+            Assert.IsFalse(obj.Contains(GetRandom.String()));
+            Assert.IsTrue(obj.Contains(string.Empty));
+            Assert.IsTrue(obj.Contains(null));
+            Assert.IsTrue(obj.Contains(obj.Name));
+            Assert.IsTrue(obj.Contains(obj.Date.Year.ToString()));
+            Assert.IsTrue(obj.Contains(obj.Date.Day.ToString()));
+            Assert.IsTrue(obj.Contains(obj.Date.Month.ToString()));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Open.Tests.Domain.Country {
 
         [TestMethod]
         public void CanCreateWithNullArgumentTest() {
-            Assert.IsNotNull(new CountryObjectsList(null));
+            Assert.IsNotNull(new CountryObjectsList(null, null));
         }
     }
 }
