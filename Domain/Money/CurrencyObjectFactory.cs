@@ -21,7 +21,7 @@ namespace Open.Domain.Money {
 
         public static CurrencyObject Create(RegionInfo r) {
             var id = r?.ISOCurrencySymbol;
-            var name = r?.DisplayName;
+            var name = r?.CurrencyEnglishName; //TODO: check other r.DisplayName usages
             var code = r?.CurrencySymbol;
             return Create(id, name, code);
         }

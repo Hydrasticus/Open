@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 
 namespace Open.Core {
-    
-    public interface IObjectsRepository<T> {
+
+    public interface IObjectsRepository<TObject, TRecord> : 
+        IPaginatedRepository<TObject, TRecord>,
+        ICrudRepository<TObject> {
         
-        Task<T> GetObject(string id);
-        Task<PaginatedList<T>> GetObjectsList(string searchString = null, int? page = null, int? pageSize = null);
-        Task<T> AddObject(T o);
-        void UpdateObject(T o);
-        void DeleteObject(T o);
+        bool IsInitialized();
     }
 }

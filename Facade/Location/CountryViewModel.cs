@@ -1,25 +1,15 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Open.Aids;
 using Open.Core;
+using Open.Facade.Common;
 
-namespace Open.Facade.Country {
+namespace Open.Facade.Location {
 
-    public class CountryViewModel : RootObject {
+    public class CountryViewModel : NamedViewModel {
 
-        private string name;
-        private DateTime validFrom = DateTime.MinValue;
-        private DateTime validTo = DateTime.MaxValue;
         private string alpha3Code;
         private string alpha2Code;
-
-        [Required]
-        [RegularExpression(RegularExpressionFor.EnglishTextOnly)]
-        public string Name {
-            get => GetValue(ref name, Constants.Unspecified);
-            set => name = value;
-        }
 
         [Required]
         [StringLength(3, MinimumLength = 3)]
@@ -38,13 +28,5 @@ namespace Open.Facade.Country {
             get => GetValue(ref alpha2Code, Constants.Unspecified);
             set => alpha2Code = value;
         }
-
-        [DataType(DataType.Date)]
-        [DisplayName("Valid From")]
-        public DateTime? ValidFrom { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayName("Valid To")]
-        public DateTime? ValidTo { get; set; }
     }
 }

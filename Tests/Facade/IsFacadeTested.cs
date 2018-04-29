@@ -4,6 +4,7 @@ namespace Open.Tests.Facade {
     
     [TestClass]
     public class IsFacadeTested : AssemblyTests {
+        
         private const string assembly = "Open.Facade";
 
         protected override string Namespace(string name) {
@@ -11,8 +12,18 @@ namespace Open.Tests.Facade {
         }
 
         [TestMethod]
-        public void IsCountryTested() {
-            isAllClassesTested(assembly, Namespace("Country"));
+        public void IsCommonTested() {
+            isAllClassesTested(assembly, Namespace("Common"));
+        }
+
+        [TestMethod]
+        public void IsLocationTested() {
+            isAllClassesTested(assembly, Namespace("Location"));
+        }
+
+        [TestMethod]
+        public void IsMoneyTested() {
+            isAllClassesTested(assembly, Namespace("Money"));
         }
     }
 }

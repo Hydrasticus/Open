@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
-using Open.Facade.Country;
+using Open.Facade.Location;
 
 namespace Open.Tests.Aids {
     

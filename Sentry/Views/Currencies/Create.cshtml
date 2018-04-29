@@ -1,5 +1,6 @@
-﻿@using Open.Sentry.Extensions
-@model Open.Facade.Currency.CurrencyViewModel
+﻿@using Open.Facade.Money
+@using Open.Sentry.Extensions
+@model Open.Facade.Money.CurrencyViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -9,8 +10,8 @@
 }
 
 <body>
-@Html.EditingControlsFor(model => model.IsoCurrencySymbol)
-@Html.EditingControlsFor(model => model.CurrencySymbol)
+@Html.EditingControlsFor(model => model.IsoCode)
+@Html.EditingControlsFor(model => model.Symbol)
 @Html.EditingControlsFor(model => model.Name)
 @Html.EditingControlsFor(model => model.ValidFrom)
 @Html.EditingControlsFor(model => model.ValidTo)

@@ -3,7 +3,7 @@ using System.Linq;
 using Open.Core;
 using Open.Domain.Money;
 
-namespace Open.Facade.Currency {
+namespace Open.Facade.Money {
     
     public class CurrencyViewModelsList : PaginatedList<CurrencyViewModel> {
 
@@ -23,16 +23,16 @@ namespace Open.Facade.Currency {
                     ordered = currencies.OrderByDescending(s => s.Name);
                     break;
                 case "isoCurrency":
-                    ordered = currencies.OrderBy(s => s.IsoCurrencySymbol);
+                    ordered = currencies.OrderBy(s => s.IsoCode);
                     break;
                 case "isoCurrency_desc":
-                    ordered = currencies.OrderByDescending(s => s.IsoCurrencySymbol);
+                    ordered = currencies.OrderByDescending(s => s.IsoCode);
                     break;
                 case "currency":
-                    ordered = currencies.OrderBy(s => s.CurrencySymbol);
+                    ordered = currencies.OrderBy(s => s.Symbol);
                     break;
                 case "currency_desc":
-                    ordered = currencies.OrderByDescending(s => s.CurrencySymbol);
+                    ordered = currencies.OrderByDescending(s => s.Symbol);
                     break;
                 case "validFrom":
                     ordered = currencies.OrderBy(s => s.ValidFrom);

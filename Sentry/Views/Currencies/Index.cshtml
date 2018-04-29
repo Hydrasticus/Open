@@ -1,4 +1,5 @@
-﻿@model Open.Core.IPaginatedList<Open.Facade.Currency.CurrencyViewModel>
+﻿@using Open.Facade.Money
+@model Open.Core.IPaginatedList<Open.Facade.Money.CurrencyViewModel>
 @{
     ViewData["Title"] = "Currencies";
 }
@@ -25,12 +26,12 @@
     <tr>
         <th>
             <a asp-action="Index" asp-route-sortOrder="@ViewData["SortIsoCurrency"]">
-                @Html.DisplayNameFor(model => dummy.IsoCurrencySymbol)
+                @Html.DisplayNameFor(model => dummy.IsoCode)
             </a>
         </th>
         <th>
             <a asp-action="Index" asp-route-sortOrder="SortCurrency">
-                @Html.DisplayNameFor(model => dummy.CurrencySymbol)
+                @Html.DisplayNameFor(model => dummy.Symbol)
             </a>
         </th>
         <th>
@@ -53,15 +54,15 @@
     <tbody>
     @foreach (var item in Model) {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.IsoCurrencySymbol)</td>
-            <td>@Html.DisplayFor(modelItem => item.CurrencySymbol)</td>
+            <td>@Html.DisplayFor(modelItem => item.IsoCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.Symbol)</td>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.ValidFrom)</td>
             <td>@Html.DisplayFor(modelItem => item.ValidTo)</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IsoCurrencySymbol">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.IsoCurrencySymbol">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.IsoCurrencySymbol">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IsoCode">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.IsoCode">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.IsoCode">Delete</a>
             </td>
         </tr>
     }

@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
-using Open.Facade.Country;
+using Open.Facade.Location;
 using Open.Sentry.Controllers;
 
 namespace Open.Tests.Sentry.Controllers {

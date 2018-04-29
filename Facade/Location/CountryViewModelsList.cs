@@ -3,12 +3,11 @@ using System.Linq;
 using Open.Core;
 using Open.Domain.Location;
 
-namespace Open.Facade.Country {
+namespace Open.Facade.Location {
     
     public class CountryViewModelsList : PaginatedList<CountryViewModel> {
         
         public CountryViewModelsList(IPaginatedList<CountryObject> l, string sortOrder = null) {
-            
             if (l is null) return;
             PageIndex = l.PageIndex;
             TotalPages = l.TotalPages;

@@ -3,9 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Core;
 using Open.Domain.Location;
-using Open.Facade.Country;
+using Open.Facade.Location;
 
-namespace Open.Tests.Facade.Country {
+namespace Open.Tests.Facade.Location {
 
     [TestClass]
     public class CountryViewModelFactoryTests : BaseTests {

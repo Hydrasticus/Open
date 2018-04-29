@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Open.Aids;
 using Open.Core;
 using Open.Domain.Money;
-using Open.Facade.Currency;
+using Open.Facade.Money;
 
 namespace Open.Sentry.Controllers {
 
@@ -43,9 +43,9 @@ namespace Open.Sentry.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind(properties)] CurrencyViewModel c) {
-            await validateId(c.IsoCurrencySymbol, ModelState);
+            await validateId(c.IsoCode, ModelState);
             if (!ModelState.IsValid) return View(c);
-            var o = CurrencyObjectFactory.Create(c.IsoCurrencySymbol, c.Name, c.CurrencySymbol, c.ValidFrom, c.ValidTo);
+            var o = CurrencyObjectFactory.Create(c.IsoCode, c.Name, c.Symbol, c.ValidFrom, c.ValidTo);
             await repository.AddObject(o);
             return RedirectToAction("Index");
         }
@@ -59,9 +59,9 @@ namespace Open.Sentry.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind(properties)] CurrencyViewModel c) {
             if (!ModelState.IsValid) return View(c);
-            var o = await repository.GetObject(c.IsoCurrencySymbol);
+            var o = await repository.GetObject(c.IsoCode);
             o.DbRecord.Name = c.Name;
-            o.DbRecord.Code = c.CurrencySymbol;
+            o.DbRecord.Code = c.Symbol;
             o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
             o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
             repository.UpdateObject(o);
@@ -94,7 +94,7 @@ namespace Open.Sentry.Controllers {
         }
 
         private static string idIsInUseMessage(string id) {
-            var name = GetMember.DisplayName<CurrencyViewModel>(c => c.IsoCurrencySymbol);
+            var name = GetMember.DisplayName<CurrencyViewModel>(c => c.IsoCode);
             return string.Format(Messages.ValueIsAlreadyInUse, id, name);
         }
     }

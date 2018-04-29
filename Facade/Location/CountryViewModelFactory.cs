@@ -1,7 +1,7 @@
 ﻿using System;
 using Open.Domain.Location;
 
-namespace Open.Facade.Country {
+namespace Open.Facade.Location {
     
     public static class CountryViewModelFactory {
         

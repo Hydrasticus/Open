@@ -1,16 +1,17 @@
-﻿@using Open.Sentry.Extensions
-@model Open.Facade.Currency.CurrencyViewModel
+﻿@using Open.Facade.Money
+@using Open.Sentry.Extensions
+@model Open.Facade.Money.CurrencyViewModel
 
 @{
     ViewBag.Title = "Edit";
-    ViewBag.SubTitle = $"Currency ({Model.IsoCurrencySymbol})";
+    ViewBag.SubTitle = $"Currency ({Model.IsoCode})";
     ViewBag.Button = "Save";
     Layout = "_EditPartial";
 }
 
 <body>
-@Html.HiddenFor(model => model.IsoCurrencySymbol)
-@Html.EditingControlsFor(model => model.CurrencySymbol)
+@Html.HiddenFor(model => model.IsoCode)
+@Html.EditingControlsFor(model => model.Symbol)
 @Html.EditingControlsFor(model => model.Name)
 @Html.EditingControlsFor(model => model.ValidFrom)
 @Html.EditingControlsFor(model => model.ValidTo)

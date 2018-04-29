@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
 using Open.Domain.Location;
-using Open.Facade.Country;
+using Open.Facade.Location;
 
 namespace Open.Tests.Aids {
 
