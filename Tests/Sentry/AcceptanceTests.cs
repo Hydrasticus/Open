@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Open.Aids;
 using Open.Domain.Location;
-using Open.Infra.Country;
+using Open.Infra.Location;
 using Open.Sentry;
 
 namespace Open.Tests.Sentry {

@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Open.Domain.Location;
 using Open.Domain.Money;
-using Open.Infra.Country;
-using Open.Infra.Currency;
+using Open.Infra.Location;
+using Open.Infra.Money;
 
 namespace Open.Sentry {
 

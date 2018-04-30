@@ -3,20 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
-using Open.Infra.Country;
+using Open.Infra.Location;
 
 namespace Open.Tests.Infra.Country {
     
     [TestClass]
     public class CountryDbTests<T> : ClassTests<T> {
 
-        protected readonly CountryDbContext db;
+        protected readonly LocationDbContext db;
         protected readonly CountryObjectsRepository repository;
         protected const int count = 10;
 
         public CountryDbTests() {
-            var options = new DbContextOptionsBuilder<CountryDbContext>().UseInMemoryDatabase("TestDb").Options;
-            db = new CountryDbContext(options);
+            var options = new DbContextOptionsBuilder<LocationDbContext>().UseInMemoryDatabase("TestDb").Options;
+            db = new LocationDbContext(options);
             repository = new CountryObjectsRepository(db);
         }
 

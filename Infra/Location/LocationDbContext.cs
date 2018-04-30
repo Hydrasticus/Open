@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Open.Data.Location;
 
-namespace Open.Infra.Country {
+namespace Open.Infra.Location {
     
-    public class CountryDbContext : DbContext {
+    public class LocationDbContext : DbContext {
         
-        public CountryDbContext(DbContextOptions<CountryDbContext> o) : base(o) { }
+        public LocationDbContext(DbContextOptions<LocationDbContext> o) : base(o) { }
 
         public DbSet<CountryDbRecord> Countries { get; set; }
 

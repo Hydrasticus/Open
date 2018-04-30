@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Open.Infra;
 using System;
-using Open.Infra.Country;
+using Open.Infra.Location;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(CountryDbContext))]
+    [DbContext(typeof(LocationDbContext))]
     [Migration("20180131121110_Countries")]
     partial class Countries
     {

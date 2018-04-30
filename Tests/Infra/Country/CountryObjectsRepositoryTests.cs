@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
 using Open.Domain.Location;
-using Open.Infra.Country;
+using Open.Infra.Location;
 
 namespace Open.Tests.Infra.Country {
 

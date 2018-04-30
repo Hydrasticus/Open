@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using Open.Infra;
-using Open.Infra.Country;
+using Open.Infra.Location;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(CountryDbContext))]
+    [DbContext(typeof(LocationDbContext))]
     partial class CountryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

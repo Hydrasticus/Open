@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Open.Infra.Currency;
 using System;
+using Open.Infra.Money;
 
 namespace Open.Infra.Migrations
 {
-    [DbContext(typeof(CurrencyDbContext))]
+    [DbContext(typeof(MoneyDbContext))]
     partial class CurrencyDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

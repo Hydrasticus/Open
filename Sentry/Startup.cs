@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Open.Domain.Location;
 using Open.Domain.Money;
-using Open.Infra.Country;
-using Open.Infra.Currency;
+using Open.Infra.Location;
+using Open.Infra.Money;
 using Open.Sentry.Data;
 using Open.Sentry.Models;
 using Open.Sentry.Services;
@@ -21,8 +21,8 @@ namespace Open.Sentry {
         protected virtual void setDatabase(IServiceCollection services) {
             var s = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(s));
-            services.AddDbContext<CountryDbContext>(options => options.UseSqlServer(s));
-            services.AddDbContext<CurrencyDbContext>(options => options.UseSqlServer(s));
+            services.AddDbContext<LocationDbContext>(options => options.UseSqlServer(s));
+            services.AddDbContext<MoneyDbContext>(options => options.UseSqlServer(s));
         }
         
         public Startup(IConfiguration configuration) {
