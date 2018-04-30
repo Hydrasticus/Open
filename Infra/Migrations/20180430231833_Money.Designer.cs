@@ -10,9 +10,10 @@ using System;
 namespace Open.Infra.Migrations
 {
     [DbContext(typeof(MoneyDbContext))]
-    partial class CurrencyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180430231833_Money")]
+    partial class Money
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
