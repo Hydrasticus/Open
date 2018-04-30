@@ -19,7 +19,7 @@ namespace Open.Sentry.Extensions {
                 new HtmlString("</div>"),
                 new HtmlString("</div>")
             };
-            
+
             return new HtmlContentBuilder(htmlStrings);
         }
 
@@ -33,7 +33,39 @@ namespace Open.Sentry.Extensions {
                 new HtmlString("</div>"),
                 new HtmlString("</div>")
             };
-            
+
+            return new HtmlContentBuilder(htmlStrings);
+        }
+
+        public static IHtmlContent SortColumnHeaderFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper,
+            object sortString, Expression<Func<TModel, TResult>> expression) {
+            var linkName = htmlHelper.DisplayNameFor(expression);
+            string action = "Index";
+            var htmlStrings = new List<object> {
+                new HtmlString("<th>"),
+                htmlHelper.ActionLink(linkName, action, new {SortOrder = sortString}),
+                new HtmlString("</th>")
+            };
+
+            return new HtmlContentBuilder(htmlStrings);
+        }
+
+        public static IHtmlContent EditDetailDeleteFor<TModel, TResult>(
+            this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression) {
+            string edit = "Edit";
+            string details = "Details";
+            string delete = "Delete";
+            var index = htmlHelper.ValueFor(expression);
+            var htmlStrings = new List<object> {
+                new HtmlString("<th>"),
+                htmlHelper.ActionLink("Edit", edit, new {id = index}),
+                new HtmlString(" | "),
+                htmlHelper.ActionLink("Details", details, new {id = index}),
+                new HtmlString(" | "),
+                htmlHelper.ActionLink("Delete", delete, new {id = index}),
+                new HtmlString("</th>")
+            };
+
             return new HtmlContentBuilder(htmlStrings);
         }
     }
