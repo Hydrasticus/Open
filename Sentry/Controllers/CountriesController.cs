@@ -5,21 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Open.Aids;
 using Open.Core;
+using Open.Data.Location;
 using Open.Domain.Location;
 using Open.Facade.Location;
 
 namespace Open.Sentry.Controllers {
 
+    [Authorize]
     public class CountriesController : Controller {
 
         private readonly ICountryObjectsRepository repository;
-        public const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
+        internal const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
 
         public CountriesController(ICountryObjectsRepository r) {
             repository = r;
         }
 
-        [Authorize]
         public async Task<IActionResult> Index(string sortOrder = null,
             string currentFilter = null,
             string searchString = null,
@@ -30,20 +31,37 @@ namespace Open.Sentry.Controllers {
             ViewData["SortAlpha2"] = sortOrder == "alpha2" ? "alpha2_desc" : "alpha2";
             ViewData["SortValidFrom"] = sortOrder == "validFrom" ? "validFrom_desc" : "validFrom";
             ViewData["SortValidTo"] = sortOrder == "validTo" ? "validTo_desc" : "validTo";
+
+            repository.SortOrder = sortOrder != null && sortOrder.EndsWith("_desc")
+                ? SortOrder.Descending
+                : SortOrder.Ascending;
+            repository.SortFunction = getSortFunction(sortOrder);
+            
             if (searchString != null) page = 1;
             else searchString = currentFilter;
-            ViewData["CurrentFilter"] = searchString;
             
-            var l = await repository.GetObjectsList(searchString, page);
-            return View(new CountryViewModelsList(l, sortOrder));
+            ViewData["CurrentFilter"] = searchString;
+            repository.SearchString = searchString;
+            repository.PageIndex = page ?? 1;
+            
+            var l = await repository.GetObjectsList();
+            return View(new CountryViewModelsList(l));
+        }
+
+        private Func<CountryDbRecord, object> getSortFunction(string sortOrder) {
+            if (string.IsNullOrWhiteSpace(sortOrder)) return x => x.Name;
+            if (sortOrder.StartsWith("validTo")) return x => x.ValidTo;
+            if (sortOrder.StartsWith("validFrom")) return x => x.ValidFrom;
+            if (sortOrder.StartsWith("alpha3")) return x => x.ID;
+            if (sortOrder.StartsWith("alpha2")) return x => x.Code;
+            return x => x.Name;
         }
 
         public IActionResult Create() {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]//[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind(properties)] CountryViewModel c) {
             await validateId(c.Alpha3Code, ModelState);
             if (!ModelState.IsValid) return View(c);
@@ -66,7 +84,7 @@ namespace Open.Sentry.Controllers {
             o.DbRecord.Code = c.Alpha2Code;
             o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
             o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
-            repository.UpdateObject(o);
+            await repository.UpdateObject(o);
             return RedirectToAction("Index");
         }
 
@@ -83,7 +101,7 @@ namespace Open.Sentry.Controllers {
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(string id) {
             var c = await repository.GetObject(id);
-            repository.DeleteObject(c);
+            await repository.DeleteObject(c);
             return RedirectToAction("Index");
         }
 

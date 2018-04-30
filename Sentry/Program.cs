@@ -18,13 +18,13 @@ namespace Open.Sentry {
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var countryContext = services.GetRequiredService<ICountryObjectsRepository>();
-                    CountriesDbTableInitializer.Initialize(countryContext);
-                    var currencyContext = services.GetRequiredService<ICurrencyObjectsRepository>();
-                    CurrenciesDbTableInitializer.Initialize(currencyContext);
+                    var locationDb = services.GetRequiredService<LocationDbContext>();
+                    CountriesDbTableInitializer.Initialize(locationDb);
+                    var moneyDb = services.GetRequiredService<MoneyDbContext>();
+                    CurrenciesDbTableInitializer.Initialize(moneyDb);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occured while seeding the database.");
+                    logger?.LogError(ex, "An error occured while seeding the database.");
                 }
             }
 

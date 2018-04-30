@@ -13,10 +13,32 @@ using Open.Sentry.Models;
 using Open.Sentry.Services;
 
 namespace Open.Sentry {
-    
+
     public class Startup {
-        
-        protected virtual void setAuthentication(IServiceCollection services) {}
+
+        public Startup(IConfiguration configuration) {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services) {
+            setDatabase(services);
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            setAuthentication(services);
+            services.AddTransient<IEmailSender, EmailSender>();
+            setMvcWithAntiForgeryToken(services);
+            services.AddScoped<ICountryObjectsRepository, CountryObjectsRepository>();
+            services.AddScoped<ICurrencyObjectsRepository, CurrencyObjectsRepository>();
+        }
+
+        protected virtual void setMvcWithAntiForgeryToken(IServiceCollection services) {
+            services.AddMvc();
+        }
+
+        protected virtual void setAuthentication(IServiceCollection services) { }
 
         protected virtual void setDatabase(IServiceCollection services) {
             var s = Configuration.GetConnectionString("DefaultConnection");
@@ -25,27 +47,18 @@ namespace Open.Sentry {
             services.AddDbContext<MoneyDbContext>(options => options.UseSqlServer(s));
         }
         
-        public Startup(IConfiguration configuration) {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
-            setDatabase(services);
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-            setAuthentication(services);
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddMvc();
-            services.AddScoped<ICountryObjectsRepository, CountryObjectsRepository>();
-            services.AddScoped<ICurrencyObjectsRepository, CurrencyObjectsRepository>();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+            setErrorPage(app, env);
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        protected virtual void setErrorPage(IApplicationBuilder app, IHostingEnvironment env) {
             if (env.IsDevelopment()) {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
@@ -53,16 +66,6 @@ namespace Open.Sentry {
             } else {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-            app.UseMvc(routes => {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }
