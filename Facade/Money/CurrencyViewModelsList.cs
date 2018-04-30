@@ -4,54 +4,17 @@ using Open.Core;
 using Open.Domain.Money;
 
 namespace Open.Facade.Money {
-    
+
     public class CurrencyViewModelsList : PaginatedList<CurrencyViewModel> {
 
-        public CurrencyViewModelsList(IPaginatedList<CurrencyObject> l, string sortOrder = null) {
-            
-            if (l is null) return;
-            PageIndex = l.PageIndex;
-            TotalPages = l.TotalPages;
-            var currencies = new List<CurrencyViewModel>();
-            IOrderedEnumerable<CurrencyViewModel> ordered;
-            foreach (var e in l) {
-                currencies.Add(CurrencyViewModelFactory.Create(e));
-            }
+        public CurrencyViewModelsList(IPaginatedList<CurrencyObject> list) {
 
-            switch (sortOrder) {
-                case "name_desc":
-                    ordered = currencies.OrderByDescending(s => s.Name);
-                    break;
-                case "isoCurrency":
-                    ordered = currencies.OrderBy(s => s.IsoCode);
-                    break;
-                case "isoCurrency_desc":
-                    ordered = currencies.OrderByDescending(s => s.IsoCode);
-                    break;
-                case "currency":
-                    ordered = currencies.OrderBy(s => s.Symbol);
-                    break;
-                case "currency_desc":
-                    ordered = currencies.OrderByDescending(s => s.Symbol);
-                    break;
-                case "validFrom":
-                    ordered = currencies.OrderBy(s => s.ValidFrom);
-                    break;
-                case "validFrom_desc":
-                    ordered = currencies.OrderByDescending(s => s.ValidFrom);
-                    break;
-                case "validTo":
-                    ordered = currencies.OrderBy(s => s.ValidTo);
-                    break;
-                case "validTo_desc":
-                    ordered = currencies.OrderByDescending(s => s.ValidTo);
-                    break;
-                default:
-                    ordered = currencies.OrderBy(s => s.Name);
-                    break;
+            if (list is null) return;
+            PageIndex = list.PageIndex;
+            TotalPages = list.TotalPages;
+            foreach (var e in list) {
+                Add(CurrencyViewModelFactory.Create(e));
             }
-            
-            AddRange(ordered);
         }
     }
 }

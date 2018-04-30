@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Open.Aids;
 using Open.Core;
+using Open.Data.Money;
 using Open.Domain.Money;
 using Open.Facade.Money;
 
 namespace Open.Sentry.Controllers {
 
+    [Authorize]
     public class CurrenciesController : Controller {
 
         private readonly ICurrencyObjectsRepository repository;
-        public const string properties = "IsoCurrencySymbol, CurrencySymbol, Name, ValidFrom, ValidTo";
+        internal const string properties = "IsoCode, Symbol, Name, ValidFrom, ValidTo";
 
         public CurrenciesController(ICurrencyObjectsRepository r) {
             repository = r;
@@ -22,26 +25,43 @@ namespace Open.Sentry.Controllers {
             string currentFilter = null,
             string searchString = null,
             int? page = null) {
-                ViewData["CurrentSort"] = sortOrder;
-                ViewData["SortName"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-                ViewData["SortIsoCurrency"] = sortOrder == "isoCurrency" ? "isoCurrency_desc" : "isoCurrency";
-                ViewData["SortCurrency"] = sortOrder == "currency" ? "currency_desc" : "currency";
-                ViewData["SortValidFrom"] = sortOrder == "validFrom" ? "validFrom_desc" : "validFrom";
-                ViewData["SortValidTo"] = sortOrder == "validTo" ? "validTo_desc" : "validTo";
-                if (searchString != null) page = 1;
-                else searchString = currentFilter;
-                ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["SortName"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["SortIsoCode"] = sortOrder == "code" ? "code_desc" : "code";
+            ViewData["SortSymbol"] = sortOrder == "symbol" ? "symbol_desc" : "symbol";
+            ViewData["SortValidFrom"] = sortOrder == "validFrom" ? "validFrom_desc" : "validFrom";
+            ViewData["SortValidTo"] = sortOrder == "validTo" ? "validTo_desc" : "validTo";
+
+            repository.SortOrder = sortOrder != null && sortOrder.EndsWith("_desc")
+                ? SortOrder.Descending
+                : SortOrder.Ascending;
+            repository.SortFunction = getSortFunction(sortOrder);
+
+            if (searchString != null) page = 1;
+            else searchString = currentFilter;
+            ViewData["CurrentFilter"] = searchString;
+
+            repository.SearchString = searchString;
+            repository.PageIndex = page ?? 1;
             
-            var l = await repository.GetObjectsList(searchString, page);
-            return View(new CurrencyViewModelsList(l, sortOrder));
+            var l = await repository.GetObjectsList();
+            return View(new CurrencyViewModelsList(l));
+        }
+
+        private Func<CurrencyDbRecord, object> getSortFunction(string sortOrder) {
+            if (string.IsNullOrWhiteSpace(sortOrder)) return x => x.Name;
+            if (sortOrder.StartsWith("validTo")) return x => x.ValidTo;
+            if (sortOrder.StartsWith("validFrom")) return x => x.ValidFrom;
+            if (sortOrder.StartsWith("code")) return x => x.ID;
+            if (sortOrder.StartsWith("symbol")) return x => x.Code;
+            return x => x.Name;
         }
 
         public IActionResult Create() {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost] // [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind(properties)] CurrencyViewModel c) {
             await validateId(c.IsoCode, ModelState);
             if (!ModelState.IsValid) return View(c);
@@ -64,7 +84,7 @@ namespace Open.Sentry.Controllers {
             o.DbRecord.Code = c.Symbol;
             o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
             o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
-            repository.UpdateObject(o);
+            await repository.UpdateObject(o);
             return RedirectToAction("Index");
         }
 
@@ -81,7 +101,7 @@ namespace Open.Sentry.Controllers {
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(string id) {
             var c = await repository.GetObject(id);
-            repository.DeleteObject(c);
+            await repository.DeleteObject(c);
             return RedirectToAction("Index");
         }
 
