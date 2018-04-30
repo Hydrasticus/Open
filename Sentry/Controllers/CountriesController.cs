@@ -15,7 +15,8 @@ namespace Open.Sentry.Controllers {
     public class CountriesController : Controller {
 
         private readonly ICountryObjectsRepository repository;
-        internal const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
+        //TODO: properties access from 'public' to 'internal'
+        public const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
 
         public CountriesController(ICountryObjectsRepository r) {
             repository = r;

@@ -37,7 +37,8 @@ namespace Open.Tests.Sentry {
             using (var scope = server.Host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 repository = services.GetRequiredService<ICountryObjectsRepository>();
-                CountriesDbTableInitializer.Initialize(repository);
+                var db = services.GetService<LocationDbContext>();
+                CountriesDbTableInitializer.Initialize(db);
             }
         }
 

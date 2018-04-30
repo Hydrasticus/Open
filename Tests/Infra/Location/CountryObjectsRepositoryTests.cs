@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
 using Open.Domain.Location;
 using Open.Infra.Location;
 
-namespace Open.Tests.Infra.Country {
+namespace Open.Tests.Infra.Location {
 
     [TestClass]
     public class CountryObjectsRepositoryTests : CountryDbTests<CountryObjectsRepository> {

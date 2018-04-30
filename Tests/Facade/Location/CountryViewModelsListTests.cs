@@ -9,12 +9,10 @@ namespace Open.Tests.Facade.Location {
     [TestClass]
     public class CountryViewModelsListTests : ObjectTests<CountryViewModelsList> {
         
-        //TODO: see some other examples from Lab13/3
         protected override CountryViewModelsList getRandomTestObject() {
-            var l = new List<CountryObject>();
+            var l = new CountryObjectsList(null, null);
             SetRandom.Values(l);
-            //return new CountryViewModelsList(l);
-            return null;
+            return new CountryViewModelsList(l);
         }
 
         [TestMethod]

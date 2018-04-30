@@ -5,7 +5,7 @@ using Open.Aids;
 using Open.Data.Location;
 using Open.Infra.Location;
 
-namespace Open.Tests.Infra.Country {
+namespace Open.Tests.Infra.Location {
     
     [TestClass]
     public class CountryDbTests<T> : ClassTests<T> {

@@ -5,7 +5,7 @@ namespace Open.Core {
     
     public abstract class RootObject {
         
-        //TODO: make getValue methods protected internal
+        //TODO: GetValue method access from 'public' to 'protected internal'
         public string GetValue(ref string field, string value) {
             if (string.IsNullOrWhiteSpace(field)) field = (value ?? string.Empty).Trim();
             return field;
