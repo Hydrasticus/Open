@@ -6,6 +6,7 @@ using Open.Aids;
 namespace Open.Tests {
 
     public abstract class ObjectTests<T> : ClassTests<T> {
+        
         protected T obj;
         private List<object> list;
 
@@ -35,11 +36,11 @@ namespace Open.Tests {
 
         protected abstract T getRandomTestObject();
 
-        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set) {
+        protected void testReadWriteProperty<TR>(Func<TR> get, Action<TR> set) {
             testReadWriteProperty(get, set, () => (TR) GetRandom.Value(typeof(TR)));
         }
 
-        protected void testReadWriteProperty<TR>(Func<TR> get, Func<TR, TR> set, Func<TR> getRandom) {
+        protected void testReadWriteProperty<TR>(Func<TR> get, Action<TR> set, Func<TR> getRandom) {
             var x = get();
             Assert.AreEqual(x, get());
             var y = getRandom();
@@ -51,7 +52,7 @@ namespace Open.Tests {
             validatePropertyValues();
         }
         
-        protected void testNullEmptyAndWhitespaceCases(Func<string> get, Func<string, string> set,
+        protected void testNullEmptyAndWhitespaceCases(Func<string> get, Action<string> set,
             Func<string> expected) {
             void test(string s) {
                 set(s);
