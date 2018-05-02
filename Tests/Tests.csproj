@@ -9,12 +9,14 @@
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.2" />
     <PackageReference Include="Microsoft.CodeCoverage" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
-    <PackageReference Include="Microsoft.NETCore.App" Version="2.0.6" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aids2\Aids.csproj" />
+    <ProjectReference Include="..\Aids\Aids.csproj">
+      <Project>{32671138-16df-4086-a8d7-86b73e61f5e2}</Project>
+      <Name>Aids</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
@@ -23,6 +25,12 @@
     <ProjectReference Include="..\Sentry\Sentry.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Inventory" />
+    <Folder Include="Order" />
+    <Folder Include="Process" />
+    <Folder Include="Product" />
+    <Folder Include="Relationship" />
+    <Folder Include="Rule" />
     <Folder Include="Sentry\Controllers\" />
   </ItemGroup>
   <ItemGroup>
