@@ -5,6 +5,7 @@
     <RootNamespace>Open.Core</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aids2\Aids.csproj" />
     <ProjectReference Include="..\Aids\Aids.csproj" />
   </ItemGroup>
   <ItemGroup>

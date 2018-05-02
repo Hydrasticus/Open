@@ -7,8 +7,8 @@
     <ProjectGuid>{9D525715-03EF-495E-9633-7047C18CFB91}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Open.Aids</RootNamespace>
-    <AssemblyName>Open.Aids</AssemblyName>
+    <RootNamespace>Open.Shit</RootNamespace>
+    <AssemblyName>Open.Shit</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
