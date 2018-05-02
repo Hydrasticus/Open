@@ -8,7 +8,7 @@ using Open.Infra.Location;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(LocationDbContext))]
+    [DbContext(typeof(SentryDbContext))]
     partial class CountryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

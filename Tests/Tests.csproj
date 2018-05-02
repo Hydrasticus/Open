@@ -25,12 +25,6 @@
     <ProjectReference Include="..\Sentry\Sentry.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Inventory" />
-    <Folder Include="Order" />
-    <Folder Include="Process" />
-    <Folder Include="Product" />
-    <Folder Include="Relationship" />
-    <Folder Include="Rule" />
     <Folder Include="Sentry\Controllers\" />
   </ItemGroup>
   <ItemGroup>

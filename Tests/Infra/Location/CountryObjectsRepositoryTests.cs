@@ -60,7 +60,7 @@ namespace Open.Tests.Infra.Location {
             o.DbRecord.Code = GetRandom.String();
             o.DbRecord.ValidFrom = GetRandom.DateTime(null, DateTime.Now.AddYears(-10));
             o.DbRecord.ValidTo = GetRandom.DateTime(DateTime.Now.AddYears(10));
-            repository.UpdateObject(o);
+            await repository.UpdateObject(o);
             Assert.AreEqual(count + 1, db.Countries.Count());
             var country = db.Countries.Find(o.DbRecord.ID);
             validateCountry(country, o.DbRecord);

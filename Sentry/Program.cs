@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Open.Domain.Location;
 using Open.Domain.Money;
+using Open.Infra;
 using Open.Infra.Location;
 using Open.Infra.Money;
 
@@ -18,9 +19,9 @@ namespace Open.Sentry {
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var locationDb = services.GetRequiredService<LocationDbContext>();
+                    var locationDb = services.GetRequiredService<SentryDbContext>();
                     CountriesDbTableInitializer.Initialize(locationDb);
-                    var moneyDb = services.GetRequiredService<MoneyDbContext>();
+                    var moneyDb = services.GetRequiredService<SentryDbContext>();
                     CurrenciesDbTableInitializer.Initialize(moneyDb);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();

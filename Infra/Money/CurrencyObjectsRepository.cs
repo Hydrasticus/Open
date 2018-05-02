@@ -8,7 +8,7 @@ namespace Open.Infra.Money {
     public class CurrencyObjectsRepository : ObjectsRepository<CurrencyObject, CurrencyDbRecord>,
         ICurrencyObjectsRepository {
 
-        public CurrencyObjectsRepository(MoneyDbContext c) : base(c?.Currencies, c) { }
+        public CurrencyObjectsRepository(SentryDbContext c) : base(c?.Currencies, c) { }
 
         protected internal override CurrencyObject createObject(CurrencyDbRecord r) {
             return new CurrencyObject(r);

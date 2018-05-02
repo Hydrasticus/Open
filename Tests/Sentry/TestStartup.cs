@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Open.Infra;
 using Open.Infra.Location;
 using Open.Sentry;
 using Open.Sentry.Data;
@@ -15,7 +16,7 @@ namespace Open.Tests.Sentry {
 
         protected override void setDatabase(IServiceCollection services) {
             services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase(Testing));
-            services.AddDbContext<LocationDbContext>(options => options.UseInMemoryDatabase(Testing));
+            services.AddDbContext<SentryDbContext>(options => options.UseInMemoryDatabase(Testing));
         }
 
         protected override void setAuthentication(IServiceCollection services) {

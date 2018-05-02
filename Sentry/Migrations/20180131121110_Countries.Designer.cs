@@ -9,7 +9,7 @@ using Open.Infra.Location;
 
 namespace Open.Sentry.Migrations
 {
-    [DbContext(typeof(LocationDbContext))]
+    [DbContext(typeof(SentryDbContext))]
     [Migration("20180131121110_Countries")]
     partial class Countries
     {

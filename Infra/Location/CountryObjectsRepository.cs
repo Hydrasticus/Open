@@ -8,7 +8,7 @@ namespace Open.Infra.Location {
     public class CountryObjectsRepository : ObjectsRepository<CountryObject, CountryDbRecord>,
         ICountryObjectsRepository {
 
-        public CountryObjectsRepository(LocationDbContext c) : base(c?.Countries, c) { }
+        public CountryObjectsRepository(SentryDbContext c) : base(c?.Countries, c) { }
 
         protected internal override CountryObject createObject(CountryDbRecord r) {
             return new CountryObject(r);
