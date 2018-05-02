@@ -6,19 +6,11 @@
     <DebugType>Full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aids\Aids.csproj" />
+    <ProjectReference Include="..\Aids2\Aids.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.App" Version="2.0.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Inventory" />
-    <Folder Include="Order" />
-    <Folder Include="Process" />
-    <Folder Include="Product" />
-    <Folder Include="Relationship" />
-    <Folder Include="Rule" />
   </ItemGroup>
 </Project>

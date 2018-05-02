@@ -6,7 +6,7 @@
     <DebugType>Full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aids\Aids.csproj" />
+    <ProjectReference Include="..\Aids2\Aids.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -16,14 +16,5 @@
   <ItemGroup>
     <Compile Remove="IsoCountry.cs" />
     <Compile Remove="IsoCurrency.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Inventory" />
-    <Folder Include="Order" />
-    <Folder Include="Party" />
-    <Folder Include="Process" />
-    <Folder Include="Product" />
-    <Folder Include="Relationship" />
-    <Folder Include="Rule" />
   </ItemGroup>
 </Project>

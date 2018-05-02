@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Drawing;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Open.Aids {
