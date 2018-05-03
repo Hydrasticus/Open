@@ -57,6 +57,7 @@
     <Compile Include="Money\CurrencyObject.cs" />
     <Compile Include="Money\CurrencyObjectFactory.cs" />
     <Compile Include="Money\CurrencyObjectsList.cs" />
+    <Compile Include="Money\ICountryCurrencyObjectsRepository.cs" />
     <Compile Include="Money\ICurrencyObjectsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantity\MeasureObject.cs" />
