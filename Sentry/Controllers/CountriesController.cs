@@ -7,6 +7,7 @@ using Open.Aids;
 using Open.Core;
 using Open.Data.Location;
 using Open.Domain.Location;
+using Open.Domain.Money;
 using Open.Facade.Location;
 
 namespace Open.Sentry.Controllers {
@@ -15,11 +16,13 @@ namespace Open.Sentry.Controllers {
     public class CountriesController : Controller {
 
         private readonly ICountryObjectsRepository repository;
+        private readonly ICountryCurrencyObjectsRepository currencies;
         //TODO: properties access from 'public' to 'internal'
         public const string properties = "Alpha3Code, Alpha2Code, Name, ValidFrom, ValidTo";
 
-        public CountriesController(ICountryObjectsRepository r) {
+        public CountriesController(ICountryObjectsRepository r, ICountryCurrencyObjectsRepository c) {
             repository = r;
+            currencies = c;
         }
 
         public async Task<IActionResult> Index(string sortOrder = null,
@@ -91,6 +94,7 @@ namespace Open.Sentry.Controllers {
 
         public async Task<IActionResult> Details(string id) {
             var c = await repository.GetObject(id);
+            await currencies.LoadCurrencies(c);
             return View(CountryViewModelFactory.Create(c));
         }
 

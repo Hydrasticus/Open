@@ -21,7 +21,7 @@ namespace Open.Tests.Domain.Location {
         [TestMethod]
         public void CurrenciesInUseTest() {
             Assert.IsNotNull(obj.CurrenciesInUse);
-            Assert.IsNotInstanceOfType(obj.CurrenciesInUse, typeof(IReadOnlyList<CurrencyObject>));
+            Assert.IsInstanceOfType(obj.CurrenciesInUse, typeof(IReadOnlyList<CurrencyObject>));
         }
 
         [TestMethod]
