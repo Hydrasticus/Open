@@ -4,7 +4,7 @@ using Open.Data.Money;
 
 namespace Open.Domain.Money {
     
-    public class CurrencyObjectFactory {
+    public static class CurrencyObjectFactory {
 
         public static CurrencyObject Create(string id, string name, string code,
             DateTime? validFrom = null, DateTime? validTo = null) {

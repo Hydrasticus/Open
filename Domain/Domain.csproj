@@ -52,6 +52,7 @@
     <Compile Include="Location\TelecomAddressObject.cs" />
     <Compile Include="Location\WebAddressObject.cs" />
     <Compile Include="Money\CountryCurrencyObject.cs" />
+    <Compile Include="Money\CountryCurrencyObjectFactory.cs" />
     <Compile Include="Money\CurrencyObject.cs" />
     <Compile Include="Money\CurrencyObjectFactory.cs" />
     <Compile Include="Money\CurrencyObjectsList.cs" />
