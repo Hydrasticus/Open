@@ -22,5 +22,10 @@ namespace Open.Tests.Infra {
         public void CurrenciesTest() {
             Assert.IsNotNull(db.Currencies);
         }
+
+        [TestMethod]
+        public void CountryCurrenciesTest() {
+            Assert.IsNotNull(db.CountryCurrencies);
+        }
     }
 }

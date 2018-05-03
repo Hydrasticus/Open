@@ -14,15 +14,16 @@ namespace Open.Sentry {
     public class Program {
 
         public static void Main(string[] args) {
+
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var locationDb = services.GetRequiredService<SentryDbContext>();
-                    CountriesDbTableInitializer.Initialize(locationDb);
-                    var moneyDb = services.GetRequiredService<SentryDbContext>();
-                    CurrenciesDbTableInitializer.Initialize(moneyDb);
+                    var dbContext = services.GetRequiredService<SentryDbContext>();
+                    CountriesDbTableInitializer.Initialize(dbContext);
+                    CurrenciesDbTableInitializer.Initialize(dbContext);
+                    CountryCurrenciesDbTableInitializer.Initialize(dbContext);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger?.LogError(ex, "An error occured while seeding the database.");
