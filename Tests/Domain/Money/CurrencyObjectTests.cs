@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Money;
@@ -21,6 +22,14 @@ namespace Open.Tests.Domain.Money {
         public void UsedInCountriesTest() {
             Assert.IsNotNull(obj.UsedInCountries);
             Assert.IsInstanceOfType(obj.UsedInCountries, typeof(IReadOnlyList<CountryObject>));
+        }
+
+        [TestMethod]
+        public void UsedInCountryTest() {
+            var country = GetRandom.Object<CountryObject>();
+            Assert.IsFalse(obj.UsedInCountries.Contains(country));
+            obj.UsedInCountry(country);
+            Assert.IsTrue(obj.UsedInCountries.Contains(country));
         }
     }
 }

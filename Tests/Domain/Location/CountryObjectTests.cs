@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
 using Open.Data.Location;
@@ -21,6 +22,14 @@ namespace Open.Tests.Domain.Location {
         public void CurrenciesInUseTest() {
             Assert.IsNotNull(obj.CurrenciesInUse);
             Assert.IsNotInstanceOfType(obj.CurrenciesInUse, typeof(IReadOnlyList<CurrencyObject>));
+        }
+
+        [TestMethod]
+        public void CurrencyInUseTest() {
+            var currency = GetRandom.Object<CurrencyObject>();
+            Assert.IsFalse(obj.CurrenciesInUse.Contains(currency));
+            obj.CurrencyInUse(currency);
+            Assert.IsTrue(obj.CurrenciesInUse.Contains(currency));
         }
     }
 }
