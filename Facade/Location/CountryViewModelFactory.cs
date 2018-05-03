@@ -1,10 +1,11 @@
 ﻿using System;
 using Open.Domain.Location;
+using Open.Facade.Money;
 
 namespace Open.Facade.Location {
-    
+
     public static class CountryViewModelFactory {
-        
+
         public static CountryViewModel Create(CountryObject o) {
             var v = new CountryViewModel {
                 Name = o?.DbRecord.Name,
@@ -15,6 +16,12 @@ namespace Open.Facade.Location {
             if (o is null) return v;
             v.ValidFrom = setNullIfExtremum(o.DbRecord.ValidFrom);
             v.ValidTo = setNullIfExtremum(o.DbRecord.ValidTo);
+
+            foreach (var c in o.CurrenciesInUse) {
+                var currency = CurrencyViewModelFactory.Create(c);
+                v.CurrenciesInUse.Add(currency);
+            }
+
             return v;
         }
 

@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Open.Aids;
 using Open.Core;
 using Open.Facade.Common;
+using Open.Facade.Money;
 
 namespace Open.Facade.Location {
 
@@ -28,5 +30,8 @@ namespace Open.Facade.Location {
             get => getValue(ref alpha2Code, Constants.Unspecified);
             set => alpha2Code = value;
         }
+
+        [DisplayName("Currencies in use")]
+        public List<CurrencyViewModel> CurrenciesInUse { get; } = new List<CurrencyViewModel>();
     }
 }

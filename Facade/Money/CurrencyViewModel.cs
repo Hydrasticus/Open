@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Open.Aids;
 using Open.Core;
 using Open.Facade.Common;
+using Open.Facade.Location;
 
 namespace Open.Facade.Money {
 
@@ -26,5 +28,8 @@ namespace Open.Facade.Money {
             get => getValue(ref symbol, Constants.Unspecified);
             set => symbol = value;
         }
+
+        [DisplayName("Used in countries")]
+        public List<CountryViewModel> UsedInCountries { get; } = new List<CountryViewModel>();
     }
 }
