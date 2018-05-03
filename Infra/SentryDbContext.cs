@@ -18,7 +18,17 @@ namespace Open.Infra {
             base.OnModelCreating(b);
             b.Entity<CurrencyDbRecord>().ToTable("Currency");
             b.Entity<CountryDbRecord>().ToTable("Country");
-            b.Entity<CountryCurrencyDbRecord>().ToTable("CountryCurrency").HasKey(a => new {a.CountryID, a.CurrencyID});
+            createCountryCurrencyTable(b);
+        }
+
+        private static void createCountryCurrencyTable(ModelBuilder b) {
+            const string table = "CountryCurrency";
+
+            b.Entity<CountryCurrencyDbRecord>().ToTable(table).HasKey(a => new {a.CountryID, a.CurrencyID});
+            b.Entity<CountryCurrencyDbRecord>().ToTable(table).HasOne(x => x.Country).WithMany()
+                .HasForeignKey(x => x.CountryID).OnDelete(DeleteBehavior.Restrict);
+            b.Entity<CountryCurrencyDbRecord>().ToTable(table).HasOne(x => x.Currency).WithMany()
+                .HasForeignKey(x => x.CurrencyID).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
