@@ -41,9 +41,16 @@
   <ItemGroup>
     <Compile Include="Common\NamedViewModel.cs" />
     <Compile Include="Common\TemporalViewModel.cs" />
+    <Compile Include="Location\AddressViewModel.cs" />
+    <Compile Include="Location\AddressViewModelFactory.cs" />
+    <Compile Include="Location\AddressViewModelsList.cs" />
     <Compile Include="Location\CountryViewModel.cs" />
     <Compile Include="Location\CountryViewModelFactory.cs" />
     <Compile Include="Location\CountryViewModelsList.cs" />
+    <Compile Include="Location\EMailAddressViewModel.cs" />
+    <Compile Include="Location\GeographicAddressViewModel.cs" />
+    <Compile Include="Location\TelecomAddressViewModel.cs" />
+    <Compile Include="Location\WebPageAddressViewModel.cs" />
     <Compile Include="Money\CurrencyViewModel.cs" />
     <Compile Include="Money\CurrencyViewModelFactory.cs" />
     <Compile Include="Money\CurrencyViewModelsList.cs" />
