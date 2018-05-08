@@ -18,14 +18,14 @@ namespace Open.Facade.Money {
         [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Currency Code")]
         public string IsoCode {
-            get => getValue(ref isoCode, Constants.Unspecified);
+            get => getString(ref isoCode, Constants.Unspecified);
             set => isoCode = value;
         }
 
         [Required]
         [DisplayName("Currency Symbol")]
         public string Symbol {
-            get => getValue(ref symbol, Constants.Unspecified);
+            get => getString(ref symbol, Constants.Unspecified);
             set => symbol = value;
         }
 

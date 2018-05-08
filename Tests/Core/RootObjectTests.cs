@@ -23,7 +23,7 @@ namespace Open.Tests.Core {
 
         private void testGetValue(string field, string value, string expected) {
             obj.S = field;
-            obj.getValue(ref obj.S, value);
+            obj.getString(ref obj.S, value);
             Assert.AreEqual(expected, obj.S);
         }
 

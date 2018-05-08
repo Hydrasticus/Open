@@ -7,17 +7,17 @@ namespace Open.Data.Money {
     public class CountryCurrencyDbRecord : TemporalDbRecord {
 
         private string countryID;
-        private CountryDbRecord country;
         private string currencyID;
+        private CountryDbRecord country;
         private CurrencyDbRecord currency;
 
         public string CountryID {
-            get => getValue(ref countryID, Constants.Unspecified);
+            get => getString(ref countryID);
             set => countryID = value;
         }
 
         public string CurrencyID {
-            get => getValue(ref currencyID, Constants.Unspecified);
+            get => getString(ref currencyID);
             set => currencyID = value;
         }
 

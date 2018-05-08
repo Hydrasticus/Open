@@ -5,7 +5,7 @@ namespace Open.Core {
 
     public abstract class RootObject {
 
-        protected internal string getValue(ref string field, string value) {
+        protected internal string getString(ref string field, string value = Constants.Unspecified) {
             if (string.IsNullOrWhiteSpace(field)) field = (value ?? string.Empty).Trim();
             return field;
         }

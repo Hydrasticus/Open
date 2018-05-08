@@ -11,7 +11,7 @@ namespace Open.Facade.Common {
         [Required]
         [RegularExpression(RegularExpressionFor.EnglishTextOnly)]
         public string Name {
-            get => getValue(ref name, Constants.Unspecified);
+            get => getString(ref name, Constants.Unspecified);
             set => name = value;
         }
     }

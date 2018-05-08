@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Common\NamedViewModel.cs" />
     <Compile Include="Common\TemporalViewModel.cs" />
+    <Compile Include="Common\UniqueEntityViewModel.cs" />
     <Compile Include="Location\AddressViewModel.cs" />
     <Compile Include="Location\AddressViewModelFactory.cs" />
     <Compile Include="Location\AddressViewModelsList.cs" />
