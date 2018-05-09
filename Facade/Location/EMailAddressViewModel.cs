@@ -11,5 +11,9 @@ namespace Open.Facade.Location {
             get => getString(ref emailAddress);
             set => emailAddress = value;
         }
+
+        public override string ToString() {
+            return EmailAddress;
+        }
     }
 }

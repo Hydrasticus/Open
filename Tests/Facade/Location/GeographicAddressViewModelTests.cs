@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
+using Open.Core;
 using Open.Facade.Location;
 
 namespace Open.Tests.Facade.Location {
@@ -47,6 +48,16 @@ namespace Open.Tests.Facade.Location {
             Assert.IsInstanceOfType(obj.RegisteredTelecomAddresses, typeof(List<TelecomAddressViewModel>));
             var name = GetMember.Name<GeographicAddressViewModel>(x => x.RegisteredTelecomAddresses);
             Assert.IsTrue(IsReadOnly.Property<GeographicAddressViewModel>(name));
+        }
+
+        [TestMethod]
+        public void ToStringTest() {
+            var s = obj.AddressLine;
+            if (obj.City != Constants.Unspecified) s = $"{s} {obj.City}";
+            if (obj.RegionOrState != Constants.Unspecified) s = $"{s} {obj.RegionOrState}";
+            if (obj.ZipOrPostalCode != Constants.Unspecified) s = $"{s} {obj.ZipOrPostalCode}";
+            if (obj.Country.Alpha3Code != Constants.Unspecified) s = $"{s} {obj.Country.Alpha3Code}";
+            Assert.AreEqual(s, obj.ToString());
         }
     }
 }

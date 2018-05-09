@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Open.Core;
 
 namespace Open.Facade.Location {
 
@@ -37,5 +38,14 @@ namespace Open.Facade.Location {
         }
 
         public List<TelecomAddressViewModel> RegisteredTelecomAddresses { get; } = new List<TelecomAddressViewModel>();
+
+        public override string ToString() {
+            var s = AddressLine;
+            if (City != Constants.Unspecified) s = $"{s} {City}";
+            if (RegionOrState != Constants.Unspecified) s = $"{s} {RegionOrState}";
+            if (ZipOrPostalCode != Constants.Unspecified) s = $"{s} {ZipOrPostalCode}";
+            if (Country.Alpha3Code != Constants.Unspecified) s = $"{s} {Country.Alpha3Code}";
+            return s;
+        }
     }
 }

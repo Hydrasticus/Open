@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Open.Aids;
+using Open.Core;
 using Open.Facade.Location;
 
 namespace Open.Tests.Facade.Location {
@@ -52,6 +53,16 @@ namespace Open.Tests.Facade.Location {
             Assert.IsInstanceOfType(obj.RegisteredInAddresses, typeof(List<GeographicAddressViewModel>));
             var name = GetMember.Name<TelecomAddressViewModel>(x => x.RegisteredInAddresses);
             Assert.IsTrue(IsReadOnly.Property<TelecomAddressViewModel>(name));
+        }
+
+        [TestMethod]
+        public void ToStringTest() {
+            var s = obj.Number;
+            if (obj.AreaCode != Constants.Unspecified) s = $"{obj.AreaCode} {s}";
+            if (obj.NationalDirectDialingPrefix != Constants.Unspecified) s = $"({obj.NationalDirectDialingPrefix}){s}";
+            if (obj.CountryCode != Constants.Unspecified) s = $"{obj.CountryCode} {s}";
+            if (obj.Extension != Constants.Unspecified) s = $"{s} ext. {obj.Extension}";
+            Assert.AreEqual(s, obj.ToString());
         }
     }
 }

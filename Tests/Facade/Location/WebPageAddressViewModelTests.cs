@@ -20,5 +20,10 @@ namespace Open.Tests.Facade.Location {
         public void UrlTest() {
             testReadWriteProperty(() => obj.Url, x => obj.Url = x);
         }
+
+        [TestMethod]
+        public void ToStringTest() {
+            Assert.AreEqual(obj.Url, obj.ToString());
+        }
     }
 }

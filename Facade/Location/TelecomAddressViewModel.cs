@@ -41,5 +41,14 @@ namespace Open.Facade.Location {
 
         public List<GeographicAddressViewModel> RegisteredInAddresses { get; } =
             new List<GeographicAddressViewModel>();
+
+        public override string ToString() {
+            var s = Number;
+            if (AreaCode != Constants.Unspecified) s = $"{AreaCode} {s}";
+            if (NationalDirectDialingPrefix != Constants.Unspecified) s = $"({NationalDirectDialingPrefix}){s}";
+            if (CountryCode != Constants.Unspecified) s = $"{CountryCode} {s}";
+            if (Extension != Constants.Unspecified) s = $"{s} ext. {Extension}";
+            return s;
+        }
     }
 }

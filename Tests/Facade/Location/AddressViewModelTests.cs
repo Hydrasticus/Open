@@ -21,7 +21,16 @@ namespace Open.Tests.Facade.Location {
 
         [TestMethod]
         public void AddressTypeTest() {
-            testReadWriteProperty(() => obj.AddressType, x => obj.AddressType = x);
+            Assert.AreEqual("testClass", obj.AddressType);
+            Assert.AreEqual("WebPage", new WebPageAddressViewModel().AddressType);
+            Assert.AreEqual("EMail", new EMailAddressViewModel().AddressType);
+            Assert.AreEqual("Geographic", new GeographicAddressViewModel().AddressType);
+            Assert.AreEqual("Telecom", new TelecomAddressViewModel().AddressType);
+        }
+
+        [TestMethod]
+        public void ContactTest() {
+            Assert.AreEqual(obj.Contact, obj.ToString());
         }
     }
 }

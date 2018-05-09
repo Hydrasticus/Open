@@ -5,7 +5,7 @@ using Open.Facade.Location;
 namespace Open.Tests.Facade.Location {
 
     [TestClass]
-    public class EmailAddressViewModelTests : ObjectTests<EMailAddressViewModel> {
+    public class EMailAddressViewModelTests : ObjectTests<EMailAddressViewModel> {
 
         protected override EMailAddressViewModel getRandomTestObject() {
             return GetRandom.Object<EMailAddressViewModel>();
@@ -19,6 +19,11 @@ namespace Open.Tests.Facade.Location {
         [TestMethod]
         public void EmailAddressTest() {
             testReadWriteProperty(() => obj.EmailAddress, x => obj.EmailAddress = x);
+        }
+
+        [TestMethod]
+        public void ToStringTest() {
+            Assert.AreEqual(obj.EmailAddress, obj.ToString());
         }
     }
 }

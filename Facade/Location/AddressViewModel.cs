@@ -1,17 +1,22 @@
-﻿using System.ComponentModel;
-using Open.Core;
+﻿using System;
+using System.ComponentModel;
 using Open.Facade.Common;
 
 namespace Open.Facade.Location {
 
     public abstract class AddressViewModel : UniqueEntityViewModel {
 
-        private string addressType;
-
         [DisplayName("Address type")]
         public string AddressType {
-            get => getString(ref addressType, Constants.Unspecified);
-            set => addressType = value;
+            get {
+                var name = GetType().Name;
+                var suffix = typeof(AddressViewModel).Name;
+                var idx = name.IndexOf(suffix, StringComparison.Ordinal);
+                if (idx >= 0) name = name.Substring(0, idx);
+                return name;
+            }
         }
+
+        public string Contact => ToString();
     }
 }
