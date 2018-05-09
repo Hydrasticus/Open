@@ -2,8 +2,8 @@
 
 namespace Open.Domain.Location {
 
-    public sealed class WebAddressObject : AddressObject<WebAddressDbRecord> {
+    public sealed class WebAddressObject : AddressObject<WebPageAddressDbRecord> {
 
-        public WebAddressObject(WebAddressDbRecord r) : base(r ?? new WebAddressDbRecord()) { }
+        public WebAddressObject(WebPageAddressDbRecord r) : base(r ?? new WebPageAddressDbRecord()) { }
     }
 }

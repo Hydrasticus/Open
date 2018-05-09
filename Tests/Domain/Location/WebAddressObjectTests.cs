@@ -7,11 +7,11 @@ using Open.Tests.Domain.Common;
 namespace Open.Tests.Domain.Location {
 
     [TestClass]
-    public class WebAddressObjectTests : DomainObjectTests<WebAddressObject, WebAddressDbRecord> {
+    public class WebAddressObjectTests : DomainObjectTests<WebAddressObject, WebPageAddressDbRecord> {
 
         protected override WebAddressObject getRandomTestObject() {
             createdWithNullArg = new WebAddressObject(null);
-            dbRecordType = typeof(WebAddressDbRecord);
+            dbRecordType = typeof(WebPageAddressDbRecord);
             return GetRandom.Object<WebAddressObject>();
         }
     }

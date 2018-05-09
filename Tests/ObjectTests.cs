@@ -43,7 +43,12 @@ namespace Open.Tests {
         protected void testReadWriteProperty<TR>(Func<TR> get, Action<TR> set, Func<TR> getRandom) {
             var x = get();
             Assert.AreEqual(x, get());
-            var y = getRandom();
+            TR y;
+            
+            do {
+                y = getRandom();
+            } while (y.Equals(x));
+            
             set(y);
             Assert.AreEqual(y, get());
             Assert.AreNotEqual(x, y);

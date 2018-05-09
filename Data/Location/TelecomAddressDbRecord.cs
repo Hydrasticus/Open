@@ -1,4 +1,16 @@
-﻿namespace Open.Data.Location {
+﻿using Open.Core;
 
-    public class TelecomAddressDbRecord : AddressDbRecord { }
+namespace Open.Data.Location {
+
+    public class TelecomAddressDbRecord : AddressDbRecord {
+
+        private string prefix;
+        
+        public string NationalDirectDialingPrefix {
+            get => getString(ref prefix);
+            set => prefix = value;
+        }
+        
+        public TelecomDevice Device { get; set; }
+    }
 }
