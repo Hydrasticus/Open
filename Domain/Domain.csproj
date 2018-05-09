@@ -43,11 +43,13 @@
     <Compile Include="Common\TemporalObject.cs" />
     <Compile Include="Common\UniqueObject.cs" />
     <Compile Include="Location\AddressObject.cs" />
+    <Compile Include="Location\AddressObjectFactory.cs" />
     <Compile Include="Location\CountryObject.cs" />
     <Compile Include="Location\CountryObjectFactory.cs" />
     <Compile Include="Location\CountryObjectsList.cs" />
     <Compile Include="Location\EmailAddressObject.cs" />
     <Compile Include="Location\GeographicAddressObject.cs" />
+    <Compile Include="Location\IAddressObject.cs" />
     <Compile Include="Location\IAddressObjectsRepository.cs" />
     <Compile Include="Location\ICountryObjectsRepository.cs" />
     <Compile Include="Location\TelecomAddressObject.cs" />

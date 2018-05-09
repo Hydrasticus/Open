@@ -18,5 +18,10 @@ namespace Open.Tests.Domain.Location {
             dbRecordType = typeof(AddressDbRecord);
             return GetRandom.Object<testClass>();
         }
+
+        [TestMethod]
+        public void IsIAddressObjectTest() {
+            Assert.IsInstanceOfType(obj, typeof(IAddressObject));
+        }
     }
 }
