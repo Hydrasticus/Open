@@ -44,6 +44,8 @@
     <Compile Include="Common\UniqueObject.cs" />
     <Compile Include="Location\AddressObject.cs" />
     <Compile Include="Location\AddressObjectFactory.cs" />
+    <Compile Include="Location\AddressObjectsList.cs" />
+    <Compile Include="Location\TelecomDeviceRegistrationObject.cs" />
     <Compile Include="Location\CountryObject.cs" />
     <Compile Include="Location\CountryObjectFactory.cs" />
     <Compile Include="Location\CountryObjectsList.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Location\IAddressObjectsRepository.cs" />
     <Compile Include="Location\ICountryObjectsRepository.cs" />
     <Compile Include="Location\TelecomAddressObject.cs" />
+    <Compile Include="Location\TelecomDeviceRegistrationObjectFactory.cs" />
     <Compile Include="Location\WebAddressObject.cs" />
     <Compile Include="Money\CountryCurrencyObject.cs" />
     <Compile Include="Money\CountryCurrencyObjectFactory.cs" />
