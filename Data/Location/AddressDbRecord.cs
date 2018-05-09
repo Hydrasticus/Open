@@ -2,7 +2,7 @@
 
 namespace Open.Data.Location {
 
-    public abstract class AddressDbRecord : UniqueDbRecord {
+    public class AddressDbRecord : UniqueDbRecord {
 
         private string address, area, region, zip;
 

@@ -48,6 +48,7 @@
     <Compile Include="Location\CountryObjectsList.cs" />
     <Compile Include="Location\EmailAddressObject.cs" />
     <Compile Include="Location\GeographicAddressObject.cs" />
+    <Compile Include="Location\IAddressObjectsRepository.cs" />
     <Compile Include="Location\ICountryObjectsRepository.cs" />
     <Compile Include="Location\TelecomAddressObject.cs" />
     <Compile Include="Location\WebAddressObject.cs" />
