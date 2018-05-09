@@ -6,7 +6,7 @@ using Open.Aids;
 namespace Open.Tests {
 
     public abstract class ObjectTests<T> : ClassTests<T> {
-        
+
         protected T obj;
         private List<object> list;
 
@@ -44,11 +44,11 @@ namespace Open.Tests {
             var x = get();
             Assert.AreEqual(x, get());
             TR y;
-            
+
             do {
                 y = getRandom();
             } while (y.Equals(x));
-            
+
             set(y);
             Assert.AreEqual(y, get());
             Assert.AreNotEqual(x, y);
@@ -56,9 +56,8 @@ namespace Open.Tests {
             list.Add(y);
             validatePropertyValues();
         }
-        
-        protected void testNullEmptyAndWhitespaceCases(Func<string> get, Action<string> set,
-            Func<string> expected) {
+
+        protected void testNullEmptyAndWhitespaceCases(Func<string> get, Action<string> set, Func<string> expected) {
             void test(string s) {
                 set(s);
                 Assert.AreEqual(get(), expected());
