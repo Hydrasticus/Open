@@ -15,10 +15,8 @@ namespace Open.Sentry.Controllers {
         private readonly ITelecomDeviceRegistrationObjectsRepository deviceRegistrations;
         internal const string emailProperties = "ID, EmailAddress, AddressType, ValidFrom, ValidTo";
         internal const string webProperties = "ID, Url, AddressType, ValidFrom, ValidTo";
-
         internal const string telecomProperties =
             "ID, CountryCode, AreaCode, Number, Extension, NationalDirectDialingPrefix, DeviceType, AddressType, ValidFrom, ValidTo";
-
         internal const string adrProperties =
             "ID, AddressLine, City, RegionOrState, ZipOrPostalCode, AddressType, ValidFrom, ValidTo";
 
@@ -57,7 +55,21 @@ namespace Open.Sentry.Controllers {
 
         public async Task<IActionResult> Delete(string id) {
             var c = await addresses.GetObject(id);
-            return View(AddressViewModelFactory.Create(c));
+
+            switch (c) {
+                    case WebAddressObject web:
+                        return View("DeleteWeb", AddressViewModelFactory.Create(web) as WebPageAddressViewModel);
+                    case EmailAddressObject email:
+                        return View("DeleteEmail", AddressViewModelFactory.Create(email) as EMailAddressViewModel);
+                    case TelecomAddressObject tel:
+                        return View("DeleteTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
+                    case GeographicAddressObject adr:
+                        await deviceRegistrations.LoadDevices(adr);
+                        return View("DeleteAddresses",
+                            AddressViewModelFactory.Create(adr) as GeographicAddressViewModel);
+            }
+            
+            return RedirectToAction("Index");
         }
 
         [HttpPost, ActionName("Delete")]
@@ -70,12 +82,12 @@ namespace Open.Sentry.Controllers {
         public async Task<IActionResult> Edit(string id) {
             var c = await addresses.GetObject(id);
             switch (c) {
-                case WebPageAddressDbRecord _:
-                    return View("EditWeb", AddressViewModelFactory.Create(c) as WebPageAddressViewModel);
-                case EmailAddressDbRecord _:
-                    return View("EditEmail", AddressViewModelFactory.Create(c) as EMailAddressViewModel);
-                case TelecomAddressDbRecord _:
-                    return View("EditTelecom", AddressViewModelFactory.Create(c) as TelecomAddressViewModel);
+                case WebAddressObject web:
+                    return View("EditWeb", AddressViewModelFactory.Create(web) as WebPageAddressViewModel);
+                case EmailAddressObject email:
+                    return View("EditEmail", AddressViewModelFactory.Create(email) as EMailAddressViewModel);
+                case TelecomAddressObject tel:
+                    return View("EditTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
             }
 
             return View("EditAddress", AddressViewModelFactory.Create(c) as GeographicAddressViewModel);
@@ -84,17 +96,19 @@ namespace Open.Sentry.Controllers {
         public async Task<IActionResult> Details(string id) {
             var c = await addresses.GetObject(id);
             switch (c) {
-                case GeographicAddressDbRecord adr:
-                    await deviceRegistrations.LoadDevices(
-                        AddressObjectFactory.Create(adr) as GeographicAddressObject);
-                    break;
-                case TelecomAddressDbRecord tel:
-                    await deviceRegistrations.LoadAddresses(
-                        AddressObjectFactory.Create(tel) as TelecomAddressObject);
-                    break;
+                case WebAddressObject web:
+                    return View("DetailsWeb", AddressViewModelFactory.Create(web) as WebPageAddressViewModel);
+                case EmailAddressObject email:
+                    return View("DetailsEmail", AddressViewModelFactory.Create(email) as EMailAddressViewModel);
+                case TelecomAddressObject tel:
+                    await deviceRegistrations.LoadAddresses(tel);
+                    return View("DetailsTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
+                case GeographicAddressObject adr:
+                    await deviceRegistrations.LoadDevices(adr);
+                    return View("DetailsAddress", AddressViewModelFactory.Create(adr) as GeographicAddressViewModel);
             }
 
-            return View(AddressViewModelFactory.Create(c));
+            return RedirectToAction("Index");
         }
     }
 }
