@@ -10,7 +10,6 @@ using Open.Domain.Location;
 namespace Open.Infra.Location {
     
     //TODO: fix
-    /*
     public class AddressObjectsRepository : IAddressObjectsRepository {
 
         private readonly DbSet<AddressDbRecord> dbSet;
@@ -91,6 +90,5 @@ namespace Open.Infra.Location {
             db.Database.EnsureCreated();
             return dbSet.Any();
         }
-    }*/
+    }
 }
-

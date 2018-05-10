@@ -1,0 +1,32 @@
+﻿@using Open.Sentry.Extensions
+@model Open.Core.IPaginatedList<Open.Facade.Location.AddressViewModel>
+@{
+    ViewBag.Title = "Contacts";
+    Layout = "_IndexPartial";
+}
+
+<body>
+<table class="table">
+    @{ var dummy = Model.FirstOrDefault();}
+    <thead>
+    <tr>
+        @Html.SortColumnHeaderFor(ViewData["SortAddressType"], model => dummy.AddressType)
+        @Html.SortColumnHeaderFor(ViewData["SortToString"], model => dummy.Contact)
+        @Html.SortColumnHeaderFor(ViewData["SortValidFrom"], model => dummy.ValidFrom)
+        @Html.SortColumnHeaderFor(ViewData["SortValidTo"], model => dummy.ValidTo)
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.AddressType)</td>
+            <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+            <td>@Html.DisplayFor(modelItem => item.ValidFrom)</td>
+            <td>@Html.DisplayFor(modelItem => item.ValidTo)</td>
+            @Html.EditDetailDeleteFor(modelItem => item.ID)
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
