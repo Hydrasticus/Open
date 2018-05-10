@@ -1,5 +1,4 @@
-﻿using Open.Core;
-using Open.Data.Common;
+﻿using Open.Data.Common;
 using Open.Data.Location;
 
 namespace Open.Data.Money {
@@ -8,8 +7,6 @@ namespace Open.Data.Money {
 
         private string countryID;
         private string currencyID;
-        private CountryDbRecord country;
-        private CurrencyDbRecord currency;
 
         public string CountryID {
             get => getString(ref countryID);
@@ -21,14 +18,8 @@ namespace Open.Data.Money {
             set => currencyID = value;
         }
 
-        public virtual CountryDbRecord Country {
-            get => getValue(ref country);
-            set => country = value;
-        }
+        public virtual CountryDbRecord Country { get; set; }
 
-        public virtual CurrencyDbRecord Currency {
-            get => getValue(ref currency);
-            set => currency = value;
-        }
+        public virtual CurrencyDbRecord Currency { get; set; }
     }
 }
