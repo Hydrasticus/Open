@@ -10,7 +10,7 @@ using Open.Domain.Common;
 namespace Open.Infra {
 
     public abstract class PaginatedRepository<TObject, TDbRecord> :
-        BaseRepository<TObject, TDbRecord>, IPaginatedRepository<TObject, TDbRecord> 
+        BaseRepository<TObject, TDbRecord>, IPaginatedRepository<TObject, TDbRecord>
         where TObject : UniqueObject<TDbRecord>
         where TDbRecord : UniqueDbRecord, new() {
 

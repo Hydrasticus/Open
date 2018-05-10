@@ -4,6 +4,7 @@ using Open.Core;
 
 namespace Open.Facade.Location {
 
+    //TODO: different than Lab17End
     public class TelecomAddressViewModel : AddressViewModel {
 
         private string countryCode, areaCode, number, extension, nationalDirectDialingPrefix;

@@ -14,11 +14,11 @@ namespace Open.Core {
         }
 
         public int PageIndex { get; }
-        
+
         public int PageSize { get; }
-        
+
         public int TotalPages { get; }
-        
+
         public int FirstItemIndex { get; }
     }
 }

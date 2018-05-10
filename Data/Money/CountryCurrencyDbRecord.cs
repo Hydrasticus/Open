@@ -5,8 +5,7 @@ namespace Open.Data.Money {
 
     public class CountryCurrencyDbRecord : TemporalDbRecord {
 
-        private string countryID;
-        private string currencyID;
+        private string countryID, currencyID;
 
         public string CountryID {
             get => getString(ref countryID);

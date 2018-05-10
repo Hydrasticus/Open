@@ -15,7 +15,7 @@ namespace Open.Domain.Location {
                 ValidFrom = validFrom ?? DateTime.MinValue,
                 ValidTo = validTo ?? DateTime.MaxValue
             };
-            
+
             return new CountryObject(o);
         }
 

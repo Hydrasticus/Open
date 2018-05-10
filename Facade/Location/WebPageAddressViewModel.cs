@@ -1,5 +1,6 @@
 ﻿namespace Open.Facade.Location {
 
+    //TODO: different than Lab17End
     public class WebPageAddressViewModel : AddressViewModel {
 
         private string url;

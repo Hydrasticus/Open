@@ -4,8 +4,9 @@ using Open.Domain.Money;
 
 namespace Open.Infra.Money {
 
+    //TODO: different than Lab17End
     public static class CurrenciesDbTableInitializer {
-        
+
         public static void Initialize(SentryDbContext c) {
             c.Database.EnsureCreated();
             if (c.Currencies.Any()) return;

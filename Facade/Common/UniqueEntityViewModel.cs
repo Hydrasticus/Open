@@ -1,13 +1,11 @@
-﻿using Open.Core;
+﻿namespace Open.Facade.Common {
 
-namespace Open.Facade.Common {
-    
     public class UniqueEntityViewModel : TemporalViewModel {
 
         private string id;
-        
+
         public string ID {
-            get => getString(ref id, Constants.Unspecified);
+            get => getString(ref id);
             set => id = value;
         }
     }

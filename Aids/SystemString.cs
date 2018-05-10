@@ -14,6 +14,7 @@
             for (var i = x; i >= 0; i--) {
                 r += s[i];
             }
+
             return r;
         }
     }

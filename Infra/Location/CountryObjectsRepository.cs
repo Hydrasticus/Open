@@ -14,8 +14,7 @@ namespace Open.Infra.Location {
             return new CountryObject(r);
         }
 
-        protected internal override PaginatedList<CountryObject> 
-            createList(List<CountryDbRecord> l, RepositoryPage p) {
+        protected internal override PaginatedList<CountryObject> createList(List<CountryDbRecord> l, RepositoryPage p) {
             return new CountryObjectsList(l, p);
         }
     }

@@ -2,7 +2,7 @@
 using Open.Data.Common;
 
 namespace Open.Domain.Common {
-    
+
     public abstract class TemporalObject<T> : RootObject where T : TemporalDbRecord, new() {
 
         public readonly T DbRecord;

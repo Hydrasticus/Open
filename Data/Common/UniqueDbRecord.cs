@@ -1,13 +1,11 @@
-﻿using Open.Core;
+﻿namespace Open.Data.Common {
 
-namespace Open.Data.Common {
-    
     public abstract class UniqueDbRecord : TemporalDbRecord {
 
         protected string id;
 
         public virtual string ID {
-            get => getString(ref id, Constants.Unspecified);
+            get => getString(ref id);
             set => id = value;
         }
     }

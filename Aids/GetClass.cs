@@ -5,6 +5,7 @@ using System.Reflection;
 
 namespace Open.Aids {
 
+    //TODO: different than Lab17End
     public static class GetClass {
 
         private const string g = "get_";
@@ -29,6 +30,10 @@ namespace Open.Aids {
 
         public static List<PropertyInfo> Properties(Type type, BindingFlags f = PublicBindingFlagsFor.AllMembers) {
             return ReferenceEquals(null, type) ? new List<PropertyInfo>() : type.GetProperties(f).ToList();
+        }
+
+        public static PropertyInfo Property<T>(string name) {
+            return Safe.Run(() => typeof(T).GetProperty(name), null);
         }
 
         private static void removeSurrogates(IList<MemberInfo> l) {
@@ -75,10 +80,6 @@ namespace Open.Aids {
                     }
                 }
             }
-        }
-
-        public static PropertyInfo Property<T>(string name) {
-            return Safe.Run(() => typeof(T).GetProperty(name), null);
         }
     }
 }

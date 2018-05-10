@@ -2,8 +2,8 @@
 using Open.Infra.Money;
 
 namespace Open.Infra {
-    
-    public class DbTablesInitializer {
+
+    public static class DbTablesInitializer {
 
         public static void Initialize(SentryDbContext dbContext) {
             CountriesDbTableInitializer.Initialize(dbContext);

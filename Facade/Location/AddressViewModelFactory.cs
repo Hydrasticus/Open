@@ -42,8 +42,8 @@ namespace Open.Facade.Location {
             if (o is null) return v;
 
             foreach (var c in o.RegisteredInAddresses) {
-                //var address = Create(c);
-                //v.RegisteredInAddresses.Add(address);
+                var address = Create(c);
+                v.RegisteredInAddresses.Add(address);
             }
 
             return v;
@@ -63,8 +63,8 @@ namespace Open.Facade.Location {
             if (o is null) return v;
 
             foreach (var c in o.RegisteredTelecomDevices) {
-                //var device = create(c);
-                //v.RegisteredTelecomAddresses.Add(device);
+                var device = create(c);
+                v.RegisteredTelecomAddresses.Add(device);
             }
 
             return v;

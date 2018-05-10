@@ -3,7 +3,7 @@ using System.Globalization;
 using Open.Data.Money;
 
 namespace Open.Domain.Money {
-    
+
     public static class CurrencyObjectFactory {
 
         public static CurrencyObject Create(string id, string name, string code,
@@ -15,7 +15,7 @@ namespace Open.Domain.Money {
                 ValidFrom = validFrom ?? DateTime.MinValue,
                 ValidTo = validTo ?? DateTime.MaxValue
             };
-            
+
             return new CurrencyObject(o);
         }
 

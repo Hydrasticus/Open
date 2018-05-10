@@ -3,7 +3,7 @@ using Open.Core;
 using Open.Data.Money;
 
 namespace Open.Domain.Money {
-    
+
     public class CountryCurrencyObjectsList : PaginatedList<CountryCurrencyObject> {
 
         public CountryCurrencyObjectsList(IEnumerable<CountryCurrencyDbRecord> items, RepositoryPage page) :

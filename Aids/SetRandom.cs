@@ -3,9 +3,9 @@ using System.Collections;
 using System.Linq;
 
 namespace Open.Aids {
-    
+
     public static class SetRandom {
-        
+
         public static void Values(object o) {
             if (o is null) return;
             if (o is IList list) setValuesForList(list);
@@ -33,7 +33,7 @@ namespace Open.Aids {
         private static Type getListElementsType(IList list) {
             return Safe.Run(() => {
                 var t = list.GetType();
-                var types = (from method in t.GetMethods() 
+                var types = (from method in t.GetMethods()
                         where method.Name == "get_Item"
                         select method.ReturnType)
                     .Distinct().ToArray();

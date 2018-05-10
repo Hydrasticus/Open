@@ -98,18 +98,18 @@ namespace Open.Infra.Location {
             return l;
         }
 
-        private static void initWebPageAddresses(SentryDbContext c) {
-            add(c, new WebPageAddressDbRecord {Address = "www.visualstudio.com"});
-            add(c, new WebPageAddressDbRecord {Address = "www.jetbrains.com"});
-            add(c, new WebPageAddressDbRecord {Address = "www.wikipedia.org"});
-            add(c, new WebPageAddressDbRecord {Address = "www.amazon.com"});
-        }
-
         private static void initEmailAddresses(SentryDbContext c) {
             add(c, new EmailAddressDbRecord {Address = "Harry.Potter@hogwarts.edu"});
             add(c, new EmailAddressDbRecord {Address = "Hermione.Granger@hogwarts.edu"});
             add(c, new EmailAddressDbRecord {Address = "Ron.Weasley@hogwarts.edu"});
             add(c, new EmailAddressDbRecord {Address = "Albus.Dumbledore@hogwarts.edu"});
+        }
+
+        private static void initWebPageAddresses(SentryDbContext c) {
+            add(c, new WebPageAddressDbRecord {Address = "www.visualstudio.com"});
+            add(c, new WebPageAddressDbRecord {Address = "www.jetbrains.com"});
+            add(c, new WebPageAddressDbRecord {Address = "www.wikipedia.org"});
+            add(c, new WebPageAddressDbRecord {Address = "www.amazon.com"});
         }
 
         private static string add(SentryDbContext c, AddressDbRecord address) {

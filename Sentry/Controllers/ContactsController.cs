@@ -8,7 +8,7 @@ using Open.Facade.Location;
 
 namespace Open.Sentry.Controllers {
 
-    //TODO: fix
+    //TODO: fix, different than Lab17End
     public class ContactsController : Controller {
 
         private readonly IAddressObjectsRepository addresses;

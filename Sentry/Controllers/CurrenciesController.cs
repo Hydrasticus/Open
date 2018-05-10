@@ -11,6 +11,7 @@ using Open.Facade.Money;
 
 namespace Open.Sentry.Controllers {
 
+    //TODO: different than Lab17End
     [Authorize]
     public class CurrenciesController : Controller {
 

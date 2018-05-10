@@ -3,7 +3,8 @@ using Open.Aids;
 using Open.Data.Money;
 
 namespace Open.Infra.Money {
-    
+
+    //TODO: different than Lab17End
     public static class CountryCurrenciesDbTableInitializer {
 
         public static void Initialize(SentryDbContext c) {

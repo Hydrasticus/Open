@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Open.Aids;
-using Open.Core;
 using Open.Facade.Common;
 using Open.Facade.Location;
 
@@ -18,14 +17,14 @@ namespace Open.Facade.Money {
         [RegularExpression(RegularExpressionFor.EnglishCapitalsOnly)]
         [DisplayName("ISO Currency Code")]
         public string IsoCode {
-            get => getString(ref isoCode, Constants.Unspecified);
+            get => getString(ref isoCode);
             set => isoCode = value;
         }
 
         [Required]
         [DisplayName("Currency Symbol")]
         public string Symbol {
-            get => getString(ref symbol, Constants.Unspecified);
+            get => getString(ref symbol);
             set => symbol = value;
         }
 

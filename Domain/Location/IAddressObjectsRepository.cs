@@ -3,7 +3,8 @@ using Open.Data.Location;
 
 namespace Open.Domain.Location {
     
-    public interface IAddressObjectsRepository : IObjectsRepository<AddressObject<AddressDbRecord>, AddressDbRecord> {
+    //TODO: different than Lab17End
+    public interface IAddressObjectsRepository : IObjectsRepository<IAddressObject, AddressDbRecord> {
         
     }
 }

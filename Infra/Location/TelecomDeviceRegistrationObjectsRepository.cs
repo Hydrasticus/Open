@@ -5,8 +5,8 @@ using Open.Data.Location;
 using Open.Domain.Location;
 
 namespace Open.Infra.Location {
-    
-    //TODO: fix
+
+    //TODO: different than Lab17End
     public class TelecomDeviceRegistrationObjectsRepository : ITelecomDeviceRegistrationObjectsRepository {
 
         private readonly DbSet<TelecomDeviceRegistrationDbRecord> dbSet;
@@ -16,7 +16,7 @@ namespace Open.Infra.Location {
             db = c;
             dbSet = c?.TelecomDeviceRegistrations;
         }
-        
+
         public Task<TelecomDeviceRegistrationObject> GetObject(string id) {
             throw new System.NotImplementedException();
         }
@@ -42,16 +42,17 @@ namespace Open.Infra.Location {
             var addresses = await dbSet.Include(x => x.Address).Where(x => x.DeviceID == id).AsNoTracking()
                 .ToListAsync();
             foreach (var a in addresses) {
-                //device.UsedInAddress(new GeographicAddressObject(a.Address));
+                device.RegisteredInAddress(new GeographicAddressObject(a.Address));
             }
         }
 
         public async Task LoadDevices(GeographicAddressObject address) {
             if (address is null) return;
             var id = address.DbRecord?.ID ?? string.Empty;
-            var devices = await dbSet.Include(x => x.Device).Where(x => x.AddressID == id).AsNoTracking().ToListAsync();
+            var devices = await dbSet.Include(x => x.Device).Where(x => x.AddressID == id).AsNoTracking().
+                ToListAsync();
             foreach (var d in devices) {
-                //address.DeviceInUse(new TelecomAddressObject(d.Device));
+                address.RegisteredTelecomDevice(new TelecomAddressObject(d.Device));
             }
         }
     }

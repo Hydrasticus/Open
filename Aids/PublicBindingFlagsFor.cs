@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 
 namespace Open.Aids {
-    
+
     public static class PublicBindingFlagsFor {
-        
+
         private const BindingFlags p = BindingFlags.Public;
         private const BindingFlags i = BindingFlags.Instance;
         private const BindingFlags s = BindingFlags.Static;

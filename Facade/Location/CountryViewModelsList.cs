@@ -4,9 +4,10 @@ using Open.Core;
 using Open.Domain.Location;
 
 namespace Open.Facade.Location {
-    
+
+    //TODO: different than Lab17End
     public class CountryViewModelsList : PaginatedList<CountryViewModel> {
-        
+
         public CountryViewModelsList(IPaginatedList<CountryObject> l, string sortOrder = null) {
             if (l is null) return;
             PageIndex = l.PageIndex;
@@ -49,7 +50,7 @@ namespace Open.Facade.Location {
                     ordered = countries.OrderBy(s => s.Name);
                     break;
             }
-            
+
             AddRange(ordered);
         }
     }

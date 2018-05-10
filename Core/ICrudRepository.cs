@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 namespace Open.Core {
-    
+
     public interface ICrudRepository<TObject> {
 
         Task<TObject> GetObject(string id);

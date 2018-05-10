@@ -8,8 +8,8 @@ using Open.Data.Location;
 using Open.Domain.Location;
 
 namespace Open.Infra.Location {
-    
-    //TODO: fix
+
+    //TODO: different than Lab17End
     public class AddressObjectsRepository : IAddressObjectsRepository {
 
         private readonly DbSet<AddressDbRecord> dbSet;
@@ -19,15 +19,15 @@ namespace Open.Infra.Location {
             db = c;
             dbSet = c?.Addresses;
         }
-        
+
         public string SearchString { get; set; }
-        
+
         public int? PageIndex { get; set; }
-        
+
         public int? PageSize { get; set; }
-        
+
         public SortOrder SortOrder { get; set; }
-        
+
         public Func<AddressDbRecord, object> SortFunction { get; set; }
 
         public async Task<PaginatedList<IAddressObject>> GetObjectsList() {

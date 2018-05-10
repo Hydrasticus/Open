@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Open.Aids;
-using Open.Core;
 
 namespace Open.Facade.Common {
 
@@ -11,7 +10,7 @@ namespace Open.Facade.Common {
         [Required]
         [RegularExpression(RegularExpressionFor.EnglishTextOnly)]
         public string Name {
-            get => getString(ref name, Constants.Unspecified);
+            get => getString(ref name);
             set => name = value;
         }
     }

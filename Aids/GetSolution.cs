@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 
 namespace Open.Aids {
-    
+
     public static class GetSolution {
-        
+
         public static AppDomain Domain => AppDomain.CurrentDomain;
 
         public static List<Assembly> Assemblies =>
@@ -30,7 +30,7 @@ namespace Open.Aids {
             }, new List<string>());
         }
 
-        public static string Name => 
+        public static string Name =>
             GetString.Head(GetClass.Namespace(typeof(GetSolution)));
     }
 }

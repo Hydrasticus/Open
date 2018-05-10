@@ -3,7 +3,7 @@ using Open.Domain.Money;
 using Open.Facade.Location;
 
 namespace Open.Facade.Money {
-    
+
     public static class CurrencyViewModelFactory {
 
         public static CurrencyViewModel Create(CurrencyObject o) {

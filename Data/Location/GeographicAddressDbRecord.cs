@@ -1,5 +1,6 @@
 ﻿namespace Open.Data.Location {
 
+    //TODO: different than Lab17End
     public class GeographicAddressDbRecord : AddressDbRecord {
 
         private string countryID;

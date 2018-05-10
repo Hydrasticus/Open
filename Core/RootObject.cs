@@ -3,6 +3,7 @@ using Open.Aids;
 
 namespace Open.Core {
 
+    //TODO: different than Lab17End
     public abstract class RootObject {
 
         protected internal string getString(ref string field, string value = Constants.Unspecified) {

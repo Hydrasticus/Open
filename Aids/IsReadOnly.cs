@@ -1,7 +1,7 @@
 ﻿namespace Open.Aids {
-    
+
     public static class IsReadOnly {
-        
+
         public static bool Field<T>(string name) {
             return typeof(T).GetField(name)?.IsInitOnly ?? false;
         }

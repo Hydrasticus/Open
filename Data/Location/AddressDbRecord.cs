@@ -20,7 +20,7 @@ namespace Open.Data.Location {
             get => getString(ref region);
             set => region = value;
         }
-        
+
         public string ZipOrPostCodeOrExtension {
             get => getString(ref zip);
             set => zip = value;

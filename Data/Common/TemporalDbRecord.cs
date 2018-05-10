@@ -2,7 +2,7 @@
 using Open.Core;
 
 namespace Open.Data.Common {
-    
+
     public abstract class TemporalDbRecord : RootObject {
 
         private DateTime validFrom = DateTime.MinValue;

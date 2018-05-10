@@ -1,5 +1,5 @@
 ﻿namespace Open.Data.Common {
-    
+
     public abstract class IdentifiedDbRecord : UniqueDbRecord {
 
         private string code;

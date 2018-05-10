@@ -2,7 +2,7 @@
 using Open.Domain.Location;
 
 namespace Open.Facade.Location {
-    
+
     public class AddressViewModelsList : PaginatedList<AddressViewModel> {
         //TODO: fix
         public AddressViewModelsList(IPaginatedList<IAddressObject> list) {

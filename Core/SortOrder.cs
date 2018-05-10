@@ -1,7 +1,7 @@
 ﻿namespace Open.Core {
-    
+
     public enum SortOrder {
-        Ascending, 
+        Ascending,
         Descending
     }
 }

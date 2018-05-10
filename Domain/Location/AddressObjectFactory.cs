@@ -76,7 +76,7 @@ namespace Open.Domain.Location {
             return new GeographicAddressObject(r);
         }
 
-        public static TelecomAddressObject CreateDevice(string id, string countryCode, 
+        public static TelecomAddressObject CreateDevice(string id, string countryCode,
             string areaCode, string number, string extension, string nationalDirectDialingPrefix,
             TelecomDevice deviceType, DateTime? validFrom = null, DateTime? validTo = null) {
             var r = new TelecomAddressDbRecord {

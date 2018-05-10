@@ -3,7 +3,7 @@ using Open.Core;
 using Open.Data.Location;
 
 namespace Open.Domain.Location {
-    
+
     public class AddressObjectsList : PaginatedList<IAddressObject> {
 
         public AddressObjectsList(IEnumerable<AddressDbRecord> items, RepositoryPage page) : base(page) {

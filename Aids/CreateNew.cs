@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace Open.Aids {
 
+    //TODO: different than Lab17End
     public static class CreateNew {
 
         public static T Instance<T>() {

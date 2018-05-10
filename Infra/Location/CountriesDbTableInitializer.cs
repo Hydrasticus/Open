@@ -3,9 +3,9 @@ using Open.Aids;
 using Open.Domain.Location;
 
 namespace Open.Infra.Location {
-    
+
     public class CountriesDbTableInitializer {
-        
+
         public static void Initialize(SentryDbContext c) {
             c.Database.EnsureCreated();
             if (c.Countries.Any()) return;
