@@ -6,8 +6,21 @@ namespace Open.Facade.Location {
 
     //TODO: fix
     public static class AddressViewModelFactory {
+
+        public static AddressViewModel Create(IAddressObject o) {
+            switch (o) {
+                    case WebAddressObject web:
+                        return create(web);
+                    case EmailAddressObject email:
+                        return create(email);
+                    case TelecomAddressObject device:
+                        return create(device);
+            }
+
+            return create(o as GeographicAddressObject);
+        }
         
-        public static WebPageAddressViewModel Create(WebAddressObject o) {
+        private static WebPageAddressViewModel create(WebAddressObject o) {
             var v = new WebPageAddressViewModel {
                 Url = o?.DbRecord.Address
             };
@@ -17,7 +30,7 @@ namespace Open.Facade.Location {
             return v;
         }
 
-        public static EMailAddressViewModel Create(EmailAddressObject o) {
+        private static EMailAddressViewModel create(EmailAddressObject o) {
             var v = new EMailAddressViewModel {
                 EmailAddress = o?.DbRecord?.Address
             };
@@ -27,7 +40,7 @@ namespace Open.Facade.Location {
             return v;
         }
 
-        public static TelecomAddressViewModel Create(TelecomAddressObject o) {
+        private static TelecomAddressViewModel create(TelecomAddressObject o) {
             var v = new TelecomAddressViewModel {
                 Number = o?.DbRecord?.Address,
                 AreaCode = o?.DbRecord?.CityOrAreaCode,
@@ -42,7 +55,7 @@ namespace Open.Facade.Location {
             if (o is null) return v;
 
             foreach (var c in o.RegisteredInAddresses) {
-                var address = Create(c);
+                var address = create(c);
                 v.RegisteredInAddresses.Add(address);
             }
 
