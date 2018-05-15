@@ -4,7 +4,6 @@ using Open.Domain.Location;
 
 namespace Open.Facade.Location {
 
-    //TODO: fix
     public static class AddressViewModelFactory {
 
         public static AddressViewModel Create(IAddressObject o) {
