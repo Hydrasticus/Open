@@ -126,5 +126,28 @@ namespace Open.Sentry.Controllers {
         public IActionResult CreateAddress() {
             return View("CreateAddress", new GeographicAddressViewModel());
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateWeb([Bind(webProperties)] WebPageAddressViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            c.ID = Guid.NewGuid().ToString();
+            var o = AddressObjectFactory.CreateWeb(c.ID, c.Url, c.ValidFrom, c.ValidTo);
+            await addresses.AddObject(o);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind(webProperties)] WebPageAddressViewModel c) {
+            if (!ModelState.IsValid) return View("EditWeb", c);
+            var o = await addresses.GetObject(c.ID) as WebAddressObject;
+            if (o is null) return RedirectToAction("Index");
+            o.DbRecord.Address = c.Url;
+            o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
+            o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
+            await addresses.UpdateObject(o);
+            return RedirectToAction("Index");
+        }
     }
 }
