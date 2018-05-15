@@ -110,5 +110,21 @@ namespace Open.Sentry.Controllers {
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult CreateWeb() {
+            return View("CreateWeb", new WebPageAddressViewModel());
+        }
+        
+        public IActionResult CreateEmail() {
+            return View("CreateEmail", new EMailAddressViewModel());
+        }
+        
+        public IActionResult CreateTelecom() {
+            return View("CreateTelecom", new TelecomAddressViewModel());
+        }
+        
+        public IActionResult CreateAddress() {
+            return View("CreateAddress", new GeographicAddressViewModel());
+        }
     }
 }

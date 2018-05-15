@@ -6,6 +6,10 @@
     Layout = "_IndexPartial";
 }
 
+@section Create {
+    <a asp-action="Create">Create New</a>
+}
+
 <body>
 <table class="table">
     @{ var dummy = Model.FirstOrDefault();}

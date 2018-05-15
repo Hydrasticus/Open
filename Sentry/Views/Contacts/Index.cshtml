@@ -5,6 +5,14 @@
     Layout = "_IndexPartial";
 }
 
+@section Create {
+    <t>Create New</t>
+    <a asp-action="CreateWeb">Web</a>
+    <a asp-action="CreateEmail">Email</a>
+    <a asp-action="CreateTelecom">Telecom</a>
+    <a asp-action="CreateAddress">Address</a>
+}
+
 <body>
 <table class="table">
     @{ var dummy = Model.FirstOrDefault();}
