@@ -1,0 +1,16 @@
+﻿@model Open.Facade.Location.TelecomAddressViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Subtitle = $"{Model.AddressType} Address";
+    ViewBag.Button = "Delete";
+    Layout = "_DeletePartial";
+}
+
+<body>
+@Html.Partial("_ViewTelecom", Model)
+</body>
+
+@section Actions {
+    @Html.ActionLink("Back to list", "Index")
+}

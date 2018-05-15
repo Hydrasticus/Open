@@ -1,0 +1,16 @@
+﻿@model Open.Facade.Location.EMailAddressViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.Subtitle = $"{Model.AddressType} Address";
+    ViewBag.Button = "Save";
+    Layout = "_EditPartial";
+}
+
+<body>
+@Html.Partial("_EditEmail", Model)
+</body>
+
+@section Actions {
+    @Html.ActionLink("Back to list", "Index")
+}

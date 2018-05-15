@@ -1,0 +1,16 @@
+﻿@model Open.Facade.Location.WebPageAddressViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Subtitle = $"{Model.AddressType} Address";
+    ViewBag.Button = "Delete";
+    Layout = "_DeletePartial";
+}
+
+<body>
+@Html.Partial("_ViewWeb", Model)
+</body>
+
+@section Actions {
+    @Html.ActionLink("Back to list", "Index")
+}
