@@ -34,7 +34,7 @@ namespace Open.Core {
                 if (value.ToString().ToLower().Contains(searchString)) return true;
             }
 
-            return false;
+            return GetType().Name.ToLower().Contains(searchString);
         }
     }
 }

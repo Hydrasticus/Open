@@ -65,6 +65,7 @@ namespace Open.Sentry.Controllers {
                         return View("DeleteTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
                     case GeographicAddressObject adr:
                         await deviceRegistrations.LoadDevices(adr);
+                        // ReSharper disable once Mvc.ViewNotResolved
                         return View("DeleteAddresses",
                             AddressViewModelFactory.Create(adr) as GeographicAddressViewModel);
             }
