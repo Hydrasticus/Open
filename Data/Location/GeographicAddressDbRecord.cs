@@ -11,9 +11,6 @@
             set => countryID = value;
         }
 
-        public virtual CountryDbRecord Country {
-            get => getValue(ref country);
-            set => country = value;
-        }
+        public virtual CountryDbRecord Country { get; set; }
     }
 }

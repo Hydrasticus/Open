@@ -31,6 +31,7 @@ namespace Open.Core {
             searchString = searchString.ToLower();
             var values = GetClass.ReadWritePropertyValues(this);
             foreach (var value in values) {
+                if (value is null) continue;
                 if (value.ToString().ToLower().Contains(searchString)) return true;
             }
 

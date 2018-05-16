@@ -66,6 +66,7 @@ namespace Open.Tests.Core {
             Assert.IsTrue(obj.Contains(string.Empty));
             Assert.IsTrue(obj.Contains(null));
             Assert.IsTrue(obj.Contains(obj.Name));
+            obj.Name = null;
             Assert.IsTrue(obj.Contains(obj.Date.Year.ToString()));
             Assert.IsTrue(obj.Contains(obj.Date.Day.ToString()));
             Assert.IsTrue(obj.Contains(obj.Date.Month.ToString()));
