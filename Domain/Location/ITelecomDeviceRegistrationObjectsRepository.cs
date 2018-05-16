@@ -8,5 +8,6 @@ namespace Open.Domain.Location {
 
         Task LoadAddresses(TelecomAddressObject device);
         Task LoadDevices(GeographicAddressObject address);
+        Task<TelecomDeviceRegistrationObject> GetObject(string adr, string dev);
     }
 }

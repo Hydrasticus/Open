@@ -22,17 +22,26 @@ namespace Open.Infra.Location {
         }
 
         public async Task AddObject(TelecomDeviceRegistrationObject o) {
-            dbSet.Add(o.DbRecord);
+            var r = o.DbRecord;
+            r.Address = null;
+            r.Device = null;
+            dbSet.Add(r);
             await db.SaveChangesAsync();
         }
 
         public async Task UpdateObject(TelecomDeviceRegistrationObject o) {
-            dbSet.Update(o.DbRecord);
+            var r = o.DbRecord;
+            r.Address = null;
+            r.Device = null;
+            dbSet.Update(r);
             await db.SaveChangesAsync();
         }
 
         public async Task DeleteObject(TelecomDeviceRegistrationObject o) {
-            dbSet.Remove(o.DbRecord);
+            var r = o.DbRecord;
+            r.Address = null;
+            r.Device = null;
+            dbSet.Remove(r);
             await db.SaveChangesAsync();
         }
 
@@ -49,11 +58,15 @@ namespace Open.Infra.Location {
         public async Task LoadDevices(GeographicAddressObject address) {
             if (address is null) return;
             var id = address.DbRecord?.ID ?? string.Empty;
-            var devices = await dbSet.Include(x => x.Device).Where(x => x.AddressID == id).AsNoTracking().
-                ToListAsync();
+            var devices = await dbSet.Include(x => x.Device).Where(x => x.AddressID == id).AsNoTracking().ToListAsync();
             foreach (var d in devices) {
                 address.RegisteredTelecomDevice(new TelecomAddressObject(d.Device));
             }
+        }
+
+        public async Task<TelecomDeviceRegistrationObject> GetObject(string adr, string dev) {
+            var o = await dbSet.FirstOrDefaultAsync(x => x.AddressID == adr && x.DeviceID == dev);
+            return new TelecomDeviceRegistrationObject(o);
         }
     }
 }

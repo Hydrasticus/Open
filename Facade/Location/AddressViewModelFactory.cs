@@ -67,7 +67,7 @@ namespace Open.Facade.Location {
                 City = o?.DbRecord?.CityOrAreaCode,
                 ZipOrPostalCode = o?.DbRecord?.ZipOrPostCodeOrExtension,
                 RegionOrState = o?.DbRecord?.RegionOrStateOrCountryCode,
-                Country = CountryViewModelFactory.Create(o?.Country)
+                Country = o?.DbRecord?.CountryID
             };
 
             setCommonValues(v, o?.DbRecord?.ID, o?.DbRecord?.ValidFrom, o?.DbRecord?.ValidTo);

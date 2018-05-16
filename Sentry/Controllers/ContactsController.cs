@@ -20,7 +20,7 @@ namespace Open.Sentry.Controllers {
             "ID, CountryCode, AreaCode, Number, Extension, NationalDirectDialingPrefix, DeviceType, ValidFrom, ValidTo";
 
         internal const string adrProperties =
-            "ID, AddressLine, City, RegionOrState, ZipOrPostalCode, ValidFrom, ValidTo";
+            "ID, AddressLine, City, RegionOrState, ZipOrPostalCode, Country, ValidFrom, ValidTo";
 
         public ContactsController(IAddressObjectsRepository a, ITelecomDeviceRegistrationObjectsRepository d) {
             addresses = a;
@@ -106,13 +106,34 @@ namespace Open.Sentry.Controllers {
             return View(AddressViewModelFactory.Create(address) as EMailAddressViewModel);
         }
 
-        public async Task<IActionResult> EditAddress(string id) {
-            var address = await addresses.GetObject(id);
-            return View(AddressViewModelFactory.Create(address) as GeographicAddressViewModel);
+        public async Task<IActionResult> EditAddress(string id,
+            string currentFilter = null,
+            string searchString = null,
+            int? page = null) {
+
+            if (searchString != null) page = 1;
+            else searchString = null;
+            ViewData["CurrentFilter"] = searchString;
+            addresses.SearchString = searchString;
+            addresses.PageIndex = page ?? 1;
+            var devices = new AddressViewModelsList(null);
+            if (!string.IsNullOrWhiteSpace(searchString))
+                devices = new AddressViewModelsList(await addresses.GetDevicesList());
+            var a = await addresses.GetObject(id) as GeographicAddressObject ?? new GeographicAddressObject(null);
+            await deviceRegistrations.LoadDevices(a);
+            var adr = AddressViewModelFactory.Create(a) as GeographicAddressViewModel ??
+                      new GeographicAddressViewModel();
+            foreach (var device in adr.RegisteredTelecomAddresses) {
+                devices.RemoveAll(x => x.Contact == device.Contact);
+            }
+
+            ViewBag.Devices = devices;
+            return View(adr);
         }
 
         public async Task<IActionResult> EditTelecom(string id) {
-            var address = await addresses.GetObject(id);
+            var address = await addresses.GetObject(id) as TelecomAddressObject;
+            await deviceRegistrations.LoadAddresses(address);
             return View(AddressViewModelFactory.Create(address) as TelecomAddressViewModel);
         }
 
@@ -216,6 +237,47 @@ namespace Open.Sentry.Controllers {
             o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
             await addresses.UpdateObject(o);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAddress([Bind(adrProperties)] GeographicAddressViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            c.ID = Guid.NewGuid().ToString();
+            var o = AddressObjectFactory.CreateAddress(c.ID, c.AddressLine, c.City, c.RegionOrState, c.ZipOrPostalCode,
+                c.Country, c.ValidFrom, c.ValidTo);
+            await addresses.AddObject(o);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAddress([Bind(adrProperties)] GeographicAddressViewModel c) {
+            if (!ModelState.IsValid) return View("EditAddress", c);
+            var o = await addresses.GetObject(c.ID) as GeographicAddressObject;
+            o.DbRecord.Address = c.AddressLine;
+            o.DbRecord.CityOrAreaCode = c.City;
+            o.DbRecord.RegionOrStateOrCountryCode = c.RegionOrState;
+            o.DbRecord.ZipOrPostCodeOrExtension = c.ZipOrPostalCode;
+            o.DbRecord.CountryID = c.Country;
+            o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
+            o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
+            await addresses.UpdateObject(o);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> RemoveDevice(string adr, string dev) {
+            var o = await deviceRegistrations.GetObject(adr, dev);
+            await deviceRegistrations.DeleteObject(o);
+            return RedirectToAction("EditAddress", new {id = adr});
+        }
+
+        public async Task<IActionResult> AddDevice(string adr, string dev) {
+            var r = new TelecomDeviceRegistrationDbRecord {
+                AddressID = adr,
+                DeviceID = dev
+            };
+
+            await deviceRegistrations.AddObject(new TelecomDeviceRegistrationObject(r));
+            return RedirectToAction("EditAddress", new {id = adr});
         }
     }
 }

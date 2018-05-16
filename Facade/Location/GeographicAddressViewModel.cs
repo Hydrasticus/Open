@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Open.Core;
 
 namespace Open.Facade.Location {
@@ -7,10 +8,9 @@ namespace Open.Facade.Location {
     //TODO: different than Lab17End
     public class GeographicAddressViewModel : AddressViewModel {
 
-        private string addressLine, city, regionOrState, zipOrPostalCode;
-        private CountryViewModel country;
+        private string addressLine, city, regionOrState, zipOrPostalCode, country;
 
-        [DisplayName("Address Line")]
+        [DisplayName("Address Line"), Required]
         public string AddressLine {
             get => getString(ref addressLine);
             set => addressLine = value;
@@ -33,11 +33,12 @@ namespace Open.Facade.Location {
             set => zipOrPostalCode = value;
         }
 
-        public CountryViewModel Country {
-            get => getValue(ref country);
+        public string Country {
+            get => getString(ref country);
             set => country = value;
         }
 
+        [DisplayName("Registered Telecom Devices")]
         public List<TelecomAddressViewModel> RegisteredTelecomAddresses { get; } = new List<TelecomAddressViewModel>();
 
         public override string ToString() {
@@ -45,7 +46,7 @@ namespace Open.Facade.Location {
             if (City != Constants.Unspecified) s = $"{s} {City}";
             if (RegionOrState != Constants.Unspecified) s = $"{s} {RegionOrState}";
             if (ZipOrPostalCode != Constants.Unspecified) s = $"{s} {ZipOrPostalCode}";
-            if (Country.Alpha3Code != Constants.Unspecified) s = $"{s} {Country.Alpha3Code}";
+            if (Country != Constants.Unspecified) s = $"{s} {Country}";
             return s;
         }
     }

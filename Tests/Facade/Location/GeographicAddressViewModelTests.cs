@@ -56,7 +56,7 @@ namespace Open.Tests.Facade.Location {
             if (obj.City != Constants.Unspecified) s = $"{s} {obj.City}";
             if (obj.RegionOrState != Constants.Unspecified) s = $"{s} {obj.RegionOrState}";
             if (obj.ZipOrPostalCode != Constants.Unspecified) s = $"{s} {obj.ZipOrPostalCode}";
-            if (obj.Country.Alpha3Code != Constants.Unspecified) s = $"{s} {obj.Country.Alpha3Code}";
+            if (obj.Country != Constants.Unspecified) s = $"{s} {obj.Country}";
             Assert.AreEqual(s, obj.ToString());
         }
     }

@@ -90,5 +90,15 @@ namespace Open.Infra.Location {
             db.Database.EnsureCreated();
             return dbSet.Any();
         }
+
+        public async Task<IPaginatedList<IAddressObject>> GetDevicesList() {
+            var countries = getSorted().Where(s => s is TelecomAddressDbRecord && s.Contains(SearchString))
+                .AsNoTracking();
+            var count = await countries.CountAsync();
+            var p = new RepositoryPage(count, PageIndex, PageSize);
+            var items = await countries.Skip(p.FirstItemIndex).Take(p.PageSize).ToListAsync();
+
+            return createList(items, p);
+        }
     }
 }
