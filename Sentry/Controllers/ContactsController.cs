@@ -150,5 +150,27 @@ namespace Open.Sentry.Controllers {
             await addresses.UpdateObject(o);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateEmail([Bind(emailProperties)] EMailAddressViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            c.ID = Guid.NewGuid().ToString();
+            var o = AddressObjectFactory.CreateEmail(c.ID, c.EmailAddress, c.ValidFrom, c.ValidTo);
+            await addresses.AddObject(o);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind(emailProperties)] EMailAddressViewModel c) {
+            if (!ModelState.IsValid) return View("EditEmail", c);
+            var o = await addresses.GetObject(c.ID) as EmailAddressObject;
+            o.DbRecord.Address = c.EmailAddress;
+            o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
+            o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
+            await addresses.UpdateObject(o);
+            return RedirectToAction("Index");
+        }
     }
 }
