@@ -1,7 +1,7 @@
 ﻿@using Open.Sentry.Extensions
 @model Open.Facade.Location.TelecomAddressViewModel
 
-@Html.EditingControlsFor(model => model.DeviceType)
+@Html.EditingControlsForEnum(model => model.DeviceType)
 @Html.HiddenFor(model => model.ID)
 @Html.EditingControlsFor(model => model.CountryCode)
 @Html.EditingControlsFor(model => model.NationalDirectDialingPrefix)

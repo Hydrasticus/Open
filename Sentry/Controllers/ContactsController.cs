@@ -15,8 +15,10 @@ namespace Open.Sentry.Controllers {
         private readonly ITelecomDeviceRegistrationObjectsRepository deviceRegistrations;
         internal const string emailProperties = "ID, EmailAddress, ValidFrom, ValidTo";
         internal const string webProperties = "ID, Url, ValidFrom, ValidTo";
+
         internal const string telecomProperties =
             "ID, CountryCode, AreaCode, Number, Extension, NationalDirectDialingPrefix, DeviceType, ValidFrom, ValidTo";
+
         internal const string adrProperties =
             "ID, AddressLine, City, RegionOrState, ZipOrPostalCode, ValidFrom, ValidTo";
 
@@ -57,19 +59,19 @@ namespace Open.Sentry.Controllers {
             var c = await addresses.GetObject(id);
 
             switch (c) {
-                    case WebAddressObject web:
-                        return View("DeleteWeb", AddressViewModelFactory.Create(web) as WebPageAddressViewModel);
-                    case EmailAddressObject email:
-                        return View("DeleteEmail", AddressViewModelFactory.Create(email) as EMailAddressViewModel);
-                    case TelecomAddressObject tel:
-                        return View("DeleteTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
-                    case GeographicAddressObject adr:
-                        await deviceRegistrations.LoadDevices(adr);
-                        // ReSharper disable once Mvc.ViewNotResolved
-                        return View("DeleteAddresses",
-                            AddressViewModelFactory.Create(adr) as GeographicAddressViewModel);
+                case WebAddressObject web:
+                    return View("DeleteWeb", AddressViewModelFactory.Create(web) as WebPageAddressViewModel);
+                case EmailAddressObject email:
+                    return View("DeleteEmail", AddressViewModelFactory.Create(email) as EMailAddressViewModel);
+                case TelecomAddressObject tel:
+                    return View("DeleteTelecom", AddressViewModelFactory.Create(tel) as TelecomAddressViewModel);
+                case GeographicAddressObject adr:
+                    await deviceRegistrations.LoadDevices(adr);
+                    // ReSharper disable once Mvc.ViewNotResolved
+                    return View("DeleteAddresses",
+                        AddressViewModelFactory.Create(adr) as GeographicAddressViewModel);
             }
-            
+
             return RedirectToAction("Index");
         }
 
@@ -184,6 +186,32 @@ namespace Open.Sentry.Controllers {
             if (!ModelState.IsValid) return View("EditEmail", c);
             var o = await addresses.GetObject(c.ID) as EmailAddressObject;
             o.DbRecord.Address = c.EmailAddress;
+            o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
+            o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
+            await addresses.UpdateObject(o);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTelecom([Bind(telecomProperties)] TelecomAddressViewModel c) {
+            if (!ModelState.IsValid) return View(c);
+            c.ID = Guid.NewGuid().ToString();
+            var o = AddressObjectFactory.CreateDevice(c.ID, c.CountryCode, c.AreaCode, c.Number, c.Extension,
+                c.NationalDirectDialingPrefix, c.DeviceType, c.ValidFrom, c.ValidTo);
+            await addresses.AddObject(o);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditTelecom([Bind(telecomProperties)] TelecomAddressViewModel c) {
+            if (!ModelState.IsValid) return View("EditTelecom", c);
+            var o = await addresses.GetObject(c.ID) as TelecomAddressObject;
+            o.DbRecord.Address = c.Number;
+            o.DbRecord.NationalDirectDialingPrefix = c.NationalDirectDialingPrefix;
+            o.DbRecord.CityOrAreaCode = c.AreaCode;
+            o.DbRecord.RegionOrStateOrCountryCode = c.CountryCode;
+            o.DbRecord.ZipOrPostCodeOrExtension = c.Extension;
+            o.DbRecord.Device = c.DeviceType;
             o.DbRecord.ValidFrom = c.ValidFrom ?? DateTime.MinValue;
             o.DbRecord.ValidTo = c.ValidTo ?? DateTime.MaxValue;
             await addresses.UpdateObject(o);

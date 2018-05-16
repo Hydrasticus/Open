@@ -8,6 +8,23 @@ namespace Open.Sentry.Extensions {
 
     public static class HtmlExtension {
 
+        public static IHtmlContent EditingControlsForEnum<TModel, TResult>(
+            this IHtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TResult>> expression) {
+            var selectList = new SelectList(Enum.GetNames(typeof(TResult)));
+            var htmlStrings = new List<object> {
+                new HtmlString("<div class=\"form-group\">"),
+                htmlHelper.LabelFor(expression, new {@class = "control-label col-md-2"}),
+                new HtmlString("<div class=\"col-md-4\">"),
+                htmlHelper.DropDownListFor(expression, selectList, new {@class = "form-control"}),
+                htmlHelper.ValidationMessageFor(expression, "", new {@class = "text-danger"}),
+                new HtmlString("</div>"),
+                new HtmlString("</div>")
+            };
+
+            return new HtmlContentBuilder(htmlStrings);
+        }
+
         public static IHtmlContent EditingControlsFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TResult>> expression) {
             var htmlStrings = new List<object> {

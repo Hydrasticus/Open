@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Open.Core;
 
 namespace Open.Facade.Location {
@@ -9,29 +10,31 @@ namespace Open.Facade.Location {
 
         private string countryCode, areaCode, number, extension, nationalDirectDialingPrefix;
 
-        [DisplayName("Country Code")]
+        [DisplayName("Country Code"), RegularExpression(@"^\d+$")]
         public string CountryCode {
             get => getString(ref countryCode);
             set => countryCode = value;
         }
 
-        [DisplayName("Area Code")]
+        [DisplayName("Area Code"), RegularExpression(@"^\d+$")]
         public string AreaCode {
             get => getString(ref areaCode);
             set => areaCode = value;
         }
 
+        [Required, RegularExpression(@"^\d+$")]
         public string Number {
             get => getString(ref number);
             set => number = value;
         }
 
+        [RegularExpression(@"^\d+$")]
         public string Extension {
             get => getString(ref extension);
             set => extension = value;
         }
 
-        [DisplayName("National Direct Dialing Prefix")]
+        [DisplayName("National Direct Dialing Prefix"), RegularExpression(@"^\d+$")]
         public string NationalDirectDialingPrefix {
             get => getString(ref nationalDirectDialingPrefix);
             set => nationalDirectDialingPrefix = value;
@@ -40,6 +43,7 @@ namespace Open.Facade.Location {
         [DisplayName("Device Type")]
         public TelecomDevice DeviceType { get; set; }
 
+        [DisplayName("Registered In")]
         public List<GeographicAddressViewModel> RegisteredInAddresses { get; } =
             new List<GeographicAddressViewModel>();
 
